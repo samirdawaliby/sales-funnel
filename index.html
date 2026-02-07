@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formations Certifiantes IT - CompTIA, Microsoft, Cisco | Caplogy</title>
+    <meta name="description" content="Obtenez votre certification IT professionnelle avec Caplogy. Formations CompTIA, Microsoft, Cisco avec bon d'examen inclus.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            color: #1A202C;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: #0D3866;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #00eaff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .header-cta {
+            background: #4cc9ff;
+            color: #0D3866;
+            padding: 0.7rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .header-cta:hover {
+            background: #00eaff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(76, 201, 255, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0D3866 0%, #2c5282 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            color: #00eaff;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: #E2E8F0;
+        }
+
+        .cta-primary {
+            background: #00eaff;
+            color: #0D3866;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 234, 255, 0.3);
+        }
+
+        .cta-primary:hover {
+            background: #4cc9ff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 234, 255, 0.4);
+        }
+
+        /* Features */
+        .features {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #0D3866;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(13, 56, 102, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid #E2E8F0;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 234, 255, 0.2);
+            border-color: #4cc9ff;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #0D3866;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #718096;
+            line-height: 1.8;
+        }
+
+        .check-icon {
+            color: #48BB78;
+        }
+
+        /* Certifications */
+        .certifications {
+            padding: 4rem 2rem;
+            background: #f7fafc;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .cert-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 3px solid #E2E8F0;
+            transition: all 0.3s ease;
+        }
+
+        .cert-card:hover {
+            border-color: #00eaff;
+            transform: scale(1.05);
+        }
+
+        .cert-logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .cert-card h3 {
+            color: #0D3866;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-card p {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        /* Lead Capture Form */
+        .lead-capture {
+            background: linear-gradient(135deg, #2c5282 0%, #0D3866 100%);
+            padding: 5rem 2rem;
+            color: white;
+            text-align: center;
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-container h2 {
+            color: #00eaff;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .form-container p {
+            color: #E2E8F0;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00eaff;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #00eaff;
+            background: white;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #00eaff;
+            color: #0D3866;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            background: #4cc9ff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 234, 255, 0.4);
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            padding: 3rem 2rem;
+            background: white;
+            text-align: center;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .badge {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .badge-icon {
+            font-size: 3rem;
+            color: #48BB78;
+        }
+
+        .badge-text {
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0D3866;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #E2E8F0;
+        }
+
+        footer a {
+            color: #00eaff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .features-grid,
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-content">
+            <a href="/" class="logo">CAPLOGY</a>
+            <a href="#contact" class="header-cta">Contactez-nous</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Boostez Votre Carrière IT avec une Certification Reconnue</h1>
+            <p>Formations CompTIA, Microsoft, Cisco certifiantes avec bon d'examen inclus. Devenez expert IT en quelques semaines.</p>
+            <button class="cta-primary" onclick="document.getElementById('lead-form').scrollIntoView({behavior: 'smooth'})">
+                Obtenir Mon Guide Gratuit 📚
+            </button>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Pourquoi Choisir Caplogy ?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <h3>Bon d'Examen Inclus</h3>
+                    <p>Votre voucher d'examen officiel est inclus dans la formation. Passez votre certification sans frais supplémentaires.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Formateurs Certifiés</h3>
+                    <p>Nos experts possèdent toutes les certifications qu'ils enseignent et ont des années d'expérience terrain.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Formation Accélérée</h3>
+                    <p>Programmes intensifs conçus pour vous rendre opérationnel rapidement sans compromis sur la qualité.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💼</div>
+                    <h3>ROI Garanti</h3>
+                    <p>Augmentation salariale moyenne de 15-25% après certification selon les études du secteur IT.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🏆</div>
+                    <h3>Certification Qualiopi</h3>
+                    <p>Organisme certifié Qualiopi, éligible aux financements OPCO, CPF et Pôle Emploi.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">🤝</div>
+                    <h3>Suivi Personnalisé</h3>
+                    <p>Accompagnement individuel jusqu'à l'obtention de votre certification. Vous n'êtes jamais seul.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications -->
+    <section class="certifications">
+        <div class="container">
+            <h2 class="section-title">Nos Certifications Phares</h2>
+            <div class="cert-grid">
+                <div class="cert-card">
+                    <div class="cert-logo">🔧</div>
+                    <h3>CompTIA A+</h3>
+                    <p>Support technique & hardware</p>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-logo">🔐</div>
+                    <h3>CompTIA Security+</h3>
+                    <p>Cybersécurité fondamentale</p>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-logo">🌐</div>
+                    <h3>CompTIA Network+</h3>
+                    <p>Réseaux & infrastructure</p>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-logo">☁️</div>
+                    <h3>Microsoft Azure</h3>
+                    <p>Cloud computing</p>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-logo">🖥️</div>
+                    <h3>Microsoft 365</h3>
+                    <p>Productivité & collaboration</p>
+                </div>
+
+                <div class="cert-card">
+                    <div class="cert-logo">🔌</div>
+                    <h3>Cisco CCNA</h3>
+                    <p>Réseaux Cisco</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Capture Form -->
+    <section class="lead-capture" id="lead-form">
+        <div class="container">
+            <div class="form-container">
+                <h2>Téléchargez Votre Guide Gratuit</h2>
+                <p>"Quelle Certification IT Choisir en 2024 ?" + Roadmap Personnalisée</p>
+
+                <form id="leadForm" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="prenom">Prénom *</label>
+                        <input type="text" id="prenom" name="prenom" required placeholder="Votre prénom">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Professionnel *</label>
+                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="niveau">Votre Niveau Actuel</label>
+                        <select id="niveau" name="niveau" required>
+                            <option value="">Sélectionnez...</option>
+                            <option value="debutant">Débutant (0-1 an d'expérience)</option>
+                            <option value="intermediaire">Intermédiaire (1-3 ans)</option>
+                            <option value="confirme">Confirmé (3-5 ans)</option>
+                            <option value="expert">Expert (5+ ans)</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="objectif">Votre Objectif Principal</label>
+                        <select id="objectif" name="objectif" required>
+                            <option value="">Sélectionnez...</option>
+                            <option value="reconversion">Reconversion professionnelle</option>
+                            <option value="promotion">Évolution dans mon poste actuel</option>
+                            <option value="salaire">Augmentation de salaire</option>
+                            <option value="competences">Acquisition de nouvelles compétences</option>
+                            <option value="emploi">Trouver un emploi IT</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        Télécharger Mon Guide Gratuit 🚀
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <h2 class="section-title">Ils Nous Font Confiance</h2>
+            <div class="trust-badges">
+                <div class="badge">
+                    <div class="badge-icon">✓</div>
+                    <div class="badge-text"><strong>500+</strong><br>Certifiés en 2023</div>
+                </div>
+                <div class="badge">
+                    <div class="badge-icon">✓</div>
+                    <div class="badge-text"><strong>95%</strong><br>Taux de réussite</div>
+                </div>
+                <div class="badge">
+                    <div class="badge-icon">✓</div>
+                    <div class="badge-text"><strong>4.8/5</strong><br>Satisfaction clients</div>
+                </div>
+                <div class="badge">
+                    <div class="badge-icon">✓</div>
+                    <div class="badge-text"><strong>Qualiopi</strong><br>Certifié qualité</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>📞 +33 (0)1 89 16 90 08 | 📧 <a href="mailto:contact@caplogy.com">contact@caplogy.com</a></p>
+            <p>36 Avenue de l'Europe, 78140 Vélizy-Villacoublay</p>
+            <p style="margin-top: 1rem; color: #718096; font-size: 0.9rem;">
+                © 2024 Caplogy - Organisme de formation certifié Qualiopi
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+
+            const formData = {
+                prenom: document.getElementById('prenom').value,
+                email: document.getElementById('email').value,
+                niveau: document.getElementById('niveau').value,
+                objectif: document.getElementById('objectif').value,
+                timestamp: new Date().toISOString()
+            };
+
+            // Ici vous intégrerez avec Resend + Cloudflare Workers
+            console.log('Lead capturé:', formData);
+
+            // Simuler l'envoi
+            alert(`Merci ${formData.prenom} ! 🎉\n\nVotre guide "Quelle Certification IT Choisir ?" sera envoyé à ${formData.email} dans quelques instants.\n\nConsultez également vos emails pour votre roadmap personnalisée !`);
+
+            // Reset form
+            document.getElementById('leadForm').reset();
+
+            // En production, vous feriez:
+            // fetch('/api/lead', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(formData)
+            // });
+        }
+    </script>
+</body>
+</html>
