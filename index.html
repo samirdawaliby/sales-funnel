@@ -628,9 +628,21 @@
         function handleSubmit(event) {
             event.preventDefault();
 
+            // Get selected domains
+            const domaines = Array.from(document.querySelectorAll('input[name="domaines"]:checked'))
+                .map(checkbox => checkbox.value);
+
+            // Validate that at least one domain is selected
+            if (domaines.length === 0) {
+                alert('Veuillez sélectionner au moins un domaine d\'intérêt');
+                return;
+            }
+
             const formData = {
                 prenom: document.getElementById('prenom').value,
                 email: document.getElementById('email').value,
+                domaines: domaines,
+                telephone: document.getElementById('telephone').value,
                 niveau: document.getElementById('niveau').value,
                 objectif: document.getElementById('objectif').value,
                 timestamp: new Date().toISOString()
@@ -640,7 +652,7 @@
             console.log('Lead capturé:', formData);
 
             // Simuler l'envoi
-            alert(`Merci ${formData.prenom} ! 🎉\n\nVotre guide "Quelle Certification IT Choisir ?" sera envoyé à ${formData.email} dans quelques instants.\n\nConsultez également vos emails pour votre roadmap personnalisée !`);
+            alert(`Merci ${formData.prenom} ! 🎉\n\nVotre guide "Quelle Certification IT Choisir ?" sera envoyé à ${formData.email} dans quelques instants.\n\nConsultez également vos emails pour votre roadmap personnalisée !\n\nDomaines sélectionnés: ${domaines.join(', ')}\nTéléphone: ${formData.telephone || 'Non fourni'}`);
 
             // Reset form
             document.getElementById('leadForm').reset();
