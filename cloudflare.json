@@ -1,0 +1,8 @@
+{
+  "pages": {
+    "builds": {
+      "default_branches": ["main", "modal-version"],
+      "preview_branch_includes": ["modal-version"]
+    }
+  }
+}
