@@ -864,6 +864,14 @@
                     <input type="email" id="email" name="email" required placeholder="votre@email.com">
                 </div>
 
+                <!-- SESSION DE FORMATION -->
+                <div class="form-group">
+                    <label for="session">Session de Formation *</label>
+                    <select id="session" name="session_id" required>
+                        <option value="">Choisir une session...</option>
+                    </select>
+                </div>
+
                 <!-- DOMAIN INTERESTS (NEW) -->
                 <div class="form-group">
                     <label>Domaines d'Intérêt *</label>
@@ -1009,6 +1017,8 @@
 
     function populateSessionDropdown(sessions) {
         const select = document.getElementById('session');
+        if (!select) return;
+
         select.innerHTML = '<option value="">Choisir une session...</option>';
         sessions.forEach(s => {
             const dateStr = formatDateFR(s.date_debut);
@@ -1018,6 +1028,7 @@
             const opt = document.createElement('option');
             opt.value = s.id;
             opt.textContent = label;
+            // Pre-select the promo session
             if (s.promo_active === 1) opt.selected = true;
             select.appendChild(opt);
         });
@@ -1029,6 +1040,14 @@
 
         const errorDiv = document.getElementById('formError');
         errorDiv.style.display = 'none';
+
+        // Check session selection
+        const sessionId = document.getElementById('session').value;
+        if (!sessionId) {
+            errorDiv.textContent = 'Veuillez choisir une session de formation.';
+            errorDiv.style.display = 'block';
+            return;
+        }
 
         // Get selected domains
         const domaines = Array.from(document.querySelectorAll('input[name="domaines"]:checked'))
@@ -1044,9 +1063,9 @@
             prenom: document.getElementById('prenom').value.trim(),
             nom: document.getElementById('nom').value.trim(),
             email: document.getElementById('email').value.trim(),
+            session_id: parseInt(sessionId, 10),
             domaines: domaines,
-            telephone: document.getElementById('telephone').value.trim(),
-            session_id: 1
+            telephone: document.getElementById('telephone').value.trim()
         };
 
         console.log('Lead capture:', formData);
