@@ -630,6 +630,115 @@
             box-shadow: 0 12px 40px rgba(0, 234, 255, 0.6);
         }
 
+        /* ── INSCRIPTION MODAL ── */
+        .inscription-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+        }
+        .inscription-modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #718096;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: #0D3866;
+        }
+        .modal-title {
+            color: var(--navy);
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .modal-form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        .modal-form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .modal-form-group input,
+        .modal-form-group textarea,
+        .modal-form-group select {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 7px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .modal-form-group input:focus,
+        .modal-form-group textarea:focus,
+        .modal-form-group select:focus {
+            outline: none;
+            border-color: var(--cyan);
+            background: #f7fafc;
+        }
+        .modal-submit-btn {
+            width: 100%;
+            background: var(--cyan);
+            color: var(--navy);
+            padding: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 30px rgba(0,234,255,0.35);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 1rem;
+        }
+        .modal-submit-btn:hover {
+            background: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,234,255,0.45);
+        }
+
         /* ── RESPONSIVE ── */
         @media (max-width: 600px) {
             .form-row { flex-direction: column; gap: 0; }
@@ -638,6 +747,7 @@
             .promo-popup { padding: 2rem 1.5rem 1.5rem; }
             .promo-free-label { font-size: 3rem; letter-spacing: 4px; }
             .promo-title { font-size: 1.4rem; }
+            .modal-content { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
@@ -680,6 +790,33 @@
 <button class="promo-float-btn" id="promoFloatBtn" onclick="openPromo()">
     &#9889; Offre gratuite
 </button>
+
+<!-- INSCRIPTION MODAL POPUP -->
+<div class="inscription-modal" id="inscriptionModal" onclick="if(event.target === this) closeInscriptionModal()">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeInscriptionModal()">&times;</button>
+        <h2 class="modal-title">Inscription</h2>
+
+        <form id="modalForm" onsubmit="handleModalSubmit(event)">
+            <!-- Form fields will be added here based on user requirements -->
+            <div class="modal-form-group">
+                <label for="modalName">Nom Complet *</label>
+                <input type="text" id="modalName" name="name" required placeholder="Votre nom complet">
+            </div>
+
+            <div class="modal-form-group">
+                <label for="modalEmail">Email *</label>
+                <input type="email" id="modalEmail" name="email" required placeholder="votre@email.com">
+            </div>
+
+            <button type="submit" class="modal-submit-btn">Confirmer l'inscription</button>
+        </form>
+
+        <p style="text-align: center; color: #718096; font-size: 0.85rem; margin-top: 1.5rem;">
+            🔒 Vos données sont confidentielles. Pas de spam, désinscription en 1 clic.
+        </p>
+    </div>
+</div>
 
 <!-- HEADER -->
 <header>
@@ -897,15 +1034,7 @@
                     <input type="tel" id="telephone" name="telephone" placeholder="+33 6 XX XX XX XX" pattern="[0-9+\s\-()]{10,}">
                 </div>
 
-                <!-- SESSION DE FORMATION -->
-                <div class="form-group">
-                    <label for="session">Session de Formation *</label>
-                    <select id="session" name="session_id" required>
-                        <option value="">Choisir une session...</option>
-                    </select>
-                </div>
-
-                <button type="submit" class="submit-btn" id="submitBtn">Je m'inscris 🚀</button>
+                <button type="button" class="submit-btn" id="submitBtn" onclick="openInscriptionModal()">Je m'inscris 🚀</button>
             </form>
             <p class="form-note">🔒 Vos données sont confidentielles. Pas de spam, désinscription en 1 clic.</p>
         </div>
@@ -1034,46 +1163,31 @@
         });
     }
 
-    // FORM SUBMISSION (WITH DOMAIN & PHONE)
-    async function handleSubmit(event) {
+    // MODAL FUNCTIONS
+    function openInscriptionModal() {
+        document.getElementById('inscriptionModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeInscriptionModal() {
+        document.getElementById('inscriptionModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function handleModalSubmit(event) {
         event.preventDefault();
 
-        const errorDiv = document.getElementById('formError');
-        errorDiv.style.display = 'none';
-
-        // Check session selection
-        const sessionId = document.getElementById('session').value;
-        if (!sessionId) {
-            errorDiv.textContent = 'Veuillez choisir une session de formation.';
-            errorDiv.style.display = 'block';
-            return;
-        }
-
-        // Get selected domains
-        const domaines = Array.from(document.querySelectorAll('input[name="domaines"]:checked'))
-            .map(checkbox => checkbox.value);
-
-        if (domaines.length === 0) {
-            errorDiv.textContent = 'Veuillez sélectionner au moins un domaine d\'intérêt.';
-            errorDiv.style.display = 'block';
-            return;
-        }
-
         const formData = {
-            prénom: document.getElementById('prénom').value.trim(),
-            nom: document.getElementById('nom').value.trim(),
-            email: document.getElementById('email').value.trim(),
-            session_id: parseInt(sessionId, 10),
-            domaines: domaines,
-            telephone: document.getElementById('telephone').value.trim()
+            name: document.getElementById('modalName').value.trim(),
+            email: document.getElementById('modalEmail').value.trim()
         };
 
-        console.log('Lead capture:', formData);
+        console.log('Modal form submission:', formData);
+        alert(`Merci ${formData.name}! Votre inscription a été reçue.`);
 
-        // Show success
-        document.getElementById('formArea').style.display = 'none';
-        document.getElementById('successMsg').style.display = 'block';
-        document.getElementById('promoFloatBtn').style.display = 'none';
+        // Reset form
+        document.getElementById('modalForm').reset();
+        closeInscriptionModal();
     }
 
     function formatDateFR(isoDate) {
