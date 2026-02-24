@@ -1,0 +1,24 @@
+name = "caplogy-funnel"
+main = "src/index.js"
+compatibility_date = "2024-12-01"
+
+# ─── D1 Database (meme base que le data-manager) ───
+# IMPORTANT : Remplacer database_id par l'ID reel de votre base D1
+# Trouvez-le avec : wrangler d1 list
+# Ou dans le dashboard Cloudflare > D1 > votre base
+[[d1_databases]]
+binding = "DB"
+database_name = "caplogy-db"
+database_id = "9e61b51f-289c-409b-acc7-8f55baba9a4b"
+
+# ─── Variables d'environnement (non sensibles) ───
+[vars]
+CORS_ORIGIN = "*"
+ENVIRONMENT = "production"
+
+# ─── Secrets (a configurer via wrangler secret put) ───
+# wrangler secret put DISCORD_WEBHOOK_URL
+# wrangler secret put AZURE_TENANT_ID
+# wrangler secret put AZURE_CLIENT_ID
+# wrangler secret put AZURE_CLIENT_SECRET
+# wrangler secret put ADMIN_PASSWORD
