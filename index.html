@@ -316,43 +316,6 @@
             border-color: var(--cyan);
             background: white;
         }
-
-        /* Domain Checkboxes */
-        .checkbox-group {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-            margin-top: 0.5rem;
-        }
-        .checkbox-label {
-            display: flex;
-            align-items: center;
-            cursor: pointer;
-            font-size: 0.95rem;
-            color: white;
-            user-select: none;
-        }
-        .checkbox-label input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            margin-right: 0.75rem;
-            cursor: pointer;
-            accent-color: var(--cyan);
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 3px;
-        }
-        .checkbox-label input[type="checkbox"]:hover {
-            border-color: var(--cyan);
-        }
-        .checkbox-label input[type="checkbox"]:checked {
-            border-color: var(--cyan);
-            background-color: var(--cyan);
-        }
-        .checkbox-label span {
-            color: #a0c0e0;
-            font-weight: 500;
-        }
-
         .submit-btn {
             width: 100%;
             background: var(--cyan);
@@ -414,9 +377,9 @@
         .success-msg p { color: #a0bcd8; }
         .checkmark { font-size: 4rem; margin-bottom: 1rem; }
 
-        /* ══════════════════════════════════════
+        /* ══════════════════════════════════════════════
            PROMO POPUP — Animated Overlay
-           ══════════════════════════════════════ */
+           ══════════════════════════════════════════════ */
         .promo-overlay {
             position: fixed;
             inset: 0;
@@ -466,6 +429,7 @@
         }
         .promo-close:hover { color: #a0bcd8; }
 
+        /* Spark badge */
         .promo-spark {
             display: inline-block;
             background: rgba(72,187,120,0.15);
@@ -508,6 +472,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Prix barre + GRATUIT */
         .promo-price {
             margin-bottom: 1.5rem;
             display: flex;
@@ -603,6 +568,7 @@
             animation: promoFadeIn 0.4s ease 1.6s both;
         }
 
+        /* Bouton flottant (visible apres fermeture popup) */
         .promo-float-btn {
             position: fixed;
             bottom: 24px;
@@ -630,115 +596,6 @@
             box-shadow: 0 12px 40px rgba(0, 234, 255, 0.6);
         }
 
-        /* ── INSCRIPTION MODAL ── */
-        .inscription-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.75);
-            z-index: 1001;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(8px);
-        }
-        .inscription-modal.active {
-            display: flex;
-        }
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            padding: 3rem;
-            max-width: 600px;
-            width: 95%;
-            max-height: 90vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            position: relative;
-            animation: slideUp 0.3s ease-out;
-        }
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        .modal-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            font-size: 2rem;
-            color: #718096;
-            cursor: pointer;
-            transition: color 0.2s;
-            line-height: 1;
-        }
-        .modal-close:hover {
-            color: #0D3866;
-        }
-        .modal-title {
-            color: var(--navy);
-            font-size: 1.8rem;
-            font-weight: 900;
-            margin-bottom: 1.5rem;
-            margin-top: 0.5rem;
-        }
-        .modal-form-group {
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-        .modal-form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: var(--navy);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        .modal-form-group input,
-        .modal-form-group textarea,
-        .modal-form-group select {
-            width: 100%;
-            padding: 0.9rem;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 7px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: 0.2s;
-        }
-        .modal-form-group input:focus,
-        .modal-form-group textarea:focus,
-        .modal-form-group select:focus {
-            outline: none;
-            border-color: var(--cyan);
-            background: #f7fafc;
-        }
-        .modal-submit-btn {
-            width: 100%;
-            background: var(--cyan);
-            color: var(--navy);
-            padding: 1.1rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.2s;
-            box-shadow: 0 8px 30px rgba(0,234,255,0.35);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-top: 1rem;
-        }
-        .modal-submit-btn:hover {
-            background: var(--blue);
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(0,234,255,0.45);
-        }
-
         /* ── RESPONSIVE ── */
         @media (max-width: 600px) {
             .form-row { flex-direction: column; gap: 0; }
@@ -747,13 +604,14 @@
             .promo-popup { padding: 2rem 1.5rem 1.5rem; }
             .promo-free-label { font-size: 3rem; letter-spacing: 4px; }
             .promo-title { font-size: 1.4rem; }
-            .modal-content { padding: 2rem 1.5rem; }
         }
     </style>
 </head>
 <body>
 
-<!-- PROMO POPUP OVERLAY -->
+<!-- ══════════════════════════════════════
+     PROMO POPUP OVERLAY
+     ══════════════════════════════════════ -->
 <div class="promo-overlay" id="promoOverlay" onclick="if(event.target===this)closePromo()">
     <div class="promo-popup" id="promoPopup">
         <button class="promo-close" onclick="closePromo()" aria-label="Fermer">&times;</button>
@@ -767,7 +625,7 @@
         <h2 class="promo-title" id="promoTitle">CompTIA Security+</h2>
 
         <div class="promo-price">
-            <span class="promo-original-price" id="promoOriginalPrice">2 990 €</span>
+            <span class="promo-original-price" id="promoOriginalPrice">2 990 &euro;</span>
             <span class="promo-free-label" id="promoFreeLabel">GRATUIT</span>
         </div>
 
@@ -782,41 +640,14 @@
             Je m'inscris gratuitement
         </a>
 
-        <p class="promo-note">Bon d'examen inclus · Éligible CPF & OPCO</p>
+        <p class="promo-note">Bon d'examen inclus &middot; Eligible CPF &amp; OPCO</p>
     </div>
 </div>
 
-<!-- Floating Button -->
+<!-- Bouton flottant pour re-ouvrir le popup -->
 <button class="promo-float-btn" id="promoFloatBtn" onclick="openPromo()">
     &#9889; Offre gratuite
 </button>
-
-<!-- INSCRIPTION MODAL POPUP -->
-<div class="inscription-modal" id="inscriptionModal" onclick="if(event.target === this) closeInscriptionModal()">
-    <div class="modal-content">
-        <button class="modal-close" onclick="closeInscriptionModal()">&times;</button>
-        <h2 class="modal-title">Inscription</h2>
-
-        <form id="modalForm" onsubmit="handleModalSubmit(event)">
-            <!-- Form fields will be added here based on user requirements -->
-            <div class="modal-form-group">
-                <label for="modalName">Nom Complet *</label>
-                <input type="text" id="modalName" name="name" required placeholder="Votre nom complet">
-            </div>
-
-            <div class="modal-form-group">
-                <label for="modalEmail">Email *</label>
-                <input type="email" id="modalEmail" name="email" required placeholder="votre@email.com">
-            </div>
-
-            <button type="submit" class="modal-submit-btn">Confirmer l'inscription</button>
-        </form>
-
-        <p style="text-align: center; color: #718096; font-size: 0.85rem; margin-top: 1.5rem;">
-            🔒 Vos données sont confidentielles. Pas de spam, désinscription en 1 clic.
-        </p>
-    </div>
-</div>
 
 <!-- HEADER -->
 <header>
@@ -828,9 +659,9 @@
 
 <!-- HERO -->
 <section class="hero">
-    <div class="hero-tag">🎓 Formations Certifiantes IT</div>
-    <h1>Décrochez votre certification IT<br><span>en quelques semaines</span>, pas en années.</h1>
-    <p class="hero-sub">CompTIA · Microsoft · Cisco · et bien d'autrès — bon d'examen inclus, financement CPF disponible.</p>
+    <div class="hero-tag">&#127891; Formations Certifiantes IT</div>
+    <h1>Decrochez votre certification IT<br><span>en quelques semaines</span>, pas en annees.</h1>
+    <p class="hero-sub">CompTIA &middot; Microsoft &middot; Cisco &middot; et bien d'autres &mdash; bon d'examen inclus, financement CPF disponible.</p>
 </section>
 
 <!-- VIDEO -->
@@ -842,7 +673,7 @@
                     <path d="M8 5v14l11-7z"/>
                 </svg>
             </div>
-            <p class="video-label">▶ Regardez comment nos apprenants ont <strong>changé de cap</strong> en quelques semaines</p>
+            <p class="video-label">&#9654; Regardez comment nos apprenants ont <strong>change de cap</strong> en quelques semaines</p>
         </div>
     </div>
 </section>
@@ -852,7 +683,7 @@
     <div class="stats-grid">
         <div class="stat-item">
             <div class="stat-number">95 %</div>
-            <div class="stat-label">Taux de réussite à l'examen</div>
+            <div class="stat-label">Taux de reussite a l'examen</div>
         </div>
         <div class="stat-item">
             <div class="stat-number">+20 %</div>
@@ -873,39 +704,39 @@
 <section class="certs">
     <div class="section-wrap" style="max-width:1100px;">
         <span class="section-label">Nos formations</span>
-        <h2 class="section-title">Les certifications qui font la <span>différence</span></h2>
+        <h2 class="section-title">Les certifications qui font la <span>difference</span></h2>
         <div class="certs-grid">
             <div class="cert-card">
                 <span class="cert-badge">CompTIA</span>
                 <h3>CompTIA A+</h3>
-                <p>La porte d'entrée incontournable pour le support IT</p>
+                <p>La porte d'entree incontournable pour le support IT</p>
                 <ul class="cert-includes">
                     <li>Formation intensive 5 jours</li>
                     <li>Bon d'examen 2 vouchers inclus</li>
                     <li>Support post-formation</li>
-                    <li>Éligible CPF & OPCO</li>
+                    <li>Eligible CPF &amp; OPCO</li>
                 </ul>
             </div>
             <div class="cert-card">
                 <span class="cert-badge">CompTIA</span>
                 <h3>CompTIA Security+</h3>
-                <p>La référence en cybersécurité pour les professionnels IT</p>
+                <p>La reference en cybersecurite pour les professionnels IT</p>
                 <ul class="cert-includes">
                     <li>Formation intensive 5 jours</li>
                     <li>Bon d'examen inclus</li>
                     <li>Labos pratiques inclus</li>
-                    <li>Éligible CPF & OPCO</li>
+                    <li>Eligible CPF &amp; OPCO</li>
                 </ul>
             </div>
             <div class="cert-card">
                 <span class="cert-badge">CompTIA</span>
                 <h3>CompTIA Network+</h3>
-                <p>Maîtrisez les réseaux et devenez indispensable</p>
+                <p>Maitrisez les reseaux et devenez indispensable</p>
                 <ul class="cert-includes">
                     <li>Formation intensive 5 jours</li>
                     <li>Bon d'examen inclus</li>
                     <li>Labos pratiques inclus</li>
-                    <li>Éligible CPF & OPCO</li>
+                    <li>Eligible CPF &amp; OPCO</li>
                 </ul>
             </div>
             <div class="cert-card">
@@ -915,30 +746,30 @@
                 <ul class="cert-includes">
                     <li>Formation 2 jours</li>
                     <li>Bon d'examen inclus</li>
-                    <li>Accès plateforme Microsoft Learn</li>
-                    <li>Éligible CPF & OPCO</li>
+                    <li>Acces plateforme Microsoft Learn</li>
+                    <li>Eligible CPF &amp; OPCO</li>
                 </ul>
             </div>
             <div class="cert-card">
                 <span class="cert-badge">Microsoft</span>
                 <h3>Microsoft 365 MS-900</h3>
-                <p>Maîtrisez l'écosystème Microsoft 365 en entreprise</p>
+                <p>Maitrisez l'ecosysteme Microsoft 365 en entreprise</p>
                 <ul class="cert-includes">
                     <li>Formation 2 jours</li>
                     <li>Bon d'examen inclus</li>
                     <li>Cas pratiques entreprise</li>
-                    <li>Éligible CPF & OPCO</li>
+                    <li>Eligible CPF &amp; OPCO</li>
                 </ul>
             </div>
             <div class="cert-card">
                 <span class="cert-badge">Cisco</span>
                 <h3>Cisco CCNA</h3>
-                <p>La certification réseau la plus reconnue au monde</p>
+                <p>La certification reseau la plus reconnue au monde</p>
                 <ul class="cert-includes">
                     <li>Formation intensive 5 jours</li>
                     <li>Bon d'examen inclus</li>
                     <li>Labos Cisco Packet Tracer</li>
-                    <li>Éligible CPF & OPCO</li>
+                    <li>Eligible CPF &amp; OPCO</li>
                 </ul>
             </div>
         </div>
@@ -948,28 +779,28 @@
 <!-- TESTIMONIALS -->
 <section class="testimonials">
     <div class="section-wrap" style="max-width:1100px;">
-        <span class="section-label">Témoignages</span>
+        <span class="section-label">Temoignages</span>
         <h2 class="section-title">Ils ont fait confiance a <span>Caplogy</span></h2>
         <div class="testi-grid">
             <div class="testi-card">
-                <div class="stars">★★★★★</div>
-                <p class="testi-text">"J'avais essayé de me préparer seul pendant 6 mois. Avec Caplogy, j'ai obtenu mon CompTIA Security+ en 5 jours de formation. Le bon d'examen inclus, c'est un vrai plus."</p>
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testi-text">"J'avais essaye de me preparer seul pendant 6 mois. Avec Caplogy, j'ai obtenu mon CompTIA Security+ en 5 jours de formation. Le bon d'examen inclus, c'est un vrai plus."</p>
                 <div class="testi-author">
                     <div class="testi-avatar">KM</div>
                     <div>
                         <div class="testi-name">Karim M.</div>
-                        <div class="testi-role">Technicien → Analyste Securite</div>
+                        <div class="testi-role">Technicien &rarr; Analyste Securite</div>
                     </div>
                 </div>
             </div>
             <div class="testi-card">
-                <div class="stars">★★★★★</div>
-                <p class="testi-text">"Formation CCNA de très grande qualité. Le formateur connaît vraiment son sujet. J'ai été embauché 3 semaines après l'obtention de ma certification, avec 20 % d'augmentation."</p>
+                <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="testi-text">"Formation CCNA de tres grande qualite. Le formateur connait vraiment son sujet. J'ai ete embauche 3 semaines apres l'obtention de ma certification, avec 20 % d'augmentation."</p>
                 <div class="testi-author">
                     <div class="testi-avatar">SL</div>
                     <div>
                         <div class="testi-name">Sophie L.</div>
-                        <div class="testi-role">Reconversion → Ingenieure Reseau</div>
+                        <div class="testi-role">Reconversion &rarr; Ingenieure Reseau</div>
                     </div>
                 </div>
             </div>
@@ -980,7 +811,7 @@
 <!-- LEAD FORM / INSCRIPTION -->
 <section class="lead-form-section" id="obtenir">
     <h2>Inscrivez-vous a la <span>prochaine session</span></h2>
-    <p class="sub">Choisissez votre formation et réservez votre place — places limitées</p>
+    <p class="sub">Choisissez votre formation et reservez votre place &mdash; places limitees</p>
 
     <div class="form-box">
         <div id="formArea">
@@ -988,8 +819,8 @@
             <form id="leadForm" onsubmit="handleSubmit(event)">
                 <div class="form-row">
                     <div class="form-group">
-                        <label for="prénom">Prenom *</label>
-                        <input type="text" id="prénom" name="prénom" required placeholder="Votre prénom">
+                        <label for="prenom">Prenom *</label>
+                        <input type="text" id="prenom" name="prenom" required placeholder="Votre prenom">
                     </div>
                     <div class="form-group">
                         <label for="nom">Nom *</label>
@@ -1000,47 +831,23 @@
                     <label for="email">Email *</label>
                     <input type="email" id="email" name="email" required placeholder="votre@email.com">
                 </div>
-
-                <!-- DOMAIN INTERESTS (NEW) -->
                 <div class="form-group">
-                    <label>Domaines d'Intérêt *</label>
-                    <div class="checkbox-group">
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="domaines" value="cybersecurity">
-                            <span>Cybersécurité</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="domaines" value="networking">
-                            <span>Networking</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="domaines" value="ai">
-                            <span>Intelligence Artificielle</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="domaines" value="dev">
-                            <span>Développement</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="domaines" value="cloud">
-                            <span>Cloud Computing</span>
-                        </label>
-                    </div>
+                    <label for="session">Session de formation *</label>
+                    <select id="session" name="session_id" required>
+                        <option value="">Chargement des sessions...</option>
+                    </select>
                 </div>
-
-                <!-- PHONE NUMBER (NEW) -->
-                <div class="form-group">
-                    <label for="telephone">Téléphone (optionnel)</label>
-                    <input type="tel" id="telephone" name="telephone" placeholder="+33 6 XX XX XX XX" pattern="[0-9+\s\-()]{10,}">
-                </div>
-
-                <button type="button" class="submit-btn" id="submitBtn" onclick="openInscriptionModal()">Je m'inscris 🚀</button>
+                <!-- UTM tracking (hidden) -->
+                <input type="hidden" id="utm_source" name="source" value="">
+                <input type="hidden" id="utm_campaign" name="utm_campaign" value="">
+                <input type="hidden" id="utm_medium" name="utm_medium" value="">
+                <button type="submit" class="submit-btn" id="submitBtn">Je m'inscris &#128640;</button>
             </form>
-            <p class="form-note">🔒 Vos données sont confidentielles. Pas de spam, désinscription en 1 clic.</p>
+            <p class="form-note">&#128274; Vos donnees sont confidentielles. Pas de spam, desinscription en 1 clic.</p>
         </div>
 
         <div class="success-msg" id="successMsg">
-            <div class="checkmark">✅</div>
+            <div class="checkmark">&#9989;</div>
             <h3>Inscription confirmee !</h3>
             <p>Un email de confirmation arrive dans votre boite mail.<br>Un conseiller Caplogy vous contactera sous 24h.<br><br>
             <a href="https://discord.gg/PfDywrmY" style="color:var(--cyan);font-weight:700;text-decoration:underline;">Rejoindre le Discord Caplogy</a></p>
@@ -1058,67 +865,89 @@
         <a href="tel:+33189169008">+33 (0)1 89 16 90 08</a>
     </div>
     <p>36 Avenue de l'Europe, 78140 Velizy-Villacoublay</p>
-    <p class="footer-copy" style="margin-top:0.8rem;">&copy; 2026 Caplogy — Organisme de formation certifié Qualiopi</p>
+    <p class="footer-copy" style="margin-top:0.8rem;">&copy; 2026 Caplogy &mdash; Organisme de formation certifie Qualiopi</p>
 </footer>
 
 <script>
-    // Promo System
+    /* ══════════════════════════════════════
+       CONFIGURATION
+       ══════════════════════════════════════ */
+    // IMPORTANT : Remplacer par l'URL de votre Worker funnel une fois deploye
+    const FUNNEL_API = 'https://caplogy-funnel.s-dawaliby.workers.dev';
+
+    /* ══════════════════════════════════════
+       PROMO POPUP
+       ══════════════════════════════════════ */
     let promoData = null;
     let allSessions = [];
 
     async function loadPromoSession() {
         try {
-            // Mock session data for demo
-            const mockSessions = [
-                {
-                    id: 1,
-                    formation_name: 'CompTIA Security+',
-                    prix_original: 2990,
-                    prix_session: 0,
-                    promo_label: 'GRATUIT',
-                    date_debut: '2026-03-10',
-                    date_fin: '2026-03-14',
-                    places_restantes: 20,
-                    promo_active: 1,
-                    logo_url: ''
-                }
-            ];
+            const res = await fetch(FUNNEL_API + '/api/funnel/sessions');
+            const data = await res.json();
+            allSessions = data.sessions || [];
 
-            allSessions = mockSessions;
+            // Remplir le dropdown du formulaire
             populateSessionDropdown(allSessions);
 
+            // Trouver la session promo active
             const promo = allSessions.find(s => s.promo_active === 1);
             if (promo) {
                 promoData = promo;
                 populatePromo(promo);
+
+                // Auto-afficher apres 1.5s (sauf si deja vu)
                 const dismissed = localStorage.getItem('promo_dismissed_' + promo.id);
                 if (!dismissed) {
                     setTimeout(() => openPromo(), 1500);
                 } else {
+                    // Montrer le bouton flottant
                     document.getElementById('promoFloatBtn').style.display = 'block';
                     updateFloatBtnText(promo);
                 }
             }
         } catch (err) {
-            console.warn('Promo loading error:', err);
+            console.warn('Impossible de charger les sessions:', err);
+            // Fallback : dropdown statique
+            const select = document.getElementById('session');
+            select.innerHTML = '<option value="">Sessions indisponibles - Reessayez plus tard</option>';
         }
     }
 
     function populatePromo(s) {
+        const logo = document.getElementById('promoLogo');
+        if (s.logo_url) {
+            logo.src = s.logo_url;
+            logo.style.display = '';
+        } else {
+            logo.style.display = 'none';
+        }
+
         document.getElementById('promoTitle').textContent = s.formation_name;
+
+        // Prix original barre
         document.getElementById('promoOriginalPrice').innerHTML =
             new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(s.prix_original);
+
+        // Label promo (GRATUIT, OFFERT, etc.)
         document.getElementById('promoFreeLabel').textContent = s.promo_label || 'GRATUIT';
 
+        // Couleur du label selon type
         const freeLabel = document.getElementById('promoFreeLabel');
         if (s.prix_session === 0) {
             freeLabel.style.color = 'var(--green)';
             freeLabel.style.textShadow = '0 0 40px rgba(72,187,120,0.5)';
+        } else {
+            freeLabel.style.color = 'var(--cyan)';
+            freeLabel.style.textShadow = '0 0 40px rgba(0,234,255,0.5)';
         }
 
+        // Dates
         const debut = formatDateFR(s.date_debut);
         const fin = formatDateFR(s.date_fin);
         document.getElementById('promoDate').textContent = 'Session : ' + debut + ' - ' + fin;
+
+        // Places
         document.getElementById('promoPlaces').textContent = s.places_restantes;
     }
 
@@ -1141,55 +970,117 @@
     function updateFloatBtnText(s) {
         const btn = document.getElementById('promoFloatBtn');
         const label = s.prix_session === 0 ? s.formation_name + ' GRATUIT' : s.formation_name;
-        btn.innerHTML = '⚡ ' + label;
+        btn.innerHTML = '&#9889; ' + label;
     }
 
+    /* ══════════════════════════════════════
+       FORM — Sessions Dropdown
+       ══════════════════════════════════════ */
     function populateSessionDropdown(sessions) {
         const select = document.getElementById('session');
-        if (!select) return;
-
         select.innerHTML = '<option value="">Choisir une session...</option>';
+
         sessions.forEach(s => {
             const dateStr = formatDateFR(s.date_debut);
-            const prixStr = s.prix_session === 0 ? 'GRATUIT' : s.prix_session + ' €';
+            const prixStr = s.prix_session === 0 ? 'GRATUIT' : s.prix_session + ' \u20ac';
             const places = s.places_restantes + ' places';
-            const label = s.formation_name + ' — ' + dateStr + ' (' + prixStr + ' • ' + places + ')';
+            const label = s.formation_name + ' \u2014 ' + dateStr + ' (' + prixStr + ' \u2022 ' + places + ')';
+
             const opt = document.createElement('option');
             opt.value = s.id;
             opt.textContent = label;
-            // Pre-select the promo session
+            // Pre-selectionner la session promo
             if (s.promo_active === 1) opt.selected = true;
             select.appendChild(opt);
         });
     }
 
-    // MODAL FUNCTIONS
-    function openInscriptionModal() {
-        document.getElementById('inscriptionModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-
-    function closeInscriptionModal() {
-        document.getElementById('inscriptionModal').classList.remove('active');
-        document.body.style.overflow = '';
-    }
-
-    function handleModalSubmit(event) {
+    /* ══════════════════════════════════════
+       FORM — Submit (inscription)
+       ══════════════════════════════════════ */
+    async function handleSubmit(event) {
         event.preventDefault();
 
-        const formData = {
-            name: document.getElementById('modalName').value.trim(),
-            email: document.getElementById('modalEmail').value.trim()
+        const btn = document.getElementById('submitBtn');
+        const errorDiv = document.getElementById('formError');
+        errorDiv.style.display = 'none';
+
+        const sessionId = document.getElementById('session').value;
+        if (!sessionId) {
+            errorDiv.textContent = 'Veuillez choisir une session de formation.';
+            errorDiv.style.display = 'block';
+            return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Inscription en cours...';
+
+        const payload = {
+            prenom: document.getElementById('prenom').value.trim(),
+            nom: document.getElementById('nom').value.trim(),
+            email: document.getElementById('email').value.trim(),
+            session_id: parseInt(sessionId, 10),
+            source: document.getElementById('utm_source').value || 'landing-page',
+            utm_campaign: document.getElementById('utm_campaign').value || null,
+            utm_medium: document.getElementById('utm_medium').value || null,
         };
 
-        console.log('Modal form submission:', formData);
-        alert(`Merci ${formData.name}! Votre inscription a été reçue.`);
+        try {
+            const res = await fetch(FUNNEL_API + '/api/funnel/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payload),
+            });
 
-        // Reset form
-        document.getElementById('modalForm').reset();
-        closeInscriptionModal();
+            const result = await res.json();
+
+            if (result.success) {
+                document.getElementById('formArea').style.display = 'none';
+                document.getElementById('successMsg').style.display = 'block';
+                // Masquer le bouton flottant
+                document.getElementById('promoFloatBtn').style.display = 'none';
+            } else {
+                errorDiv.textContent = result.message || 'Erreur lors de l\'inscription.';
+                errorDiv.style.display = 'block';
+                btn.disabled = false;
+                btn.textContent = 'Je m\'inscris \ud83d\ude80';
+            }
+        } catch (err) {
+            errorDiv.textContent = 'Erreur reseau. Verifiez votre connexion et reessayez.';
+            errorDiv.style.display = 'block';
+            btn.disabled = false;
+            btn.textContent = 'Je m\'inscris \ud83d\ude80';
+        }
     }
 
+    /* ══════════════════════════════════════
+       UTM TRACKING
+       ══════════════════════════════════════ */
+    function captureUTM() {
+        const params = new URLSearchParams(window.location.search);
+        const fields = ['utm_source', 'utm_campaign', 'utm_medium'];
+        fields.forEach(f => {
+            const val = params.get(f);
+            if (val) {
+                const el = document.getElementById(f);
+                if (el) el.value = val;
+            }
+        });
+    }
+
+    /* ══════════════════════════════════════
+       VIDEO PLACEHOLDER
+       ══════════════════════════════════════ */
+    function loadVideo() {
+        // Remplacez VIDEO_ID par votre ID YouTube
+        // const block = document.getElementById('videoBlock');
+        // block.innerHTML = '<iframe src="https://www.youtube.com/embed/VIDEO_ID?autoplay=1" allow="autoplay; fullscreen" allowfullscreen></iframe>';
+        alert('Integrez votre video ici.\n\nRemplacez le bloc #videoBlock par une iframe YouTube / Vimeo.');
+    }
+
+    /* ══════════════════════════════════════
+       HELPERS
+       ══════════════════════════════════════ */
     function formatDateFR(isoDate) {
         try {
             const date = new Date(isoDate + 'T00:00:00');
@@ -1197,10 +1088,9 @@
         } catch { return isoDate; }
     }
 
-    function loadVideo() {
-        alert('Intégrez votre vidéo ici.\n\nRemplacez le bloc #videoBlock par une iframe YouTube / Vimeo.');
-    }
-
+    /* ══════════════════════════════════════
+       SMOOTH SCROLL
+       ══════════════════════════════════════ */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
         a.addEventListener('click', e => {
             e.preventDefault();
@@ -1209,7 +1099,11 @@
         });
     });
 
+    /* ══════════════════════════════════════
+       INIT
+       ══════════════════════════════════════ */
     document.addEventListener('DOMContentLoaded', () => {
+        captureUTM();
         loadPromoSession();
     });
 </script>
