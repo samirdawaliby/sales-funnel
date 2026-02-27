@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport Leads - Caplogy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #0D3866;
+            --cyan: #00eaff;
+            --blue: #4cc9ff;
+            --light: #f7fafc;
+            --white: #ffffff;
+            --dark: #1A202C;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--dark);
+            background: #f5f5f5;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header */
+        header {
+            background: var(--navy);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            color: var(--cyan);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #f7fafc 0%, #e6f3ff 100%);
+            border-bottom: 2px solid var(--cyan);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--cyan);
+        }
+
+        .stat-label {
+            color: var(--navy);
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Table */
+        .table-wrapper {
+            overflow-x: auto;
+            padding: 2rem;
+        }
+
+        .leads-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        .leads-table thead {
+            background: var(--navy);
+            color: white;
+            position: sticky;
+            top: 0;
+        }
+
+        .leads-table th {
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid var(--cyan);
+            white-space: nowrap;
+        }
+
+        .leads-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .leads-table tbody tr:hover {
+            background-color: var(--light);
+        }
+
+        .leads-table a {
+            color: var(--cyan);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .leads-table a:hover {
+            color: var(--blue);
+            text-decoration: underline;
+        }
+
+        /* Status Badge */
+        .badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .badge-domain {
+            background: #e0f7ff;
+            color: #0369a1;
+        }
+
+        .badge-date {
+            background: #f0f9ff;
+            color: #0d3866;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.1rem;
+            color: var(--navy);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #999;
+            font-size: 0.9rem;
+            background: #f5f5f5;
+        }
+
+        /* Export Button */
+        .export-btn {
+            background: var(--cyan);
+            color: var(--navy);
+            border: none;
+            padding: 0.8rem 1.6rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            margin: 2rem;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .export-btn:hover {
+            background: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 234, 255, 0.3);
+        }
+
+        .button-group {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .button-group button {
+            margin: 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                margin: 1rem auto;
+            }
+
+            .table-wrapper {
+                padding: 1rem;
+            }
+
+            .leads-table {
+                font-size: 0.9rem;
+            }
+
+            .leads-table th, .leads-table td {
+                padding: 0.6rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>📊 Rapport Leads</h1>
+        <p>Utilisateurs enregistrés pour les formations</p>
+    </header>
+
+    <!-- Container -->
+    <div class="container">
+        <!-- Stats -->
+        <div class="stats" id="statsSection">
+            <div class="stat-item">
+                <div class="stat-number" id="totalLeads">0</div>
+                <div class="stat-label">Leads au total</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="uniqueEmails">0</div>
+                <div class="stat-label">Emails uniques</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="withPhone">0</div>
+                <div class="stat-label">Avec téléphone</div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="button-group">
+            <button class="export-btn" onclick="exportToCSV()">📥 Exporter en CSV</button>
+            <button class="export-btn" onclick="printTable()" style="background: #9ca3af; color: white;">🖨️ Imprimer</button>
+        </div>
+
+        <!-- Table -->
+        <div class="table-wrapper">
+            <div id="leadsContent" class="loading">
+                ⏳ Chargement des données...
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>Caplogy Formation - Rapport Leads | Mis à jour en temps réel</p>
+    </footer>
+
+    <script>
+        // Store leads globally
+        let allLeads = [];
+
+        // API Configuration - Points to the actual backend server
+        const API_BASE = 'https://caplogy-funnel.s-dawaliby.workers.dev';
+
+        // Load leads on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadLeads();
+        });
+
+        function loadLeads() {
+            // Try to fetch from API, but use localStorage as fallback
+            const storedLeads = localStorage.getItem('caplogy_leads');
+
+            fetch(API_BASE + '/api/funnel/leads', {
+                method: 'GET',
+                headers: { 'Content-Type': 'application/json' }
+            })
+            .then(response => {
+                // Check if response is actually JSON
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    return response.json();
+                } else {
+                    throw new Error('API not responding with JSON');
+                }
+            })
+            .then(data => {
+                if (data.success && data.leads && data.leads.length > 0) {
+                    allLeads = data.leads;
+                    // Save to localStorage as backup
+                    localStorage.setItem('caplogy_leads', JSON.stringify(data.leads));
+                    displayLeads(data.leads);
+                    updateStats(data.leads);
+                } else if (storedLeads) {
+                    // Use stored data if API returns empty
+                    allLeads = JSON.parse(storedLeads);
+                    displayLeads(allLeads);
+                    updateStats(allLeads);
+                } else {
+                    showEmptyState();
+                }
+            })
+            .catch(error => {
+                console.warn('API Error, trying localStorage:', error);
+
+                // Try to use stored leads
+                if (storedLeads) {
+                    allLeads = JSON.parse(storedLeads);
+                    displayLeads(allLeads);
+                    updateStats(allLeads);
+                } else {
+                    showEmptyState();
+                }
+            });
+        }
+
+        function displayLeads(leads) {
+            const content = document.getElementById('leadsContent');
+
+            if (!leads || leads.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            let html = `
+                <table class="leads-table">
+                    <thead>
+                        <tr>
+                            <th>Prénom</th>
+                            <th>Nom</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Domaine</th>
+                            <th>Certification</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            `;
+
+            leads.forEach((lead, index) => {
+                const firstName = lead.prenom || lead.first_name || '-';
+                const lastName = lead.nom || lead.last_name || '-';
+                const email = lead.email || '-';
+                const phone = lead.phone || lead.telephone || '-';
+                const domain = lead.domain || lead.domaine || '-';
+                const certification = lead.certification || '-';
+                const dateStr = lead.created_at ? new Date(lead.created_at).toLocaleDateString('fr-FR') : new Date().toLocaleDateString('fr-FR');
+
+                html += `
+                    <tr>
+                        <td>${escapeHtml(firstName)}</td>
+                        <td>${escapeHtml(lastName)}</td>
+                        <td><a href="mailto:${escapeHtml(email)}">${escapeHtml(email)}</a></td>
+                        <td><a href="tel:${(phone + '').replace(/\s/g, '')}">${escapeHtml(phone)}</a></td>
+                        <td><span class="badge badge-domain">${escapeHtml(domain)}</span></td>
+                        <td>${escapeHtml(certification)}</td>
+                        <td><span class="badge badge-date">${dateStr}</span></td>
+                    </tr>
+                `;
+            });
+
+            html += '</tbody></table>';
+            content.innerHTML = html;
+            content.classList.remove('loading');
+        }
+
+        function showEmptyState() {
+            document.getElementById('leadsContent').innerHTML = `
+                <div style="text-align: center; padding: 3rem; color: #999;">
+                    <p style="font-size: 1.2rem;">📋 Aucun lead enregistré pour le moment</p>
+                    <p>Les utilisateurs qui s'inscriront apparaîtront ici automatiquement</p>
+                </div>
+            `;
+        }
+
+        function updateStats(leads) {
+            const totalLeads = document.getElementById('totalLeads');
+            const uniqueEmails = document.getElementById('uniqueEmails');
+            const withPhone = document.getElementById('withPhone');
+
+            const emails = new Set(leads.map(l => l.email).filter(e => e));
+            const phoneCount = leads.filter(l => l.phone || l.telephone).length;
+
+            totalLeads.textContent = leads.length;
+            uniqueEmails.textContent = emails.size;
+            withPhone.textContent = phoneCount;
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '-';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function exportToCSV() {
+            if (allLeads.length === 0) {
+                alert('Aucune donnée à exporter');
+                return;
+            }
+
+            let csv = [['Prénom', 'Nom', 'Email', 'Téléphone', 'Domaine', 'Certification', 'Date']];
+
+            allLeads.forEach(lead => {
+                csv.push([
+                    lead.prenom || lead.first_name || '',
+                    lead.nom || lead.last_name || '',
+                    lead.email || '',
+                    lead.phone || lead.telephone || '',
+                    lead.domain || lead.domaine || '',
+                    lead.certification || '',
+                    lead.created_at ? new Date(lead.created_at).toLocaleDateString('fr-FR') : ''
+                ]);
+            });
+
+            const csvContent = csv.map(row => row.map(cell => '"' + (cell + '').replace(/"/g, '""') + '"').join(',')).join('\n');
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'leads_' + new Date().toISOString().split('T')[0] + '.csv');
+            link.style.visibility = 'hidden';
+
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function printTable() {
+            const table = document.querySelector('.leads-table');
+            if (!table || allLeads.length === 0) {
+                alert('Aucune donnée à imprimer');
+                return;
+            }
+
+            const printWindow = window.open('', '', 'width=1000,height=800');
+            printWindow.document.write('<html><head><title>Rapport Leads</title>');
+            printWindow.document.write('<style>');
+            printWindow.document.write('body { font-family: Arial, sans-serif; }');
+            printWindow.document.write('table { width: 100%; border-collapse: collapse; margin-top: 20px; }');
+            printWindow.document.write('th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }');
+            printWindow.document.write('th { background-color: #0D3866; color: white; }');
+            printWindow.document.write('tr:nth-child(even) { background-color: #f7fafc; }');
+            printWindow.document.write('h1 { text-align: center; color: #0D3866; }');
+            printWindow.document.write('</style></head><body>');
+            printWindow.document.write('<h1>Rapport Leads - Caplogy</h1>');
+            printWindow.document.write(table.outerHTML);
+            printWindow.document.write('</body></html>');
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        // Auto-refresh every 5 minutes
+        setInterval(loadLeads, 5 * 60 * 1000);
+    </script>
+</body>
+</html>
