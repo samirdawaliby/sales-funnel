@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport Leads Complet - Caplogy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #0D3866;
+            --cyan-accent: #00EAFF;
+            --dark-bg: #0a1929;
+            --card-bg: #132F4C;
+            --text-primary: #ffffff;
+            --text-secondary: #a0aec0;
+            --success: #10b981;
+            --danger: #ef4444;
+            --border-color: #1e3a5f;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #0f2847 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue) 100%);
+            padding: 40px;
+            border-bottom: 3px solid var(--cyan-accent);
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #ffffff, var(--cyan-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            color: var(--cyan-accent);
+            font-weight: bold;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 5px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, var(--cyan-accent), #00d4ff);
+            color: var(--primary-blue);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 10px 10px 0;
+            font-size: 1rem;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 234, 255, 0.3);
+        }
+
+        .table-container {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: var(--primary-blue);
+            color: var(--cyan-accent);
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 2px solid var(--cyan-accent);
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:hover {
+            background: rgba(0, 234, 255, 0.05);
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            background: var(--cyan-accent);
+            color: var(--primary-blue);
+        }
+
+        .error {
+            background: var(--danger);
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin: 20px 0;
+        }
+
+        .loading {
+            text-align: center;
+            color: var(--cyan-accent);
+            padding: 40px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>📊 RAPPORT LEADS</h1>
+        <p style="color: var(--text-secondary); font-size: 1.1rem;">Tous les utilisateurs enregistrés pour les formations - Données Complètes</p>
+        <button class="button" onclick="reloadLeads()">🔄 ACTUALISER</button>
+        <button class="button" onclick="exportCSV()">📥 EXPORTER CSV</button>
+    </div>
+
+    <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+            <div class="stat-number" id="stat-total">0</div>
+            <div class="stat-label">LEADS AU TOTAL</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="stat-emails">0</div>
+            <div class="stat-label">EMAILS UNIQUES</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="stat-phone">0</div>
+            <div class="stat-label">AVEC TÉLÉPHONE</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="stat-professions">0</div>
+            <div class="stat-label">PROFESSIONS</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="stat-schools">0</div>
+            <div class="stat-label">ÉCOLES/UNIVERSITÉS</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number" id="stat-certs">0</div>
+            <div class="stat-label">CERTIFICATIONS</div>
+        </div>
+    </div>
+
+    <div id="loading" class="loading" style="display:none;">⏳ Chargement des données...</div>
+    <div id="error" class="error" style="display:none;"></div>
+
+    <div class="table-container">
+        <table id="leadsTable">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>PRÉNOM</th>
+                    <th>NOM</th>
+                    <th>EMAIL</th>
+                    <th>TÉLÉPHONE</th>
+                    <th>PROFESSION</th>
+                    <th>CERTIFICATION</th>
+                    <th>ÉCOLE/UNIVERSITÉ</th>
+                    <th>DIPLÔME</th>
+                    <th>POSTE</th>
+                    <th>DOMAINE</th>
+                    <th>DATE</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        let allLeads = [];
+
+        async function loadLeads() {
+            try {
+                console.log('🔄 Chargement des leads depuis l\'API...');
+                document.getElementById('loading').style.display = 'block';
+                document.getElementById('error').style.display = 'none';
+
+                // Simple fetch with minimal headers
+                const response = await fetch('https://caplogy-funnel.s-dawaliby.workers.dev/api/funnel/leads');
+
+                console.log('Status:', response.status);
+                console.log('OK:', response.ok);
+
+                if (!response.ok) {
+                    throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                }
+
+                const data = await response.json();
+                console.log('✅ Données reçues:', data);
+
+                if (data.success && data.leads && Array.isArray(data.leads)) {
+                    allLeads = data.leads;
+                    console.log(`✅ ${allLeads.length} leads chargés avec succès!`);
+                    displayLeads();
+                    updateStats();
+                } else {
+                    throw new Error('Format de réponse invalide');
+                }
+            } catch (error) {
+                console.error('❌ Erreur lors du chargement:', error);
+                showError(`Erreur: ${error.message}`);
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+
+        function displayLeads() {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+
+            // Sort by creation date - newest first
+            const sortedLeads = [...allLeads].sort((a, b) => {
+                const dateA = new Date(a.created_at || 0);
+                const dateB = new Date(b.created_at || 0);
+                return dateB - dateA; // Descending order (newest first)
+            });
+
+            sortedLeads.forEach((lead, index) => {
+                const row = document.createElement('tr');
+                const date = lead.created_at ? new Date(lead.created_at).toLocaleDateString('fr-FR') : '-';
+
+                row.innerHTML = `
+                    <td>${lead.id || index + 1}</td>
+                    <td>${lead.prenom || '-'}</td>
+                    <td>${lead.nom || '-'}</td>
+                    <td><a href="mailto:${lead.email}" style="color: var(--cyan-accent); text-decoration: none;">${lead.email || '-'}</a></td>
+                    <td>${lead.telephone || '-'}</td>
+                    <td>${lead.profession || '-'}</td>
+                    <td><span class="badge">${lead.cert_provider || 'N/A'}</span></td>
+                    <td>${lead.school || '-'}</td>
+                    <td>${lead.diploma || '-'}</td>
+                    <td>${lead.job_title || '-'}</td>
+                    <td>${lead.selected_domain || '-'}</td>
+                    <td>${date}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function updateStats() {
+            document.getElementById('stat-total').textContent = allLeads.length;
+
+            const uniqueEmails = new Set(allLeads.filter(l => l.email).map(l => l.email)).size;
+            document.getElementById('stat-emails').textContent = uniqueEmails;
+
+            const withPhone = allLeads.filter(l => l.telephone).length;
+            document.getElementById('stat-phone').textContent = withPhone;
+
+            const uniqueProfessions = new Set(allLeads.filter(l => l.profession && l.profession !== '-').map(l => l.profession)).size;
+            document.getElementById('stat-professions').textContent = uniqueProfessions;
+
+            const uniqueSchools = new Set(allLeads.filter(l => l.school && l.school !== '-').map(l => l.school)).size;
+            document.getElementById('stat-schools').textContent = uniqueSchools;
+
+            const uniqueCerts = new Set(allLeads.filter(l => l.cert_provider && l.cert_provider !== '-').map(l => l.cert_provider)).size;
+            document.getElementById('stat-certs').textContent = uniqueCerts;
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('error');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function reloadLeads() {
+            console.log('🔄 Rechargement des données...');
+            loadLeads();
+        }
+
+        function exportCSV() {
+            if (allLeads.length === 0) {
+                alert('Aucune donnée à exporter');
+                return;
+            }
+
+            let csv = 'ID,PRÉNOM,NOM,EMAIL,TÉLÉPHONE,PROFESSION,CERTIFICATION,ÉCOLE,DIPLÔME,POSTE,DOMAINE,DATE\n';
+
+            allLeads.forEach(lead => {
+                const date = lead.created_at ? new Date(lead.created_at).toLocaleDateString('fr-FR') : '-';
+                csv += `${lead.id},"${lead.prenom}","${lead.nom}","${lead.email}","${lead.telephone || ''}","${lead.profession}","${lead.cert_provider}","${lead.school}","${lead.diploma}","${lead.job_title}","${lead.selected_domain}","${date}"\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', 'rapport_leads.csv');
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Load data on page load
+        console.log('Page loaded - loading leads...');
+        loadLeads();
+    </script>
+</body>
+</html>

@@ -1,0 +1,2580 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications IT Professionnelles | Caplogy</title>
+    <meta name="description" content="Devenez certifié CompTIA, Microsoft ou Cisco en quelques semaines. Bon d'examen inclus. Financement CPF disponible.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --navy:   #0D3866;
+            --cyan:   #00eaff;
+            --blue:   #4cc9ff;
+            --green:  #48BB78;
+            --orange: #ff9f40;
+            --gray:   #718096;
+            --light:  #f7fafc;
+            --white:  #ffffff;
+            --dark:   #1A202C;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            background: var(--white);
+        }
+
+        /* ── HEADER ── */
+        header {
+            background: var(--navy);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+        .header-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { color: var(--cyan); font-size: 1.6rem; font-weight: 800; letter-spacing: 1px; text-decoration: none; }
+        .header-btn {
+            background: var(--cyan);
+            color: var(--navy);
+            padding: 0.6rem 1.4rem;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.2s;
+        }
+        .header-btn:hover { background: var(--blue); transform: translateY(-2px); }
+
+        /* ── HERO ── */
+        .hero {
+            background: linear-gradient(160deg, var(--navy) 0%, #1a4a7a 100%);
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            color: white;
+        }
+        .hero-tag {
+            display: inline-block;
+            background: rgba(0,234,255,0.15);
+            color: var(--cyan);
+            border: 1px solid var(--cyan);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero h1 span { color: var(--cyan); }
+        .hero-sub {
+            font-size: 1.2rem;
+            color: #c8d8e8;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* ── VIDEO BLOCK ── */
+        .video-section {
+            background: var(--navy);
+            padding: 0 2rem 4rem;
+        }
+        .video-wrapper {
+            max-width: 820px;
+            margin: 0 auto;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+            border: 3px solid rgba(0,234,255,0.3);
+            position: relative;
+            background: #000;
+        }
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0a2a4a, #1a3a6a);
+            cursor: pointer;
+            gap: 1.5rem;
+            position: relative;
+        }
+        .video-placeholder iframe {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .play-btn {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: var(--cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 0 0 rgba(0,234,255,0.5);
+            animation: pulse 2s infinite;
+            transition: transform 0.2s;
+            flex-shrink: 0;
+        }
+        .play-btn:hover { transform: scale(1.1); }
+        .play-btn svg { margin-left: 6px; }
+        @keyframes pulse {
+            0%   { box-shadow: 0 0 0 0 rgba(0,234,255,0.5); }
+            70%  { box-shadow: 0 0 0 25px rgba(0,234,255,0); }
+            100% { box-shadow: 0 0 0 0 rgba(0,234,255,0); }
+        }
+        .video-label {
+            color: #a0c0e0;
+            font-size: 1rem;
+        }
+        .video-label strong { color: var(--cyan); }
+
+        /* ── STATS ── */
+        .stats {
+            background: var(--navy);
+            padding: 4rem 2rem;
+        }
+        .stats-grid {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--cyan);
+            line-height: 1;
+        }
+        .stat-label { color: #a0bcd8; margin-top: 0.5rem; font-size: 0.95rem; }
+
+        /* ── CERTIFICATIONS ── */
+        .section-wrap { max-width: 900px; margin: 0 auto; }
+        .section-label {
+            display: inline-block;
+            color: var(--navy);
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--cyan);
+            padding-left: 0.8rem;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--navy);
+            font-weight: 900;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+        .section-title span { color: var(--cyan); }
+        .certs {
+            padding: 5rem 2rem;
+            background: white;
+        }
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .cert-card {
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.8rem;
+            transition: 0.25s;
+        }
+        .cert-card:hover {
+            border-color: var(--cyan);
+            box-shadow: 0 10px 30px rgba(0,234,255,0.15);
+            transform: translateY(-4px);
+        }
+        .cert-badge {
+            display: inline-block;
+            background: var(--light);
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .cert-card h3 { font-size: 1.3rem; color: var(--navy); margin-bottom: 0.5rem; font-weight: 800; }
+        .cert-card p { color: var(--gray); font-size: 0.95rem; margin-bottom: 1rem; }
+        .cert-includes { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+        .cert-includes li { font-size: 0.9rem; color: #4a5568; display: flex; align-items: center; gap: 0.5rem; }
+        .cert-includes li::before { content: "\2713"; color: var(--green); font-weight: 700; }
+
+        /* ── TESTIMONIALS ── */
+        .testimonials {
+            padding: 5rem 2rem;
+            background: var(--light);
+        }
+        .testi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        .testi-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.8rem;
+            border-left: 4px solid var(--cyan);
+        }
+        .stars { color: #f6ad55; font-size: 1.1rem; margin-bottom: 1rem; }
+        .testi-text { color: #4a5568; font-style: italic; margin-bottom: 1.2rem; line-height: 1.7; }
+        .testi-author { display: flex; align-items: center; gap: 0.8rem; }
+        .testi-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--navy);
+            color: var(--cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .testi-name { font-weight: 700; color: var(--navy); font-size: 0.95rem; }
+        .testi-role { color: var(--gray); font-size: 0.85rem; }
+
+        /* ── LEAD FORM ── */
+        .lead-form-section {
+            background: linear-gradient(160deg, var(--navy) 0%, #1a4a7a 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        .lead-form-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: white;
+            font-weight: 900;
+            margin-bottom: 0.8rem;
+        }
+        .lead-form-section h2 span { color: var(--cyan); }
+        .lead-form-section .sub {
+            color: #a0bcd8;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+        }
+        .form-box {
+            max-width: 540px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 16px;
+            padding: 2.5rem 2rem;
+            backdrop-filter: blur(10px);
+        }
+        .form-row { display: flex; gap: 1rem; }
+        .form-group { flex: 1; margin-bottom: 1.2rem; text-align: left; }
+        .form-group label { display: block; margin-bottom: 0.4rem; color: #a0c0e0; font-size: 0.9rem; font-weight: 600; }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.9rem 1rem;
+            border: 1.5px solid rgba(255,255,255,0.15);
+            border-radius: 7px;
+            background: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            color: var(--dark);
+            transition: 0.2s;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--cyan);
+            background: white;
+        }
+
+        /* Domain Checkboxes */
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.95rem;
+            color: white;
+            user-select: none;
+        }
+        .checkbox-label input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-right: 0.75rem;
+            cursor: pointer;
+            accent-color: var(--cyan);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 3px;
+        }
+        .checkbox-label input[type="checkbox"]:hover {
+            border-color: var(--cyan);
+        }
+        .checkbox-label input[type="checkbox"]:checked {
+            border-color: var(--cyan);
+            background-color: var(--cyan);
+        }
+        .checkbox-label span {
+            color: #a0c0e0;
+            font-weight: 500;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: var(--cyan);
+            color: var(--navy);
+            padding: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.15rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 30px rgba(0,234,255,0.35);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 0.5rem;
+        }
+        .submit-btn:hover {
+            background: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,234,255,0.45);
+        }
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .form-note { color: #718096; font-size: 0.82rem; margin-top: 1rem; }
+        .form-error {
+            background: rgba(255,107,107,0.15);
+            border: 1px solid rgba(255,107,107,0.3);
+            color: #ff6b6b;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            display: none;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: #06213d;
+            color: #a0bcd8;
+            padding: 2.5rem 2rem;
+            text-align: center;
+        }
+        footer a { color: var(--cyan); text-decoration: none; }
+        footer a:hover { text-decoration: underline; }
+        .footer-logo { color: var(--cyan); font-size: 1.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .footer-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .footer-copy { font-size: 0.85rem; color: #4a6a8a; }
+
+        /* ── SUCCESS STATE ── */
+        .success-msg {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+        .success-msg h3 { color: var(--cyan); font-size: 1.8rem; margin-bottom: 1rem; }
+        .success-msg p { color: #a0bcd8; }
+        .checkmark { font-size: 4rem; margin-bottom: 1rem; }
+
+        /* ══════════════════════════════════════
+           PROMO POPUP — Animated Overlay
+           ══════════════════════════════════════ */
+        .promo-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+        .promo-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .promo-popup {
+            background: linear-gradient(160deg, #0D3866 0%, #122d52 50%, #1a4a7a 100%);
+            border: 2px solid rgba(0, 234, 255, 0.35);
+            border-radius: 24px;
+            padding: 2.5rem 2rem 2rem;
+            max-width: 460px;
+            width: 92%;
+            text-align: center;
+            position: relative;
+            transform: scale(0.7) translateY(40px);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6), 0 0 80px rgba(0, 234, 255, 0.12);
+        }
+        .promo-overlay.active .promo-popup {
+            transform: scale(1) translateY(0);
+        }
+
+        .promo-close {
+            position: absolute;
+            top: 12px;
+            right: 16px;
+            background: none;
+            border: none;
+            color: #4a6a8a;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        .promo-close:hover { color: #a0bcd8; }
+
+        .promo-spark {
+            display: inline-block;
+            background: rgba(72,187,120,0.15);
+            color: var(--green);
+            border: 1px solid rgba(72,187,120,0.3);
+            padding: 0.3rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            animation: promoFadeIn 0.4s ease 0.2s both;
+        }
+
+        .promo-logo {
+            margin-bottom: 1rem;
+        }
+        .promo-logo img {
+            height: 70px;
+            opacity: 0;
+            animation: promoBounce 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s both;
+        }
+        @keyframes promoBounce {
+            0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+            60% { transform: scale(1.15) rotate(2deg); }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        .promo-title {
+            color: white;
+            font-size: 1.7rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            animation: promoFadeIn 0.5s ease 0.4s both;
+        }
+        @keyframes promoFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .promo-price {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+        }
+        .promo-original-price {
+            color: #ff6b6b;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: line-through;
+            text-decoration-thickness: 3px;
+            opacity: 0;
+            animation: promoSlideIn 0.5s ease 0.6s both;
+        }
+        @keyframes promoSlideIn {
+            from { opacity: 0; transform: translateX(-30px) scale(0.8); }
+            to { opacity: 1; transform: translateX(0) scale(1); }
+        }
+        .promo-free-label {
+            color: var(--green);
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: 6px;
+            text-shadow: 0 0 40px rgba(72, 187, 120, 0.5), 0 0 80px rgba(72, 187, 120, 0.2);
+            opacity: 0;
+            animation: promoPopIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1s both;
+        }
+        @keyframes promoPopIn {
+            0% { opacity: 0; transform: scale(0.2) rotate(-15deg); }
+            50% { transform: scale(1.15) rotate(3deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+
+        .promo-date {
+            color: #a0bcd8;
+            font-size: 1.05rem;
+            margin-bottom: 0.3rem;
+            opacity: 0;
+            animation: promoFadeIn 0.4s ease 1.2s both;
+        }
+
+        .promo-urgency {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            opacity: 0;
+            animation: promoFadeIn 0.4s ease 1.3s both;
+        }
+        .promo-pulse {
+            width: 8px;
+            height: 8px;
+            background: #ff6b6b;
+            border-radius: 50%;
+            animation: pulse 1.5s infinite;
+        }
+
+        .promo-cta {
+            display: inline-block;
+            background: var(--cyan);
+            color: var(--navy);
+            padding: 1rem 2.5rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 10px 40px rgba(0, 234, 255, 0.4);
+            transition: 0.2s;
+            animation: promoGlow 2s ease-in-out 1.5s infinite alternate, promoFadeIn 0.5s ease 1.4s both;
+        }
+        @keyframes promoGlow {
+            from { box-shadow: 0 10px 40px rgba(0, 234, 255, 0.3); }
+            to { box-shadow: 0 15px 60px rgba(0, 234, 255, 0.6); }
+        }
+        .promo-cta:hover {
+            transform: translateY(-3px);
+            background: var(--blue);
+        }
+
+        .promo-note {
+            color: #4a6a8a;
+            font-size: 0.78rem;
+            margin-top: 1rem;
+            opacity: 0;
+            animation: promoFadeIn 0.4s ease 1.6s both;
+        }
+
+        .promo-float-btn {
+            position: fixed;
+            right: 24px;
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            color: var(--navy);
+            padding: 0.9rem 1.6rem;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.85rem;
+            cursor: pointer;
+            z-index: 99;
+            box-shadow: 0 8px 30px rgba(0, 234, 255, 0.4);
+            display: block;
+            animation: floatBounce 3s ease-in-out infinite;
+            border: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* CompTIA Button - Bottom */
+        #promoFloatBtn {
+            bottom: 24px;
+        }
+
+        /* Microsoft Button - Middle */
+        #promoFloatBtnMS {
+            bottom: 94px;
+            background: linear-gradient(135deg, var(--green), #2d8659);
+            box-shadow: 0 8px 30px rgba(72, 187, 120, 0.4);
+        }
+        #promoFloatBtnMS:hover {
+            box-shadow: 0 12px 40px rgba(72, 187, 120, 0.6);
+        }
+
+        /* Cisco Button - Top */
+        #promoFloatBtnCisco {
+            bottom: 164px;
+            background: linear-gradient(135deg, var(--orange), #e67e22);
+            box-shadow: 0 8px 30px rgba(255, 159, 64, 0.4);
+        }
+        #promoFloatBtnCisco:hover {
+            box-shadow: 0 12px 40px rgba(255, 159, 64, 0.6);
+        }
+
+        @keyframes floatBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .promo-float-btn:hover {
+            box-shadow: 0 12px 40px rgba(0, 234, 255, 0.6);
+        }
+
+        /* ── INSCRIPTION MODAL ── */
+        .inscription-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.75);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+        }
+        .inscription-modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 95%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.3s ease-out;
+        }
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: #718096;
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: #0D3866;
+        }
+        .modal-title {
+            color: var(--navy);
+            font-size: 1.8rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            margin-top: 0.5rem;
+        }
+        .modal-form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        .modal-form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .modal-form-group input,
+        .modal-form-group textarea,
+        .modal-form-group select {
+            width: 100%;
+            padding: 0.9rem;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 7px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+        .modal-form-group input:focus,
+        .modal-form-group textarea:focus,
+        .modal-form-group select:focus {
+            outline: none;
+            border-color: var(--cyan);
+            background: #f7fafc;
+        }
+        .modal-submit-btn {
+            width: 100%;
+            background: var(--cyan);
+            color: var(--navy);
+            padding: 1.1rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 30px rgba(0,234,255,0.35);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 1rem;
+        }
+        .modal-submit-btn:hover {
+            background: var(--blue);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,234,255,0.45);
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 600px) {
+            .form-row { flex-direction: column; gap: 0; }
+            .hero h1 { font-size: 1.9rem; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .promo-popup { padding: 2rem 1.5rem 1.5rem; }
+            .promo-free-label { font-size: 3rem; letter-spacing: 4px; }
+            .promo-title { font-size: 1.4rem; }
+            .modal-content { padding: 2rem 1.5rem; }
+        }
+
+    /* Domain Selector Styles */
+    .domain-selector {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin: 2rem 0;
+    }
+
+    .domain-btn {
+        padding: 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        background-color: #f7fafc;
+        color: #0d3866;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .domain-btn:hover {
+        border-color: #00eaff;
+        background-color: #e0f7ff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 234, 255, 0.2);
+    }
+
+    .domain-btn.active {
+        border-color: #00eaff;
+        background-color: #00eaff;
+        color: #ffffff;
+    }
+
+    /* Certification List Styles */
+    .certifications-list {
+        display: block;
+        max-height: 400px;
+        overflow-y: auto;
+        margin: 2rem 0;
+        padding-right: 0.5rem;
+    }
+
+    .cert-button {
+        display: block;
+        padding: 1rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 8px;
+        background-color: #f7fafc;
+        color: #0d3866;
+        font-size: 0.95rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: left;
+        min-height: fit-content;
+        min-width: fit-content;
+        height: auto;
+        width: auto;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .cert-button:hover {
+        border-color: #00eaff;
+        background-color: #e0f7ff;
+        transform: translateX(4px);
+    }
+
+    .cert-button.active {
+        border-color: #00eaff;
+        background-color: #00eaff;
+        color: #ffffff;
+    }
+
+    /* Questionnaire Styles */
+    .questionnaire-step {
+        animation: fadeIn 0.3s ease-out;
+    }
+
+    .questionnaire-option-btn {
+        padding: 0.75rem 1rem;
+        border: 2px solid #ddd;
+        background: white;
+        color: #0d3866;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        min-height: fit-content;
+        width: 100%;
+        text-align: center;
+    }
+
+    .questionnaire-option-btn:hover {
+        border-color: #00eaff;
+        background-color: #f0f9ff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 234, 255, 0.15);
+    }
+
+    .questionnaire-option-btn.active {
+        border-color: #00eaff;
+        background-color: #00eaff;
+        color: white;
+        box-shadow: 0 4px 12px rgba(0, 234, 255, 0.3);
+    }
+
+    .questionnaire-option-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    /* Loading Spinner */
+    .loading-spinner {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        border: 4px solid #e2e8f0;
+        border-top-color: #00eaff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
+
+    /* Modal Steps */
+    .modal-step {
+        animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Leads Report Table Styles */
+    .leads-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .leads-table thead {
+        background: var(--navy);
+        color: white;
+    }
+
+    .leads-table th {
+        padding: 1rem;
+        text-align: left;
+        font-weight: 600;
+        border-bottom: 2px solid var(--cyan);
+    }
+
+    .leads-table td {
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    .leads-table tbody tr:hover {
+        background-color: #f7fafc;
+    }
+
+    .leads-table tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .domain-selector {
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        }
+        .certifications-list {
+            max-height: 300px;
+        }
+        .leads-table {
+            font-size: 0.9rem;
+        }
+        .leads-table th, .leads-table td {
+            padding: 0.6rem 0.5rem;
+        }
+    }
+
+    </style>
+</head>
+<body>
+
+<!-- PROMO POPUP OVERLAY -->
+<div class="promo-overlay" id="promoOverlay" onclick="if(event.target===this)closePromo()">
+    <div class="promo-popup" id="promoPopup">
+        <button class="promo-close" onclick="closePromo()" aria-label="Fermer">&times;</button>
+
+        <div class="promo-spark" id="promoSpark">Nouvelle session</div>
+
+        <div class="promo-logo">
+            <img src="" id="promoLogo" alt="Logo certification" onerror="this.style.display='none'">
+        </div>
+
+        <h2 class="promo-title" id="promoTitle">CompTIA Security+</h2>
+
+        <div class="promo-price">
+            <span class="promo-original-price" id="promoOriginalPrice">2 990 €</span>
+            <span class="promo-free-label" id="promoFreeLabel">GRATUIT</span>
+        </div>
+
+        <p class="promo-date" id="promoDate">Session : 10 - 14 Mars 2026</p>
+
+        <p class="promo-urgency" id="promoUrgency">
+            <span class="promo-pulse"></span>
+            Il reste <strong id="promoPlaces">20</strong> places
+        </p>
+
+        <a href="#obtenir" class="promo-cta" onclick="closePromo()">
+            Je m'inscris gratuitement
+        </a>
+
+        <p class="promo-note">Bon d'examen inclus · Éligible CPF & OPCO</p>
+    </div>
+</div>
+
+<!-- Floating Button -->
+<button class="promo-float-btn" id="promoFloatBtn" onclick="openPromo()">
+    &#9889; COMPTIA SECURITY+ GRATUIT
+</button>
+
+<button class="promo-float-btn" id="promoFloatBtnMS" onclick="openPromo('promoOverlayMS')">
+    ☁️ MICROSOFT AZ-900 GRATUIT
+</button>
+
+<button class="promo-float-btn" id="promoFloatBtnCisco" onclick="openPromo('promoOverlayCisco')">
+    🌐 CISCO NETWORKS GRATUIT
+</button>
+
+<!-- MICROSOFT AZ-900 POPUP -->
+<div class="promo-overlay" id="promoOverlayMS" onclick="if(event.target === this) closePromo('promoOverlayMS')">
+    <div class="promo-popup" id="promoPopupMS">
+        <button class="promo-close" onclick="closePromo('promoOverlayMS')" aria-label="Fermer">&times;</button>
+
+        <div class="promo-spark" id="promoSparkMS">Nouvelle session</div>
+
+        <div class="promo-logo">
+            <img src="" alt="Logo Microsoft" style="height: 70px; opacity: 0;" onerror="this.style.display='none'">
+        </div>
+
+        <h2 class="promo-title" id="promoTitleMS" style="opacity: 0; animation: promoFadeIn 0.5s ease 0.4s both;">Microsoft Azure Fundamentals</h2>
+
+        <div class="promo-price">
+            <span class="promo-original-price" id="promoOriginalPriceMS" style="opacity: 0; animation: promoSlideIn 0.5s ease 0.6s both;">1 490 €</span>
+            <span class="promo-free-label" id="promoFreeLabelMS" style="opacity: 0; animation: promoPopIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1s both;">GRATUIT</span>
+        </div>
+
+        <p class="promo-date" id="promoDateMS" style="opacity: 0; animation: promoFadeIn 0.4s ease 1.2s both;">Session : 17 - 21 Mars 2026</p>
+
+        <p class="promo-urgency" id="promoUrgencyMS" style="opacity: 0; animation: promoFadeIn 0.4s ease 1.3s both;">
+            <span class="promo-pulse"></span>
+            Il reste <strong id="promoPlacesMS">15</strong> places
+        </p>
+
+        <a href="#obtenir" class="promo-cta" style="opacity: 0; animation: promoGlow 2s ease-in-out 1.5s infinite alternate, promoFadeIn 0.5s ease 1.4s both;" onclick="closePromo('promoOverlayMS')">
+            Je m'inscris gratuitement
+        </a>
+
+        <p class="promo-note" style="opacity: 0; animation: promoFadeIn 0.4s ease 1.6s both;">Bon d'examen inclus · Éligible CPF & OPCO</p>
+    </div>
+</div>
+
+<!-- CISCO INTRODUCTION TO NETWORKS POPUP -->
+<div class="promo-overlay" id="promoOverlayCisco" onclick="if(event.target === this) closePromo('promoOverlayCisco')">
+    <div class="promo-popup" id="promoPopupCisco">
+        <button class="promo-close" onclick="closePromo('promoOverlayCisco')" aria-label="Fermer">&times;</button>
+
+        <div class="promo-spark" id="promoSparkCisco">Nouvelle session</div>
+
+        <div class="promo-logo">
+            <img src="" alt="Logo Cisco" style="height: 70px; opacity: 0;" onerror="this.style.display='none'">
+        </div>
+
+        <h2 class="promo-title" id="promoTitleCisco" style="opacity: 0; animation: promoFadeIn 0.5s ease 0.4s both;">Cisco Introduction to Networks</h2>
+
+        <div class="promo-price">
+            <span class="promo-original-price" id="promoOriginalPriceCisco" style="opacity: 0; animation: promoSlideIn 0.5s ease 0.6s both;">1 290 €</span>
+            <span class="promo-free-label" id="promoFreeLabelCisco" style="opacity: 0; animation: promoPopIn 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) 1s both;">GRATUIT</span>
+        </div>
+
+        <p class="promo-date" id="promoDateCisco" style="opacity: 0; animation: promoFadeIn 0.4s ease 1.2s both;">Session : 24 - 28 Mars 2026</p>
+
+        <p class="promo-urgency" id="promoUrgencyCisco" style="opacity: 0; animation: promoFadeIn 0.4s ease 1.3s both;">
+            <span class="promo-pulse"></span>
+            Il reste <strong id="promoPlacesCisco">18</strong> places
+        </p>
+
+        <a href="#obtenir" class="promo-cta" style="opacity: 0; animation: promoGlow 2s ease-in-out 1.5s infinite alternate, promoFadeIn 0.5s ease 1.4s both;" onclick="closePromo('promoOverlayCisco')">
+            Je m'inscris gratuitement
+        </a>
+
+        <p class="promo-note" style="opacity: 0; animation: promoFadeIn 0.4s ease 1.6s both;">Bon d'examen inclus · Éligible CPF & OPCO</p>
+    </div>
+</div>
+
+<!-- INSCRIPTION MODAL POPUP - Multi-step -->
+<div class="inscription-modal" id="inscriptionModal" onclick="if(event.target === this) closeInscriptionModal()">
+    <div class="modal-content">
+        <button class="modal-close" onclick="closeInscriptionModal()">&times;</button>
+
+        <!-- UNIFIED MODAL: Domain Selection + Certifications -->
+        <div class="modal-step" id="modalStep1">
+            <h2 class="modal-title">✨ Merci pour votre inscription!</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem;">
+                Sélectionnez votre domaine d'intérêt
+            </p>
+
+            <!-- DOMAIN SELECTOR -->
+            <div class="domain-selector">
+                <button type="button" class="domain-btn" data-domain="cybersecurity" onclick="selectDomain(this)">
+                    🔒 Cybersécurité
+                </button>
+                <button type="button" class="domain-btn" data-domain="cloud" onclick="selectDomain(this)">
+                    ☁️ Cloud Computing
+                </button>
+                <button type="button" class="domain-btn" data-domain="ai" onclick="selectDomain(this)">
+                    🤖 Intelligence Artificielle
+                </button>
+                <button type="button" class="domain-btn" data-domain="networking" onclick="selectDomain(this)">
+                    🌐 Networking
+                </button>
+            </div>
+
+            <!-- CERTIFICATION SELECTOR (shown inline after domain selection) -->
+            <!-- NEW QUESTIONNAIRE SECTION -->
+            <div id="certificationSection" style="display: none; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid #e2e8f0;">
+                <!-- Step 1: Profession -->
+                <div class="questionnaire-step" id="q-step-profession" style="display: block;">
+                    <h3 style="text-align: center; color: #0d3866; margin-bottom: 1.5rem;">Étape 1: Profession</h3>
+                    <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">Quelle est votre profession?</p>
+                    <input type="text" id="profession-input" placeholder="Ex: Développeur, Manager, Étudiant, Ingénieur, etc." style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.95rem; margin-bottom: 1.5rem;" onchange="validateProfessionInput()">
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" class="modal-submit-btn" onclick="goBackToDomain()" style="background-color: #999; flex: 1;">← Retour</button>
+                        <button type="button" class="modal-submit-btn" id="btn-q-next-profession" onclick="nextQuestionnaire()" style="flex: 1; opacity: 0.5; cursor: not-allowed;">Suivant →</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: School -->
+                <div class="questionnaire-step" id="q-step-school" style="display: none;">
+                    <h3 style="text-align: center; color: #0d3866; margin-bottom: 1.5rem;">Étape 2: École</h3>
+                    <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">Quelle école avez-vous fréquentée?</p>
+                    <input type="text" id="school-input" placeholder="Entrez le nom de votre école" style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" class="modal-submit-btn" onclick="previousQuestionnaire()" style="background-color: #999; flex: 1;">← Retour</button>
+                        <button type="button" class="modal-submit-btn" onclick="nextQuestionnaire()" style="flex: 1;">Suivant →</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Diploma -->
+                <div class="questionnaire-step" id="q-step-diploma" style="display: none;">
+                    <h3 style="text-align: center; color: #0d3866; margin-bottom: 1.5rem;">Étape 3: Diplôme</h3>
+                    <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">Quel est votre diplôme?</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem;">
+                        <button type="button" class="questionnaire-option-btn" onclick="selectDiploma('Baccalauréat')">Baccalauréat</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectDiploma('Licence')">Licence</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectDiploma('Master')">Master</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectDiploma('Doctorat')">Doctorat</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectDiploma('Diplôme d\'Ingénieur')">Dipl. d'Ingénieur</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectDiploma('Autre')">Autre</button>
+                    </div>
+                    <div id="diploma-other-container" style="display: none; margin-bottom: 1.5rem;">
+                        <input type="text" id="diploma-other-input" placeholder="Précisez votre diplôme" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.95rem;">
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" class="modal-submit-btn" onclick="previousQuestionnaire()" style="background-color: #999; flex: 1;">← Retour</button>
+                        <button type="button" class="modal-submit-btn" id="btn-q-next-diploma" onclick="nextQuestionnaire()" style="flex: 1; opacity: 0.5; cursor: not-allowed;">Suivant →</button>
+                    </div>
+                </div>
+
+                <!-- Step 4: Job Title -->
+                <div class="questionnaire-step" id="q-step-jobtitle" style="display: none;">
+                    <h3 style="text-align: center; color: #0d3866; margin-bottom: 1.5rem;">Étape 4: Titre du Poste</h3>
+                    <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">Quel est votre titre de poste?</p>
+                    <input type="text" id="jobtitle-input" placeholder="Ex: Développeur, Chef de Projet, etc." style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.95rem; margin-bottom: 1.5rem;">
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" class="modal-submit-btn" onclick="previousQuestionnaire()" style="background-color: #999; flex: 1;">← Retour</button>
+                        <button type="button" class="modal-submit-btn" onclick="nextQuestionnaire()" style="flex: 1;">Suivant →</button>
+                    </div>
+                </div>
+
+                <!-- Step 5: IT Experience -->
+                <div class="questionnaire-step" id="q-step-itexp" style="display: none;">
+                    <h3 style="text-align: center; color: #0d3866; margin-bottom: 1.5rem;">Étape 5: Expérience IT</h3>
+                    <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">Avez-vous travaillé dans le domaine IT/Coding?</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <button type="button" class="questionnaire-option-btn" onclick="selectITExp('Oui')">✅ Oui</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectITExp('Non')">❌ Non</button>
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" class="modal-submit-btn" onclick="previousQuestionnaire()" style="background-color: #999; flex: 1;">← Retour</button>
+                        <button type="button" class="modal-submit-btn" id="btn-q-next-itexp" onclick="nextQuestionnaire()" style="flex: 1; opacity: 0.5; cursor: not-allowed;">Suivant →</button>
+                    </div>
+                </div>
+
+                <!-- Step 6: Domain Motivation -->
+                <div class="questionnaire-step" id="q-step-motivation" style="display: none;">
+                    <h3 style="text-align: center; color: #0d3866; margin-bottom: 1.5rem;">Étape 6: Motivation</h3>
+                    <p style="text-align: center; color: #666; margin-bottom: 1.5rem;">Pourquoi avez-vous choisi ce domaine?</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-bottom: 1.5rem;">
+                        <button type="button" class="questionnaire-option-btn" onclick="selectMotivation('Curiosité')">🤔 Curiosité</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectMotivation('Pour apprendre')">📚 Pour apprendre</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectMotivation('Évolution de carrière')">📈 Évolution carrière</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectMotivation('Changement de domaine')">🔄 Changement domaine</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectMotivation('Autre')" style="grid-column: 1/-1;">✏️ Autre</button>
+                    </div>
+                    <div id="motivation-other-container" style="display: none; margin-bottom: 1.5rem;">
+                        <input type="text" id="motivation-other-input" placeholder="Précisez votre motivation" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.95rem;">
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" class="modal-submit-btn" onclick="previousQuestionnaire()" style="background-color: #999; flex: 1;">← Retour</button>
+                        <button type="button" class="modal-submit-btn" id="btn-q-next-motivation" onclick="nextQuestionnaire()" style="flex: 1; opacity: 0.5; cursor: not-allowed;">Suivant →</button>
+                    </div>
+                </div>
+
+                <!-- Step 7: Certification Level & Provider -->
+                <div class="questionnaire-step" id="q-step-cert" style="display: none;">
+                    <h3 style="text-align: center; color: #0d3866; margin-bottom: 1.5rem;">Étape 7: Certification</h3>
+                    <p style="text-align: center; color: #666; margin-bottom: 1rem;">Quel est votre niveau?</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0.75rem; margin-bottom: 2rem;">
+                        <button type="button" class="questionnaire-option-btn" onclick="selectCertLevel('Débutant')">🟢 Débutant</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectCertLevel('Intermédiaire')">🟡 Intermédiaire</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectCertLevel('Professionnel')">🔴 Professionnel</button>
+                    </div>
+                    <p style="text-align: center; color: #999; font-size: 0.9rem; margin-bottom: 1.5rem;">💡 Nous recommanderons plusieurs fournisseurs basés sur votre profil</p>
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" class="modal-submit-btn" onclick="previousQuestionnaire()" style="background-color: #999; flex: 1;">← Retour</button>
+                        <button type="button" class="modal-submit-btn" id="btn-q-next-cert" onclick="fetchAndDisplayCertPath()" style="flex: 1; opacity: 0.5; cursor: not-allowed;">Suivant →</button>
+                    </div>
+                </div>
+
+                <!-- Step 8: Certification Path Display -->
+                <div class="questionnaire-step" id="q-step-path" style="display: none;">
+                    <h3 style="text-align: center; color: #0d3866; margin-bottom: 0.5rem;">Votre Chemin de Certification</h3>
+                    <p id="greeting-message" style="text-align: center; color: #666; margin-bottom: 1.5rem;"></p>
+                    <div id="certification-path-container" style="margin-bottom: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                        <div style="text-align: center; color: #999;">Chargement du chemin de certification...</div>
+                    </div>
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" class="modal-submit-btn" onclick="previousQuestionnaire()" style="background-color: #999; flex: 1;">← Retour</button>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: #718096; font-size: 0.85rem; margin-top: 2rem;">
+                🔒 Vos données sont confidentielles. Pas de spam, désinscription en 1 clic.
+            </p>
+        </div>
+
+        <!-- STEP 3: Final Confirmation -->
+        <div class="modal-step" id="modalStep3" style="display: none;">
+            <div style="text-align: center; animation: slideInUp 0.5s ease;">
+                <!-- Success Icon -->
+                <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);">
+                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+
+                <h2 style="font-size: 2rem; color: #059669; margin-bottom: 0.5rem; font-weight: 700;">Inscription confirmée!</h2>
+                <p style="color: #666; font-size: 0.95rem; margin-bottom: 2rem;">Bienvenue à la Caplogy Academy 🎓</p>
+
+                <!-- Confirmation Details Card -->
+                <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 2px solid #3b82f6; padding: 2rem; margin: 1.5rem 0; border-radius: 12px; text-align: left;">
+                    <h3 style="color: #0c4a6e; margin: 0 0 1rem 0; font-size: 1.1rem; font-weight: 600;">📋 Résumé de votre inscription</h3>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                        <div style="padding: 1rem; background: white; border-radius: 8px; border-left: 3px solid #3b82f6;">
+                            <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Nom</p>
+                            <p style="margin: 0; color: #333; font-weight: 600; font-size: 1.05rem;"><span id="confirmName">-</span></p>
+                        </div>
+                        <div style="padding: 1rem; background: white; border-radius: 8px; border-left: 3px solid #8b5cf6;">
+                            <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Email</p>
+                            <p style="margin: 0; color: #333; font-weight: 600; font-size: 1.05rem;"><span id="confirmEmail">-</span></p>
+                        </div>
+                        <div style="padding: 1rem; background: white; border-radius: 8px; border-left: 3px solid #f59e0b;">
+                            <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Domaine</p>
+                            <p style="margin: 0; color: #333; font-weight: 600; font-size: 1.05rem;"><span id="confirmDomain">-</span></p>
+                        </div>
+                        <div style="padding: 1rem; background: white; border-radius: 8px; border-left: 3px solid #06b6d4;">
+                            <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Niveau</p>
+                            <p style="margin: 0; color: #333; font-weight: 600; font-size: 1.05rem;"><span id="confirmLevel">-</span></p>
+                        </div>
+                        <div style="padding: 1rem; background: white; border-radius: 8px; border-left: 3px solid #ec4899; grid-column: 1 / -1;">
+                            <p style="margin: 0 0 0.5rem 0; color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px;">Certification</p>
+                            <p style="margin: 0; color: #333; font-weight: 600; font-size: 1.05rem;"><span id="confirmCert">-</span></p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Sent Notification -->
+                <div style="background: #dbeafe; border: 1px solid #93c5fd; padding: 1rem; margin: 1.5rem 0; border-radius: 8px; display: flex; align-items: center; gap: 0.75rem;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                    <span style="color: #0369a1; font-size: 0.95rem;">
+                        ✅ Email de confirmation envoyé à <strong id="confirmEmailText">votre adresse email</strong>
+                    </span>
+                </div>
+
+                <!-- CTA Message -->
+                <div style="background: #fef3c7; border: 1px solid #fcd34d; padding: 1rem; margin: 1.5rem 0; border-radius: 8px; text-align: center;">
+                    <p style="margin: 0; color: #92400e; font-size: 0.95rem;">
+                        💡 Rejoignez notre communauté Discord pour rester informé et obtenir du support!
+                    </p>
+                </div>
+
+                <!-- Discord Button -->
+                <a href="https://discord.gg/caplogy" target="_blank" rel="noopener noreferrer" style="display: inline-block; background: #5865f2; color: white; padding: 0.75rem 2rem; border-radius: 8px; text-decoration: none; font-weight: 600; margin: 1rem 0; font-size: 0.95rem; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(88, 101, 242, 0.4);">
+                    🎮 Rejoindre Discord Caplogy
+                </a>
+
+                <!-- Close Button -->
+                <button type="button" class="modal-submit-btn" onclick="closeInscriptionModal()" style="margin-top: 1.5rem; padding: 0.75rem 2.5rem; font-size: 1rem; background: linear-gradient(135deg, #059669 0%, #047857 100%); box-shadow: 0 4px 12px rgba(5, 150, 105, 0.3);">
+                    ✓ Fermer
+                </button>
+            </div>
+
+            <p style="text-align: center; color: #718096; font-size: 0.85rem; margin-top: 2rem;">
+                🔒 Vos données sont confidentielles. Pas de spam, désinscription en 1 clic.
+            </p>
+        </div>
+
+        <!-- Loading Indicator -->
+        <div id="modalLoadingSpinner" style="display: none; text-align: center; padding: 2rem;">
+            <div class="loading-spinner"></div>
+            <p style="color: #999; margin-top: 1rem;">Traitement en cours...</p>
+        </div>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header>
+    <div class="header-inner">
+        <a href="https://www.caplogy.com" class="logo">CAPLOGY</a>
+        <a href="#obtenir" class="header-btn">S'inscrire</a>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-tag">🎓 Formations Certifiantes IT</div>
+    <h1>Décrochez votre certification IT<br><span>en quelques semaines</span>, pas en années.</h1>
+    <p class="hero-sub">CompTIA · Microsoft · Cisco · et bien d'autrès — bon d'examen inclus, financement CPF disponible.</p>
+</section>
+
+<!-- VIDEO -->
+<section class="video-section">
+    <div class="video-wrapper">
+        <video id="videoBlock" width="100%" controls style="display: block;">
+            <source src="./video-testimonial.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+    <div class="stats-grid">
+        <div class="stat-item">
+            <div class="stat-number">95 %</div>
+            <div class="stat-label">Taux de réussite à l'examen</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">+20 %</div>
+            <div class="stat-label">Augmentation salariale moyenne</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Certifies depuis 3 ans</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">4.8/5</div>
+            <div class="stat-label">Satisfaction apprenants</div>
+        </div>
+    </div>
+</section>
+
+<!-- CERTIFICATIONS BY PROVIDER -->
+<section class="certs">
+    <div class="section-wrap" style="max-width:1200px;">
+        <span class="section-label">Nos formations</span>
+        <h2 class="section-title">Les certifications qui font la <span>différence</span></h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; margin-top: 3rem;">
+            <!-- CompTIA Provider -->
+            <div style="background: linear-gradient(135deg, rgba(220, 20, 60, 0.1) 0%, rgba(220, 20, 60, 0.05) 100%); border: 2px solid rgba(220, 20, 60, 0.3); border-radius: 12px; padding: 2rem; text-align: center; transition: all 0.3s;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🏆</div>
+                <h3 style="color: #dc143c; font-size: 1.4rem; font-weight: bold; margin-bottom: 1.5rem;">CompTIA</h3>
+                <div style="text-align: left; color: #666; font-size: 0.95rem; line-height: 1.8;">
+                    <p style="margin: 0.5rem 0;">• CompTIA A+</p>
+                    <p style="margin: 0.5rem 0;">• CompTIA Security+</p>
+                    <p style="margin: 0.5rem 0;">• CompTIA Network+</p>
+                    <p style="margin: 0.5rem 0;">• CompTIA CySA+</p>
+                </div>
+            </div>
+
+            <!-- Microsoft Provider -->
+            <div style="background: linear-gradient(135deg, rgba(0, 120, 215, 0.1) 0%, rgba(0, 120, 215, 0.05) 100%); border: 2px solid rgba(0, 120, 215, 0.3); border-radius: 12px; padding: 2rem; text-align: center; transition: all 0.3s;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">☁️</div>
+                <h3 style="color: #0078d4; font-size: 1.4rem; font-weight: bold; margin-bottom: 1.5rem;">Microsoft</h3>
+                <div style="text-align: left; color: #666; font-size: 0.95rem; line-height: 1.8;">
+                    <p style="margin: 0.5rem 0;">• Azure Fundamentals AZ-900</p>
+                    <p style="margin: 0.5rem 0;">• Azure Administrator AZ-104</p>
+                    <p style="margin: 0.5rem 0;">• Azure Architect Expert</p>
+                    <p style="margin: 0.5rem 0;">• Microsoft 365 MS-900</p>
+                </div>
+            </div>
+
+            <!-- Cisco Provider -->
+            <div style="background: linear-gradient(135deg, rgba(50, 150, 200, 0.1) 0%, rgba(50, 150, 200, 0.05) 100%); border: 2px solid rgba(50, 150, 200, 0.3); border-radius: 12px; padding: 2rem; text-align: center; transition: all 0.3s;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🌐</div>
+                <h3 style="color: #3296c8; font-size: 1.4rem; font-weight: bold; margin-bottom: 1.5rem;">Cisco</h3>
+                <div style="text-align: left; color: #666; font-size: 0.95rem; line-height: 1.8;">
+                    <p style="margin: 0.5rem 0;">• Cisco CCST Networking</p>
+                    <p style="margin: 0.5rem 0;">• Cisco CCNA</p>
+                    <p style="margin: 0.5rem 0;">• Cisco CCNP Enterprise</p>
+                    <p style="margin: 0.5rem 0;">• Cisco CCIE</p>
+                </div>
+            </div>
+
+            <!-- AWS Provider -->
+            <div style="background: linear-gradient(135deg, rgba(255, 153, 0, 0.1) 0%, rgba(255, 153, 0, 0.05) 100%); border: 2px solid rgba(255, 153, 0, 0.3); border-radius: 12px; padding: 2rem; text-align: center; transition: all 0.3s;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">⚡</div>
+                <h3 style="color: #ff9900; font-size: 1.4rem; font-weight: bold; margin-bottom: 1.5rem;">AWS</h3>
+                <div style="text-align: left; color: #666; font-size: 0.95rem; line-height: 1.8;">
+                    <p style="margin: 0.5rem 0;">• AWS Cloud Practitioner</p>
+                    <p style="margin: 0.5rem 0;">• AWS Solutions Architect</p>
+                    <p style="margin: 0.5rem 0;">• AWS SysOps Administrator</p>
+                    <p style="margin: 0.5rem 0;">• AWS Developer Associate</p>
+                </div>
+            </div>
+
+            <!-- EC-Council Provider -->
+            <div style="background: linear-gradient(135deg, rgba(150, 50, 150, 0.1) 0%, rgba(150, 50, 150, 0.05) 100%); border: 2px solid rgba(150, 50, 150, 0.3); border-radius: 12px; padding: 2rem; text-align: center; transition: all 0.3s;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🔐</div>
+                <h3 style="color: #963296; font-size: 1.4rem; font-weight: bold; margin-bottom: 1.5rem;">EC-Council</h3>
+                <div style="text-align: left; color: #666; font-size: 0.95rem; line-height: 1.8;">
+                    <p style="margin: 0.5rem 0;">• CEH (Certified Ethical Hacker)</p>
+                    <p style="margin: 0.5rem 0;">• CND (Certified Network Defender)</p>
+                    <p style="margin: 0.5rem 0;">• CHFI (Computer Hacking Forensic)</p>
+                    <p style="margin: 0.5rem 0;">• C|PENT (Penetration Tester)</p>
+                </div>
+            </div>
+
+            <!-- Google Cloud Provider -->
+            <div style="background: linear-gradient(135deg, rgba(51, 103, 214, 0.1) 0%, rgba(51, 103, 214, 0.05) 100%); border: 2px solid rgba(51, 103, 214, 0.3); border-radius: 12px; padding: 2rem; text-align: center; transition: all 0.3s;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🚀</div>
+                <h3 style="color: #3367d6; font-size: 1.4rem; font-weight: bold; margin-bottom: 1.5rem;">Google Cloud</h3>
+                <div style="text-align: left; color: #666; font-size: 0.95rem; line-height: 1.8;">
+                    <p style="margin: 0.5rem 0;">• Cloud Fundamentals</p>
+                    <p style="margin: 0.5rem 0;">• Associate Cloud Engineer</p>
+                    <p style="margin: 0.5rem 0;">• Professional Cloud Architect</p>
+                    <p style="margin: 0.5rem 0;">• Cloud Security Engineer</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+    <div class="section-wrap" style="max-width:1100px;">
+        <span class="section-label">Témoignages</span>
+        <h2 class="section-title">Ils ont fait confiance a <span>Caplogy</span></h2>
+        <div class="testi-grid">
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-text">"J'avais essayé de me préparer seul pendant 6 mois. Avec Caplogy, j'ai obtenu mon CompTIA Security+ en 5 jours de formation. Le bon d'examen inclus, c'est un vrai plus."</p>
+                <div class="testi-author">
+                    <div class="testi-avatar">KM</div>
+                    <div>
+                        <div class="testi-name">Karim M.</div>
+                        <div class="testi-role">Technicien → Analyste Securite</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <div class="stars">★★★★★</div>
+                <p class="testi-text">"Formation CCNA de très grande qualité. Le formateur connaît vraiment son sujet. J'ai été embauché 3 semaines après l'obtention de ma certification, avec 20 % d'augmentation."</p>
+                <div class="testi-author">
+                    <div class="testi-avatar">SL</div>
+                    <div>
+                        <div class="testi-name">Sophie L.</div>
+                        <div class="testi-role">Reconversion → Ingenieure Reseau</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LEAD FORM / INSCRIPTION -->
+<section class="lead-form-section" id="obtenir">
+    <h2>Inscrivez-vous a la <span>prochaine session</span></h2>
+    <p class="sub">Choisissez votre formation et réservez votre place — places limitées</p>
+
+    <div class="form-box">
+        <div id="formArea">
+            <div class="form-error" id="formError"></div>
+            <form id="leadForm" onsubmit="handleSubmit(event)">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="prénom">Prenom *</label>
+                        <input type="text" id="prénom" name="prénom" required placeholder="Votre prénom">
+                    </div>
+                    <div class="form-group">
+                        <label for="nom">Nom *</label>
+                        <input type="text" id="nom" name="nom" required placeholder="Votre nom">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                </div>
+
+                <!-- PHONE NUMBER (NEW) -->
+                <div class="form-group">
+                    <label for="telephone">Téléphone (optionnel)</label>
+                    <input type="tel" id="telephone" name="telephone" placeholder="+33 6 XX XX XX XX" pattern="[0-9+\s\-()]{10,}">
+                </div>
+
+                <button type="button" class="submit-btn" id="submitBtn" onclick="openInscriptionModal()">Je m'inscris 🚀</button>
+            </form>
+            <p class="form-note">🔒 Vos données sont confidentielles. Pas de spam, désinscription en 1 clic.</p>
+        </div>
+
+        <div class="success-msg" id="successMsg">
+            <div class="checkmark">✅</div>
+            <h3>Inscription confirmee !</h3>
+            <p>Un email de confirmation arrive dans votre boite mail.<br>Un conseiller Caplogy vous contactera sous 24h.<br><br>
+            <a href="https://discord.gg/PfDywrmY" style="color:var(--cyan);font-weight:700;text-decoration:underline;">Rejoindre le Discord Caplogy</a></p>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">CAPLOGY</div>
+    <div class="footer-links">
+        <a href="https://www.caplogy.com">Site principal</a>
+        <a href="https://www.caplogy.com/formationscertifs">Formations</a>
+        <a href="mailto:contact@caplogy.com">contact@caplogy.com</a>
+        <a href="tel:+33189169008">+33 (0)1 89 16 90 08</a>
+    </div>
+    <p>36 Avenue de l'Europe, 78140 Velizy-Villacoublay</p>
+    <p class="footer-copy" style="margin-top:0.8rem;">&copy; 2026 Caplogy — Organisme de formation certifié Qualiopi</p>
+</footer>
+
+<script>
+    // Promo System
+    var promoData = null;
+    var allSessions = [];
+
+    function loadPromoSession() {
+        try {
+            // Mock session data for demo
+            var mockSessions = [
+                {
+                    id: 1,
+                    formation_name: 'CompTIA Security+',
+                    prix_original: 2990,
+                    prix_session: 0,
+                    promo_label: 'GRATUIT',
+                    date_debut: '2026-03-10',
+                    date_fin: '2026-03-14',
+                    places_restantes: 20,
+                    promo_active: 1,
+                    logo_url: ''
+                }
+            ];
+
+            allSessions = mockSessions;
+            populateSessionDropdown(allSessions);
+
+            var promo = null;
+            for (var i = 0; i < allSessions.length; i++) {
+                if (allSessions[i].promo_active === 1) {
+                    promo = allSessions[i];
+                    break;
+                }
+            }
+            if (promo) {
+                promoData = promo;
+                populatePromo(promo);
+                var dismissed = localStorage.getItem('promo_dismissed_' + promo.id);
+                if (!dismissed) {
+                    setTimeout(function() { openPromo(); }, 1500);
+                } else {
+                    document.getElementById('promoFloatBtn').style.display = 'block';
+                    updateFloatBtnText(promo);
+                }
+            }
+        } catch (err) {
+            console.warn('Promo loading error:', err);
+        }
+    }
+
+    function populatePromo(s) {
+        document.getElementById('promoTitle').textContent = s.formation_name;
+        document.getElementById('promoOriginalPrice').innerHTML =
+            new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(s.prix_original);
+        document.getElementById('promoFreeLabel').textContent = s.promo_label || 'GRATUIT';
+
+        var freeLabel = document.getElementById('promoFreeLabel');
+        if (s.prix_session === 0) {
+            freeLabel.style.color = 'var(--green)';
+            freeLabel.style.textShadow = '0 0 40px rgba(72,187,120,0.5)';
+        }
+
+        var debut = formatDateFR(s.date_debut);
+        var fin = formatDateFR(s.date_fin);
+        document.getElementById('promoDate').textContent = 'Session : ' + debut + ' - ' + fin;
+        document.getElementById('promoPlaces').textContent = s.places_restantes;
+    }
+
+    function openPromo(overlayId) {
+        overlayId = overlayId || 'promoOverlay';
+        document.getElementById(overlayId).classList.add('active');
+        if (overlayId === 'promoOverlay') {
+            document.getElementById('promoFloatBtn').style.display = 'none';
+        }
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePromo(overlayId) {
+        overlayId = overlayId || 'promoOverlay';
+        document.getElementById(overlayId).classList.remove('active');
+        document.body.style.overflow = '';
+        if (promoData && overlayId === 'promoOverlay') {
+            localStorage.setItem('promo_dismissed_' + promoData.id, '1');
+            document.getElementById('promoFloatBtn').style.display = 'block';
+            updateFloatBtnText(promoData);
+        }
+    }
+
+    function updateFloatBtnText(s) {
+        var btn = document.getElementById('promoFloatBtn');
+        var label = s.prix_session === 0 ? s.formation_name + ' GRATUIT' : s.formation_name;
+        btn.innerHTML = '⚡ ' + label;
+    }
+
+    function populateSessionDropdown(sessions) {
+        var select = document.getElementById('session');
+        if (!select) return;
+
+        select.innerHTML = '<option value="">Choisir une session...</option>';
+        for (var idx = 0; idx < sessions.length; idx++) {
+            var s = sessions[idx];
+            var dateStr = formatDateFR(s.date_debut);
+            var prixStr = s.prix_session === 0 ? 'GRATUIT' : s.prix_session + ' €';
+            var places = s.places_restantes + ' places';
+            var label = s.formation_name + ' — ' + dateStr + ' (' + prixStr + ' • ' + places + ')';
+            var opt = document.createElement('option');
+            opt.value = s.id;
+            opt.textContent = label;
+            // Pre-select the promo session
+            if (s.promo_active === 1) opt.selected = true;
+            select.appendChild(opt);
+        }
+    }
+
+    // MODAL FUNCTIONS
+    // Global state for registration flow
+    var currentLead = { id: null, prenom: '', nom: '', email: '', telephone: '' };
+    var currentDomain = null;
+    var currentCertification = null;
+    var API_BASE = 'https://caplogy-funnel.s-dawaliby.workers.dev';
+
+    // Register lead
+    function registerLead(prenom, nom, email, telephone) {
+        return fetch(API_BASE + '/api/funnel/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ prenom: prenom, nom: nom, email: email, telephone: telephone || null })
+        }).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            if (data.success) {
+                currentLead = { id: data.lead_id, prenom: prenom, nom: nom, email: email, telephone: telephone };
+                return data;
+            }
+
+            // Handle different error types
+            if (data.error && data.error.indexOf('UNIQUE constraint failed') !== -1) {
+                throw new Error('Cet email est deja inscrit. Veuillez utiliser une adresse email differente.');
+            }
+            throw new Error(data.error || 'Erreur lors de l' + 'inscription');
+        }).catch(function(error) {
+            console.error('Registration error:', error);
+            alert(error.message);
+            return { success: false };
+        });
+    }
+
+    // Formations by domain from Caplogy database
+    var formationsByDomain = {
+        'cybersecurity': [
+            { name: 'CompTIA Security+', category: 'Core Security', duration: '5 jours' },
+            { name: 'CompTIA PenTest+', category: 'Penetration Testing', duration: '5 jours' },
+            { name: 'CompTIA CySA+', category: 'Security Analytics', duration: '5 jours' },
+            { name: 'CompTIA Linux+', category: 'Infrastructure/Security', duration: '5 jours' }
+        ],
+        'cloud': [
+            { name: 'CompTIA Cloud+', category: 'Cloud Infrastructure', duration: '5 jours' },
+            { name: 'CompTIA Data+', category: 'Data Management', duration: '4 jours' },
+            { name: 'Azure Fundamentals AZ-900', category: 'Microsoft Cloud', duration: '2 jours' },
+            { name: 'Microsoft 365 MS-900', category: 'Microsoft Ecosystem', duration: '2 jours' }
+        ],
+        'ai': [
+            { name: 'CompTIA Data+', category: 'Data Analytics Foundation', duration: '4 jours' }
+        ],
+        'networking': [
+            { name: 'CompTIA Network+', category: 'Network Administration', duration: '5 jours' },
+            { name: 'CompTIA Linux+', category: 'Linux Infrastructure', duration: '5 jours' },
+            { name: 'Cisco CCNA', category: 'Cisco Routing & Switching', duration: '5 jours' }
+        ]
+    };
+
+    // Fetch certifications for domain
+    function fetchCertificationsForDomain(domain) {
+        return new Promise(function(resolve) {
+            // Get formations from local database
+            var formations = formationsByDomain[domain] || [];
+
+            // Try to fetch from API as well for real-time data
+            fetch(API_BASE + '/api/funnel/fetch-certifications', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ domain: domain })
+            })
+            .then(function(response) {
+                return response.json();
+            })
+            .then(function(data) {
+                if (data.success && data.certifications && data.certifications.length > 0) {
+                    resolve(data.certifications);
+                } else {
+                    resolve(formations);
+                }
+            })
+            .catch(function(error) {
+                console.warn('API fetch failed, using local formations:', error);
+                resolve(formations);
+            });
+        });
+    }
+
+    // Select domain
+    function selectDomain(button) {
+        var domain = button.dataset.domain;
+        currentDomain = domain;
+
+        // Highlight selected domain
+        var domainBtns = document.querySelectorAll('.domain-btn');
+        for (var j = 0; j < domainBtns.length; j++) {
+            domainBtns[j].classList.remove('active');
+        }
+        button.classList.add('active');
+
+        // Show certification section (now questionnaire)
+        var certSection = document.getElementById('certificationSection');
+        if (certSection) {
+            certSection.style.display = 'block';
+            certSection.style.visibility = 'visible';
+            certSection.style.opacity = '1';
+        }
+
+        // Reset questionnaire and show first step
+        questionnaireStep = 0;
+        userAnswers = {
+            profession: null,
+            school: null,
+            diploma: null,
+            jobTitle: null,
+            workedInIT: null,
+            motivation: null,
+            certLevel: null,
+            certProvider: null
+        };
+        showQuestionnaireStep(1);
+    }
+
+    // Go back
+    function goBackToDomain() {
+        var certSection = document.getElementById('certificationSection');
+        if (certSection) {
+            certSection.style.display = 'none';
+        }
+        // Remove active state from domain buttons
+        var domainBtns = document.querySelectorAll('.domain-btn');
+        for (var i = 0; i < domainBtns.length; i++) {
+            domainBtns[i].classList.remove('active');
+        }
+    }
+
+    // Select certification
+    function selectCertification(button, certName) {
+        return fetch(API_BASE + '/api/funnel/select-certification', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                lead_id: currentLead.id,
+                domain: currentDomain,
+                certification: certName
+            })
+        }).then(function(response) {
+            return response.json();
+        }).then(function(data) {
+            if (data.success) {
+                // Hide certification selection section
+                var certSection = document.getElementById('certificationSection');
+                if (certSection) certSection.style.display = 'none';
+                // Show final confirmation with certification details
+                document.getElementById('modalStep3').style.display = 'block';
+                document.getElementById('certName').textContent = certName;
+                document.getElementById('certDomain').textContent = currentDomain;
+            }
+        }).catch(function(error) {
+            console.error('Certification selection error:', error);
+            alert('Erreur lors de la selection');
+        });
+    }
+
+    function openInscriptionModal() {
+        // Extract form data from the main form
+        var prenom = document.getElementById('leadForm').querySelector('input[placeholder*="Votre prénom"]').value.trim();
+        var nom = document.getElementById('leadForm').querySelector('input[placeholder*="Votre nom"]').value.trim();
+        var email = document.getElementById('leadForm').querySelector('input[placeholder*="votre@email"]').value.trim();
+        var telephone = document.getElementById('leadForm').querySelector('input[placeholder*="33"]').value.trim();
+        
+        // Validate email
+        if (!prenom || !nom || !email) {
+            alert('Veuillez remplir tous les champs obligatoires');
+            return;
+        }
+        
+        // Call registerLead to save to database
+        registerLead(prenom, nom, email, telephone).then(function(result) {
+            if (result.success) {
+                // Show the modal only after successful registration
+                document.getElementById('inscriptionModal').classList.add('active');
+                document.body.style.overflow = 'hidden';
+                // Show Step 1 (thank you + domain selector)
+                showStep1();
+            }
+        });
+    }
+
+    function showStep1() {
+        document.getElementById('modalStep1').style.display = 'block';
+        document.getElementById('certificationsList').style.display = 'none';
+        document.getElementById('modalStep3').style.display = 'none';
+    }
+
+    function closeInscriptionModal() {
+        document.getElementById('inscriptionModal').classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    function handleModalSubmit(event) {
+        event.preventDefault();
+
+        var formData = {
+            name: document.getElementById('modalName').value.trim(),
+            email: document.getElementById('modalEmail').value.trim()
+        };
+
+        console.log('Modal form submission:', formData);
+        alert('Merci ' + formData.name + '! Votre inscription a été reçue.');
+
+        // Reset form
+        document.getElementById('modalForm').reset();
+        closeInscriptionModal();
+    }
+
+    function formatDateFR(isoDate) {
+        try {
+            var date = new Date(isoDate + 'T00:00:00');
+            return date.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+        } catch { return isoDate; }
+    }
+
+    function loadVideo() { /* Video now plays directly */ }
+
+    var hashLinks = document.querySelectorAll('a[href^="#"]');
+    for (var hl = 0; hl < hashLinks.length; hl++) {
+        hashLinks[hl].addEventListener('click', function(e) {
+            e.preventDefault();
+            var href = this.getAttribute('href');
+            var t = document.querySelector(href);
+            if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        loadPromoSession();
+
+        // Load leads report if on leads page
+        if (window.location.pathname.includes('/leads') || window.location.hash === '#leads') {
+            loadLeadsReport();
+        }
+    });
+
+    function loadLeadsReport() {
+        fetch(API_BASE + '/api/funnel/leads', {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        .then(function(response) { return response.json(); })
+        .then(function(data) {
+            if (data.success && data.leads) {
+                displayLeadsTable(data.leads);
+            } else {
+                document.getElementById('leadsTableContainer').innerHTML =
+                    '<p style="color: red;">Erreur: Impossible de charger les leads</p>';
+            }
+        })
+        .catch(function(error) {
+            console.error('Error loading leads:', error);
+            document.getElementById('leadsTableContainer').innerHTML =
+                '<p style="color: red;">Erreur de connexion: ' + error.message + '</p>';
+        });
+    }
+
+    function displayLeadsTable(leads) {
+        var container = document.getElementById('leadsTableContainer');
+        if (!container) return;
+
+        if (leads.length === 0) {
+            container.innerHTML = '<p style="text-align: center; color: #999;">Aucun lead enregistré</p>';
+            return;
+        }
+
+        var html = '<table class="leads-table"><thead><tr>' +
+            '<th style="text-align: left;">Prénom</th>' +
+            '<th style="text-align: left;">Nom</th>' +
+            '<th style="text-align: left;">Email</th>' +
+            '<th style="text-align: left;">Téléphone</th>' +
+            '<th style="text-align: left;">Domaine</th>' +
+            '<th style="text-align: left;">Certification</th>' +
+            '<th style="text-align: left;">Date</th>' +
+            '</tr></thead><tbody>';
+
+        for (var i = 0; i < leads.length; i++) {
+            var lead = leads[i];
+            html += '<tr>' +
+                '<td>' + (lead.prenom || lead.first_name || '-') + '</td>' +
+                '<td>' + (lead.nom || lead.last_name || '-') + '</td>' +
+                '<td><a href="mailto:' + (lead.email || '') + '" style="color: #00eaff; text-decoration: none;">' + (lead.email || '-') + '</a></td>' +
+                '<td><a href="tel:' + (lead.phone || lead.telephone || '').replace(/\s/g, '') + '" style="color: #00eaff; text-decoration: none;">' + (lead.phone || lead.telephone || '-') + '</a></td>' +
+                '<td>' + (lead.domain || lead.domaine || '-') + '</td>' +
+                '<td>' + (lead.certification || '-') + '</td>' +
+                '<td>' + (lead.created_at ? new Date(lead.created_at).toLocaleDateString('fr-FR') : '-') + '</td>' +
+                '</tr>';
+        }
+
+        html += '</tbody></table><div style="margin-top: 1rem; text-align: center; color: #999; font-size: 0.9rem;">' +
+            'Total: ' + leads.length + ' lead(s)</div>';
+
+        container.innerHTML = html;
+    }
+
+    // ===== QUESTIONNAIRE FUNCTIONS =====
+    var questionnaireStep = 1;
+    var userAnswers = {
+        profession: null,
+        school: null,
+        diploma: null,
+        jobTitle: null,
+        workedInIT: null,
+        motivation: null,
+        certLevel: null,
+        certProvider: null
+    };
+
+    function showQuestionnaireStep(stepNum) {
+        // Hide all steps
+        var steps = document.querySelectorAll('.questionnaire-step');
+        for (var i = 0; i < steps.length; i++) {
+            steps[i].style.display = 'none';
+        }
+
+        // Show requested step
+        if (stepNum === 1) {
+            document.getElementById('q-step-profession').style.display = 'block';
+        } else if (stepNum === 2) {
+            document.getElementById('q-step-school').style.display = 'block';
+        } else if (stepNum === 3) {
+            document.getElementById('q-step-diploma').style.display = 'block';
+        } else if (stepNum === 4) {
+            document.getElementById('q-step-jobtitle').style.display = 'block';
+        } else if (stepNum === 5) {
+            document.getElementById('q-step-itexp').style.display = 'block';
+        } else if (stepNum === 6) {
+            document.getElementById('q-step-motivation').style.display = 'block';
+        } else if (stepNum === 7) {
+            document.getElementById('q-step-cert').style.display = 'block';
+        } else if (stepNum === 8) {
+            document.getElementById('q-step-path').style.display = 'block';
+        }
+        questionnaireStep = stepNum;
+    }
+
+    function nextQuestionnaire() {
+        if (questionnaireStep < 8) {
+            showQuestionnaireStep(questionnaireStep + 1);
+        }
+    }
+
+    function previousQuestionnaire() {
+        if (questionnaireStep > 1) {
+            showQuestionnaireStep(questionnaireStep - 1);
+        }
+    }
+
+    function validateProfessionInput() {
+        var profInput = document.getElementById('profession-input').value.trim();
+        var btn = document.getElementById('btn-q-next-profession');
+
+        if (profInput.length > 0) {
+            userAnswers.profession = profInput;
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+        } else {
+            btn.style.opacity = '0.5';
+            btn.style.cursor = 'not-allowed';
+        }
+    }
+
+    function selectDiploma(dip) {
+        userAnswers.diploma = dip;
+
+        // Show/hide custom input
+        var otherContainer = document.getElementById('diploma-other-container');
+        if (dip === 'Autre') {
+            otherContainer.style.display = 'block';
+        } else {
+            otherContainer.style.display = 'none';
+        }
+
+        // Enable next button
+        document.getElementById('btn-q-next-diploma').style.opacity = '1';
+        document.getElementById('btn-q-next-diploma').style.cursor = 'pointer';
+
+        // Update button states
+        var buttons = document.querySelectorAll('#q-step-diploma .questionnaire-option-btn');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
+        }
+        event.target.classList.add('active');
+    }
+
+    function selectITExp(answer) {
+        userAnswers.workedInIT = answer === 'Oui';
+
+        // Enable next button
+        document.getElementById('btn-q-next-itexp').style.opacity = '1';
+        document.getElementById('btn-q-next-itexp').style.cursor = 'pointer';
+
+        // Update button states
+        var buttons = document.querySelectorAll('#q-step-itexp .questionnaire-option-btn');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
+        }
+        event.target.classList.add('active');
+    }
+
+    function selectMotivation(mot) {
+        userAnswers.motivation = mot;
+
+        // Show/hide custom input
+        var otherContainer = document.getElementById('motivation-other-container');
+        if (mot === 'Autre') {
+            otherContainer.style.display = 'block';
+        } else {
+            otherContainer.style.display = 'none';
+        }
+
+        // Enable next button
+        document.getElementById('btn-q-next-motivation').style.opacity = '1';
+        document.getElementById('btn-q-next-motivation').style.cursor = 'pointer';
+
+        // Update button states
+        var buttons = document.querySelectorAll('#q-step-motivation .questionnaire-option-btn');
+        for (var i = 0; i < buttons.length; i++) {
+            buttons[i].classList.remove('active');
+        }
+        event.target.classList.add('active');
+    }
+
+    function selectCertLevel(level) {
+        userAnswers.certLevel = level;
+        checkCertButtonState();
+
+        // Update button states
+        var buttons = document.querySelectorAll('#q-step-cert .questionnaire-option-btn');
+        for (var i = 0; i < buttons.length; i++) {
+            if (i < 3) buttons[i].classList.remove('active');
+        }
+        event.target.classList.add('active');
+    }
+
+    function checkCertButtonState() {
+        var btn = document.getElementById('btn-q-next-cert');
+        if (userAnswers.certLevel) {
+            btn.style.opacity = '1';
+            btn.style.cursor = 'pointer';
+        }
+    }
+
+    // Certification paths mapping: [domain][level][provider]
+    var certificationPathsMap = {
+        'cybersecurity': {
+            'Débutant': {
+                'CompTIA': ['CompTIA A+', 'CompTIA Security+', 'CompTIA CySA+'],
+                'Microsoft': ['Microsoft Security Fundamentals', 'Microsoft Security Engineer', 'Microsoft Security Architect'],
+                'AWS': ['AWS Security Fundamentals', 'AWS Certified Security Specialty', 'AWS Security Best Practices'],
+                'Cisco': ['Cisco CCNA Security', 'Cisco CCNP Security', 'Cisco CCIE Security'],
+                'EC-Council': ['Certified Ethical Hacker (CEH)', 'Certified Security Analyst (ECSA)', 'Certified Chief Information Security Officer (CCISO)'],
+                'Google Cloud': ['Google Cloud Security Fundamentals', 'Google Cloud Certified Associate Cloud Security Engineer', 'Google Cloud Certified Professional Cloud Security Architect']
+            },
+            'Intermédiaire': {
+                'CompTIA': ['CompTIA Security+', 'CompTIA CySA+', 'CompTIA PenTest+'],
+                'Microsoft': ['Microsoft Security Engineer', 'Microsoft Security Architect', 'Microsoft Certified: Cybersecurity Architect Expert'],
+                'AWS': ['AWS Certified Security Specialty', 'AWS Certified Advanced Networking Specialty', 'AWS Certified Security Specialist'],
+                'Cisco': ['Cisco CCNP Security', 'Cisco CCIE Security Written', 'Cisco CCIE Security Lab'],
+                'EC-Council': ['Certified Security Analyst (ECSA)', 'Certified Chief Information Security Officer (CCISO)', 'Certified Incident Handler (ECIH)'],
+                'Google Cloud': ['Google Cloud Certified Associate Cloud Security Engineer', 'Google Cloud Certified Professional Cloud Security Architect', 'Google Cloud Certified Professional Cloud Architect']
+            },
+            'Professionnel': {
+                'CompTIA': ['CompTIA PenTest+', 'CompTIA CASP+', 'CompTIA Advanced Security Practitioner'],
+                'Microsoft': ['Microsoft Certified: Cybersecurity Architect Expert', 'Microsoft Certified: Identity and Access Administrator Expert', 'Microsoft Certified: Security Operations Analyst Expert'],
+                'AWS': ['AWS Certified Security Specialist', 'AWS Well-Architected Security Practice', 'AWS Security Best Practices'],
+                'Cisco': ['Cisco CCIE Security Lab', 'Cisco Certified Internetwork Expert (CCIE)', 'Cisco CCIE Enterprise Infrastructure'],
+                'EC-Council': ['Certified Chief Information Security Officer (CCISO)', 'Certified Incident Handler (ECIH)', 'Certified Threat Intelligence Professional (CTIP)'],
+                'Google Cloud': ['Google Cloud Certified Professional Cloud Security Architect', 'Google Cloud Certified Professional Cloud Architect', 'Google Cloud Professional Services']
+            }
+        },
+        'cloud': {
+            'Débutant': {
+                'Microsoft': ['Azure Fundamentals (AZ-900)', 'Azure Administrator Associate (AZ-104)', 'Azure Data Fundamentals (DP-900)'],
+                'AWS': ['AWS Cloud Practitioner', 'AWS Solutions Architect Associate', 'AWS Certified Cloud Practitioner'],
+                'Google Cloud': ['Google Cloud Fundamentals', 'Google Cloud Associate Cloud Engineer', 'Google Cloud Digital Leader'],
+                'CompTIA': ['CompTIA Cloud+ Essentials', 'CompTIA A+', 'CompTIA Cloud+ Professional'],
+                'Cisco': ['Cisco Cloud Associate', 'Cisco Certified DevOps Associate', 'Cisco Cloud Fundamentals'],
+                'EC-Council': ['Certified Cloud Practitioner (CCP)', 'Cloud Security Professional (CCSK)', 'Certified Cloud Architect (CCA)']
+            },
+            'Intermédiaire': {
+                'Microsoft': ['Azure Solutions Architect Expert (AZ-305)', 'Azure Security Engineer (AZ-500)', 'Azure Cosmos DB Developer'],
+                'AWS': ['AWS Solutions Architect Associate', 'AWS Certified SysOps Administrator', 'AWS Developer Associate'],
+                'Google Cloud': ['Google Cloud Associate Cloud Engineer', 'Google Cloud Professional Cloud Architect', 'Google Cloud Professional Data Engineer'],
+                'CompTIA': ['CompTIA Cloud+ Professional', 'CompTIA Security+', 'CompTIA Advanced Security Practitioner'],
+                'Cisco': ['Cisco Certified DevOps Associate', 'Cisco Cloud Associate', 'Cisco Certified Network Professional Cloud'],
+                'EC-Council': ['Cloud Security Professional (CCSK)', 'Certified Cloud Architect (CCA)', 'Certified Cloud Security Professional (CCSP)']
+            },
+            'Professionnel': {
+                'Microsoft': ['Azure Solutions Architect Expert', 'Azure Enterprise Data Engineer', 'Azure Solutions Architect Advanced'],
+                'AWS': ['AWS Solutions Architect Professional', 'AWS DevOps Engineer Professional', 'AWS Advanced Networking Specialty'],
+                'Google Cloud': ['Google Cloud Professional Cloud Architect', 'Google Cloud Professional Data Engineer', 'Google Cloud Professional Cloud Security Architect'],
+                'CompTIA': ['CompTIA Advanced Security Practitioner', 'CompTIA Cloud Security Professional', 'CompTIA Enterprise Cloud Engineer'],
+                'Cisco': ['Cisco Certified Expert Cloud Architect', 'Cisco Certified Network Professional', 'Cisco Enterprise Network Architect'],
+                'EC-Council': ['Certified Cloud Security Professional (CCSP)', 'Certified Enterprise Cloud Architect (CECA)', 'Certified Cloud Security Architect']
+            }
+        },
+        'ai': {
+            'Débutant': {
+                'Microsoft': ['Azure AI Fundamentals (AI-900)', 'Azure Data Scientist Associate', 'Azure Data Engineer Associate'],
+                'AWS': ['AWS Machine Learning Fundamentals', 'AWS ML Path for Data Scientists', 'AWS ML Path for Developers'],
+                'Google Cloud': ['Google Cloud AI/ML Fundamentals', 'Google Cloud Associate Data Engineer', 'Google Cloud ML Engineer'],
+                'CompTIA': ['CompTIA AI+ Fundamentals', 'CompTIA A+', 'CompTIA Data+ Fundamentals'],
+                'Cisco': ['Cisco AI Fundamentals', 'Cisco Machine Learning Basics', 'Cisco AI & ML Solutions'],
+                'EC-Council': ['Certified AI Fundamentals Professional (CAIFP)', 'AI Security Practitioner', 'Data Science Fundamentals']
+            },
+            'Intermédiaire': {
+                'Microsoft': ['Azure Data Scientist Associate', 'Azure Data Engineer Associate', 'Azure AI Engineer Associate'],
+                'AWS': ['AWS Certified Machine Learning Specialty', 'AWS SageMaker Developer', 'AWS Deep Learning'],
+                'Google Cloud': ['Google Cloud Associate Data Engineer', 'Google Cloud Professional ML Engineer', 'Google Cloud Professional Data Engineer'],
+                'CompTIA': ['CompTIA Data+ Professional', 'CompTIA AI+ Professional', 'CompTIA Security+'],
+                'Cisco': ['Cisco Machine Learning Professional', 'Cisco AI Solutions Engineer', 'Cisco Data Science Specialist'],
+                'EC-Council': ['Certified AI & Machine Learning Professional (CAIMLP)', 'Advanced Data Science Practitioner', 'AI Security Professional']
+            },
+            'Professionnel': {
+                'Microsoft': ['Azure AI Engineer Advanced', 'Azure Solutions Architect (AI Focus)', 'Azure Enterprise AI Architect'],
+                'AWS': ['AWS Advanced Machine Learning', 'AWS Deep Learning Specialization', 'AWS AI/ML Solutions Architect'],
+                'Google Cloud': ['Google Cloud Professional ML Engineer', 'Google Cloud Professional Data Engineer', 'Google Cloud ML Architect'],
+                'CompTIA': ['CompTIA Advanced AI Practitioner', 'CompTIA AI Architect', 'CompTIA Enterprise AI Specialist'],
+                'Cisco': ['Cisco AI/ML Architect', 'Cisco Enterprise AI Solutions', 'Cisco AI Leadership'],
+                'EC-Council': ['Certified AI Architect (CAIA)', 'AI Research Specialist', 'Enterprise AI Strategy Expert']
+            }
+        },
+        'networking': {
+            'Débutant': {
+                'Cisco': ['Cisco CCNA Routing and Switching', 'Cisco CCNA Enterprise Networks', 'Cisco CCNA Security'],
+                'CompTIA': ['CompTIA Network+ Fundamentals', 'CompTIA A+', 'CompTIA Cloud Essentials'],
+                'Microsoft': ['Microsoft Azure Fundamentals', 'Microsoft Azure Network Engineer', 'Microsoft Azure Administrator'],
+                'AWS': ['AWS Cloud Practitioner', 'AWS Network Engineering', 'AWS Advanced Networking'],
+                'Google Cloud': ['Google Cloud Associate Cloud Engineer', 'Google Cloud Network Engineer', 'Google Cloud Fundamentals'],
+                'EC-Council': ['Certified Network Professional (CNP)', 'Network Security Professional', 'Network Administrator Certification']
+            },
+            'Intermédiaire': {
+                'Cisco': ['Cisco CCNP Routing and Switching', 'Cisco CCNP Enterprise', 'Cisco CCNP Security'],
+                'CompTIA': ['CompTIA Network+ Professional', 'CompTIA Security+', 'CompTIA Advanced Networking'],
+                'Microsoft': ['Microsoft Azure Network Engineer (AZ-700)', 'Microsoft Azure Solutions Architect', 'Microsoft Azure Security Engineer'],
+                'AWS': ['AWS Certified Advanced Networking Specialty', 'AWS Solutions Architect Associate', 'AWS DevOps Engineer'],
+                'Google Cloud': ['Google Cloud Associate Cloud Engineer', 'Google Cloud Professional Network Engineer', 'Google Cloud Solutions Architect'],
+                'EC-Council': ['Network Security Professional (NSP)', 'Certified Penetration Tester Network', 'Advanced Network Architecture']
+            },
+            'Professionnel': {
+                'Cisco': ['Cisco CCIE Routing and Switching Lab', 'Cisco CCIE Enterprise Infrastructure', 'Cisco CCIE Security Lab'],
+                'CompTIA': ['CompTIA Advanced Security Practitioner', 'CompTIA Enterprise Networking', 'CompTIA CIW Network Professional'],
+                'Microsoft': ['Microsoft Azure Solutions Architect Expert', 'Microsoft Azure Enterprise Architect', 'Microsoft Network Architecture Expert'],
+                'AWS': ['AWS Solutions Architect Professional', 'AWS Advanced Networking Specialty', 'AWS Network Specialist'],
+                'Google Cloud': ['Google Cloud Professional Network Engineer', 'Google Cloud Solutions Architect Professional', 'Google Cloud Network Architecture Expert'],
+                'EC-Council': ['Certified Enterprise Network Architect (CENA)', 'Advanced Network Security Specialist', 'Network Infrastructure Expert']
+            }
+        }
+    };
+
+    function fetchAndDisplayCertPath() {
+        showQuestionnaireStep(8);
+
+        // Set greeting message
+        var greetingMsg = 'Bonjour ' + currentLead.prenom + ', basé sur vos réponses, nous proposons ce chemin de certifications:';
+        document.getElementById('greeting-message').textContent = greetingMsg;
+
+        // Get certification path from mapping
+        var certs = [];
+        if (certificationPathsMap[currentDomain] &&
+            certificationPathsMap[currentDomain][userAnswers.certLevel] &&
+            certificationPathsMap[currentDomain][userAnswers.certLevel][userAnswers.certProvider]) {
+            certs = certificationPathsMap[currentDomain][userAnswers.certLevel][userAnswers.certProvider];
+        }
+
+        if (certs.length > 0) {
+            userAnswers.recommendedPath = certs;
+            displayCertificationPath(certs);
+        } else {
+            // Fallback
+            displayCertificationPath([
+                userAnswers.certProvider + ' - ' + userAnswers.certLevel + ' 1',
+                userAnswers.certProvider + ' - ' + userAnswers.certLevel + ' 2',
+                userAnswers.certProvider + ' - ' + userAnswers.certLevel + ' 3'
+            ]);
+        }
+    }
+
+    function sendConfirmationEmail(emailData) {
+        // Send confirmation email via Worker endpoint
+        fetch(API_BASE + '/api/funnel/send-confirmation-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(emailData)
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.success) {
+                console.log('Confirmation email sent successfully');
+            } else {
+                console.error('Failed to send email:', data.error);
+            }
+        })
+        .catch(function(error) {
+            console.error('Email sending error:', error);
+        });
+    }
+
+    // Enhanced recommendation data with multiple providers
+    function generateMultiProviderRecommendations() {
+        var recommendations = {
+            'Cybersécurité': {
+                'Débutant': [
+                    { name: 'CompTIA Security+', provider: 'CompTIA', duration: '6-8 semaines' },
+                    { name: 'Azure Security Fundamentals', provider: 'Microsoft', duration: '4-6 semaines' },
+                    { name: 'AWS Security Essentials', provider: 'AWS', duration: '6-8 semaines' },
+                    { name: 'Cisco CCST Cybersecurity', provider: 'Cisco', duration: '6-8 semaines' }
+                ],
+                'Intermédiaire': [
+                    { name: 'CompTIA CySA+', provider: 'CompTIA', duration: '8-10 semaines' },
+                    { name: 'AWS Security Specialty', provider: 'AWS', duration: '10-12 semaines' },
+                    { name: 'Azure Security Administrator', provider: 'Microsoft', duration: '8-10 semaines' },
+                    { name: 'EC-Council CEH', provider: 'EC-Council', duration: '12-14 semaines' }
+                ],
+                'Professionnel': [
+                    { name: 'CompTIA PenTest+', provider: 'CompTIA', duration: '10-12 semaines' },
+                    { name: 'EC-Council CEH v12', provider: 'EC-Council', duration: '14-16 semaines' },
+                    { name: 'AWS Advanced Security', provider: 'AWS', duration: '12-14 semaines' },
+                    { name: 'Cisco CCNP Security', provider: 'Cisco', duration: '16-20 semaines' }
+                ]
+            },
+            'Cloud': {
+                'Débutant': [
+                    { name: 'AWS Cloud Practitioner', provider: 'AWS', duration: '4-6 semaines' },
+                    { name: 'Azure Fundamentals', provider: 'Microsoft', duration: '4-6 semaines' },
+                    { name: 'Google Cloud Fundamentals', provider: 'Google Cloud', duration: '4-6 semaines' },
+                    { name: 'CompTIA Cloud+', provider: 'CompTIA', duration: '6-8 semaines' }
+                ],
+                'Intermédiaire': [
+                    { name: 'AWS Solutions Architect Associate', provider: 'AWS', duration: '8-10 semaines' },
+                    { name: 'Azure Administrator', provider: 'Microsoft', duration: '8-10 semaines' },
+                    { name: 'Google Cloud Associate Cloud Engineer', provider: 'Google Cloud', duration: '8-10 semaines' },
+                    { name: 'CompTIA Cloud+ Professional', provider: 'CompTIA', duration: '8-10 semaines' }
+                ],
+                'Professionnel': [
+                    { name: 'AWS Solutions Architect Professional', provider: 'AWS', duration: '12-14 semaines' },
+                    { name: 'Azure Solutions Architect Expert', provider: 'Microsoft', duration: '12-14 semaines' },
+                    { name: 'Google Cloud Professional Cloud Architect', provider: 'Google Cloud', duration: '12-14 semaines' },
+                    { name: 'AWS DevOps Engineer Professional', provider: 'AWS', duration: '12-14 semaines' }
+                ]
+            },
+            'Networking': {
+                'Débutant': [
+                    { name: 'CompTIA Network+', provider: 'CompTIA', duration: '6-8 semaines' },
+                    { name: 'Cisco CCST Networking', provider: 'Cisco', duration: '6-8 semaines' },
+                    { name: 'CompTIA A+ (Networking)', provider: 'CompTIA', duration: '8-10 semaines' },
+                    { name: 'Microsoft Networking Fundamentals', provider: 'Microsoft', duration: '6-8 semaines' }
+                ],
+                'Intermédiaire': [
+                    { name: 'Cisco CCNA', provider: 'Cisco', duration: '10-12 semaines' },
+                    { name: 'CompTIA CySA+ (Networking)', provider: 'CompTIA', duration: '8-10 semaines' },
+                    { name: 'AWS Solutions Architect (Network)', provider: 'AWS', duration: '10-12 semaines' },
+                    { name: 'Azure Network Administrator', provider: 'Microsoft', duration: '8-10 semaines' }
+                ],
+                'Professionnel': [
+                    { name: 'Cisco CCNP Enterprise', provider: 'Cisco', duration: '16-20 semaines' },
+                    { name: 'AWS Advanced Networking', provider: 'AWS', duration: '12-14 semaines' },
+                    { name: 'Azure Network Specialist', provider: 'Microsoft', duration: '12-14 semaines' },
+                    { name: 'Cisco CCIE Enterprise Infrastructure', provider: 'Cisco', duration: '24-30 semaines' }
+                ]
+            },
+            'IA': {
+                'Débutant': [
+                    { name: 'AWS Machine Learning Fundamentals', provider: 'AWS', duration: '6-8 semaines' },
+                    { name: 'Google Cloud AI Fundamentals', provider: 'Google Cloud', duration: '6-8 semaines' },
+                    { name: 'Azure AI Fundamentals', provider: 'Microsoft', duration: '4-6 semaines' },
+                    { name: 'CompTIA Data+ (IA Basics)', provider: 'CompTIA', duration: '6-8 semaines' }
+                ],
+                'Intermédiaire': [
+                    { name: 'AWS Certified Machine Learning Specialty', provider: 'AWS', duration: '10-12 semaines' },
+                    { name: 'Google Cloud Professional Machine Learning Engineer', provider: 'Google Cloud', duration: '12-14 semaines' },
+                    { name: 'Azure AI Engineer Associate', provider: 'Microsoft', duration: '10-12 semaines' },
+                    { name: 'AWS Data Analytics', provider: 'AWS', duration: '10-12 semaines' }
+                ],
+                'Professionnel': [
+                    { name: 'AWS Machine Learning Engineer Professional', provider: 'AWS', duration: '14-16 semaines' },
+                    { name: 'Google Cloud Advanced ML Engineering', provider: 'Google Cloud', duration: '16-18 semaines' },
+                    { name: 'Azure Advanced AI Solutions', provider: 'Microsoft', duration: '14-16 semaines' },
+                    { name: 'AWS Advanced Analytics', provider: 'AWS', duration: '14-16 semaines' }
+                ]
+            }
+        };
+        return recommendations;
+    }
+
+    // Generate personalized marketing text
+    function generateMarketingText(profession, motivation, itExp, domain, level) {
+        var messages = {
+            whyDomain: {
+                'Cybersécurité': "La cybersécurité est le cœur de la transformation numérique. Maîtriser ces certifications vous positionne comme expert incontournable face aux menaces croissantes.",
+                'Cloud': "Le cloud est l'avenir de l'informatique. Ces certifications vous permettront de concevoir, déployer et gérer l'infrastructure digitale de demain.",
+                'Networking': "L'infrastructure réseau est la fondation de toute entreprise moderne. Ces certifications font de vous un architecte indispensable.",
+                'IA': "L'intelligence artificielle transforme chaque secteur. Ces certifications vous donnent accès aux carrières les plus prometteuses et mieux rémunérées."
+            },
+            whyLevel: {
+                'Débutant': "Vous démarrez votre parcours - ces certifications vous construisent une base solide et reconnue internationalement pour progresser rapidement.",
+                'Intermédiaire': "Vous avez de l'expérience - ces certifications valident votre expertise et ouvrent des portes pour des postes plus senior et mieux rémunérés.",
+                'Professionnel': "Vous êtes expert - ces certifications consolident votre statut de leader technique et justifient une carrière à haut niveau."
+            },
+            matchProfession: {
+                'Développeur': "Complétez vos compétences de développeur avec une expertise cloud ou sécurité - les combinaisons développeur + certif créent des profils hautement demandés.",
+                'Manager IT': "Validez votre leadership technique avec une certification reconnue - essentiel pour diriger des équipes modernes et techniquement avancées.",
+                'Analyste Système': "Devenez incontournable en certifiant votre expertise système - les analystes certifiés gagnent 25-35% plus que les autres.",
+                'Administrateur': "Transformez votre expertise d'admin en leadership d'infrastructure - les certifications ouvrent les portes des postes d'architects.",
+                'Étudiant': "Lancez votre carrière avec les bonnes certifications - démarrer avec une certification accélère votre progression de 18-24 mois.",
+                'Autre': "Quelle que soit votre profession actuelle, ces certifications sont votre tremplin vers une carrière technique performante."
+            },
+            urgency: {
+                'Curiosité': "Satisfaites votre curiosité en devenant expert reconnu - ces certifications valident vos connaissances auprès des employeurs.",
+                'Pour apprendre': "Apprenez rapidement avec du contenu structuré et moderne - les certifications vous garantissent une montée en compétence rapide.",
+                'Évolution de carrière': "Accélérez votre évolution - les salaires augmentent de 15-40% après certifications. C'est l'investissement le plus rentable de votre carrière.",
+                'Changement de domaine': "Changez de domaine confiance - ces certifications lèvent les doutes des recruteurs et facilitent la transition.",
+                'Autre': "Atteignez vos objectifs professionnels - ces certifications sont le catalyseur que vous attendiez."
+            }
+        };
+        return messages;
+    }
+
+    function displayCertificationPath(certifications) {
+        var container = document.getElementById('certification-path-container');
+
+        // Get all recommendations
+        var allRecs = generateMultiProviderRecommendations();
+        var domainRecs = allRecs[currentDomain] ? allRecs[currentDomain][userAnswers.certLevel] : [];
+
+        // Get marketing messages
+        var messages = generateMarketingText(
+            currentLead.profession,
+            userAnswers.motivation,
+            userAnswers.itexp,
+            currentDomain,
+            userAnswers.certLevel
+        );
+
+        // Build HTML
+        var html = '<div style="padding: 1.5rem;">';
+
+        // Personalized greeting
+        html += '<div style="margin-bottom: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #e0f7ff 0%, #ffffff 100%); border-radius: 8px; border-left: 4px solid #00eaff;">';
+        html += '<h3 style="color: #0d3866; margin: 0 0 1rem 0; font-size: 1.3rem;">🎯 Votre parcours personnalisé</h3>';
+        html += '<p style="color: #0d3866; margin: 0.5rem 0; font-weight: 600;">Domaine : ' + currentDomain + ' | Niveau : ' + userAnswers.certLevel + '</p>';
+        html += '</div>';
+
+        // Why this domain
+        html += '<div style="margin-bottom: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 6px; border-left: 3px solid #4cc9ff;">';
+        html += '<strong style="color: #0d3866;">Pourquoi ce domaine ?</strong>';
+        html += '<p style="color: #555; margin: 0.5rem 0 0 0; font-size: 0.95rem;">' + messages.whyDomain[currentDomain] + '</p>';
+        html += '</div>';
+
+        // Why this level
+        html += '<div style="margin-bottom: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 6px; border-left: 3px solid #48BB78;">';
+        html += '<strong style="color: #0d3866;">Pourquoi ce niveau ?</strong>';
+        html += '<p style="color: #555; margin: 0.5rem 0 0 0; font-size: 0.95rem;">' + messages.whyLevel[userAnswers.certLevel] + '</p>';
+        html += '</div>';
+
+        // Match with profession
+        html += '<div style="margin-bottom: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 6px; border-left: 3px solid #ff9f40;">';
+        html += '<strong style="color: #0d3866;">Aligné avec votre profil</strong>';
+        html += '<p style="color: #555; margin: 0.5rem 0 0 0; font-size: 0.95rem;">' + (messages.matchProfession[currentLead.profession] || messages.matchProfession['Autre']) + '</p>';
+        html += '</div>';
+
+        // Certifications recommended
+        html += '<div style="margin-bottom: 1.5rem;">';
+        html += '<h4 style="color: #0d3866; margin: 0 0 1rem 0;">📋 Certifications recommandées</h4>';
+        html += '<div style="display: grid; gap: 1rem;">';
+
+        if (domainRecs && domainRecs.length > 0) {
+            for (var i = 0; i < Math.min(domainRecs.length, 4); i++) {
+                var cert = domainRecs[i];
+                var isFirst = (i === 0);
+                var badgeColor = isFirst ? '#4cc9ff' : '#a0aec0';
+                var bgColor = isFirst ? '#e8f7ff' : '#f8f9fa';
+                var borderColor = isFirst ? '#00eaff' : '#d0d8e0';
+
+                html += '<div style="padding: 1.2rem; background: ' + bgColor + '; border-radius: 8px; border-left: 4px solid ' + borderColor + '; position: relative;">';
+
+                if (isFirst) {
+                    html += '<span style="position: absolute; top: 0.5rem; right: 0.5rem; background: #4cc9ff; color: #0d3866; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: bold;">⭐ RECOMMANDÉE</span>';
+                }
+
+                html += '<div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.5rem;">';
+                html += '<h5 style="color: #0d3866; margin: 0; flex: 1;">' + cert.name + '</h5>';
+                html += '<span style="background: ' + badgeColor + '; color: white; padding: 0.3rem 0.8rem; border-radius: 4px; font-size: 0.85rem; white-space: nowrap; margin-left: 0.5rem;">' + cert.provider + '</span>';
+                html += '</div>';
+
+                html += '<p style="color: #666; margin: 0.5rem 0 0.5rem 0; font-size: 0.9rem;">⏱️ Durée estimée : ' + cert.duration + '</p>';
+
+                if (isFirst) {
+                    html += '<button class="modal-submit-btn" style="margin-top: 0.5rem; width: 100%;" onclick="startFirstCertification(\'' + cert.name.replace(/'/g, "\\'") + '\')">🚀 Commencer →</button>';
+                }
+
+                html += '</div>';
+            }
+        } else {
+            html += '<p style="color: #999;">Certifications personnalisées en cours de chargement...</p>';
+        }
+
+        html += '</div></div>';
+
+        // Call to action
+        html += '<div style="margin-top: 2rem; padding: 1.5rem; background: linear-gradient(135deg, #00eaff1a 0%, #4cc9ff1a 100%); border-radius: 8px; text-align: center;">';
+        html += '<p style="color: #0d3866; margin: 0; font-weight: 600; font-size: 1.1rem;">' + messages.urgency[userAnswers.motivation] + '</p>';
+        html += '<p style="color: #666; margin: 0.5rem 0 0 0; font-size: 0.95rem;">Commencez votre transformation dès aujourd\'hui →</p>';
+        html += '</div>';
+
+        html += '</div>';
+
+        container.innerHTML = html;
+    }
+
+    function escapeHtml(text) {
+        var div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
+    }
+
+    function startFirstCertification(certName) {
+        // Show loading state
+        var container = document.getElementById('certification-path-container');
+        container.innerHTML = '<div style="text-align: center; padding: 2rem;"><div class="loading-spinner"></div><p style="color: #999; margin-top: 1rem;">Sauvegarde de vos informations...</p></div>';
+
+        // Update the lead with all questionnaire data
+        var updateLeadData = {
+            lead_id: currentLead.id,
+            profession: userAnswers.profession,
+            school: document.getElementById('school-input').value || null,
+            diploma: userAnswers.diploma,
+            jobTitle: document.getElementById('jobtitle-input').value || null,
+            workedInIT: userAnswers.workedInIT,
+            selectedDomain: currentDomain,
+            domainMotivation: userAnswers.motivation,
+            certLevel: userAnswers.certLevel,
+            certProvider: userAnswers.certProvider
+        };
+
+        // First, update the lead with questionnaire data
+        fetch(API_BASE + '/api/funnel/update-lead', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(updateLeadData)
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(updateData) {
+            // Then save certification start
+            return fetch(API_BASE + '/api/funnel/start-certification', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    lead_id: currentLead.id,
+                    certification_name: certName || 'Certification - ' + userAnswers.certProvider,
+                    provider: userAnswers.certProvider,
+                    level: userAnswers.certLevel
+                })
+            });
+        })
+        .then(function(response) {
+            return response.json();
+        })
+        .then(function(data) {
+            if (data.success) {
+                // Populate confirmation modal fields
+                document.getElementById('confirmName').textContent = currentLead.prenom + ' ' + currentLead.nom;
+                document.getElementById('confirmEmail').textContent = currentLead.email;
+                document.getElementById('confirmEmailText').textContent = currentLead.email;
+                document.getElementById('confirmDomain').textContent = currentDomain;
+                document.getElementById('confirmLevel').textContent = userAnswers.certLevel;
+                document.getElementById('confirmCert').textContent = certName;
+
+                // Show the beautiful confirmation modal
+                document.getElementById('modalStep3').style.display = 'block';
+
+                // Send confirmation email
+                sendConfirmationEmail({
+                    prenom: currentLead.prenom,
+                    nom: currentLead.nom,
+                    email: currentLead.email,
+                    domain: currentDomain,
+                    provider: userAnswers.certProvider,
+                    level: userAnswers.certLevel,
+                    certification: certName,
+                    leadId: currentLead.id
+                });
+            } else {
+                alert('❌ Erreur: ' + data.error);
+            }
+        })
+        .catch(function(error) {
+            console.error('Error:', error);
+            alert('❌ Erreur lors du démarrage de la certification. Veuillez réessayer.');
+        });
+    }
+</script>
+
+<!-- LEADS REPORT PAGE (Hidden, shown when needed) -->
+<div id="leadsPage" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1000; overflow-y: auto;">
+    <div style="background: var(--navy); color: white; padding: 2rem; text-align: center;">
+        <h1 style="margin: 0; color: var(--cyan);">📊 Rapport des Leads</h1>
+        <p style="margin: 0.5rem 0 0 0; opacity: 0.9;">Tous les utilisateurs enregistrés</p>
+    </div>
+    <div style="max-width: 1200px; margin: 2rem auto; padding: 0 1rem;">
+        <div id="leadsTableContainer" style="background: white;">
+            <p style="text-align: center; color: #999;">Chargement des données...</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+/* Build at Wed, Feb 25, 2026 11:46:52 AM */

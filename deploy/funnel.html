@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certifications IT Professionnelles | Caplogy</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --navy: #0D3866;
+            --cyan: #00eaff;
+            --blue: #4cc9ff;
+            --dark: #1A202C;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--dark);
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+        header {
+            background: var(--navy);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.5);
+        }
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { font-size: 1.6rem; font-weight: 800; color: var(--cyan); letter-spacing: 1px; text-decoration: none; }
+        .header-btn {
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            color: var(--navy);
+            padding: 0.6rem 1.4rem;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+        .header-btn:hover { background: var(--blue); transform: translateY(-2px); }
+        .hero {
+            background: linear-gradient(160deg, var(--navy) 0%, #1a4a7a 100%);
+            padding: 5rem 2rem 3rem;
+            text-align: center;
+            color: white;
+        }
+        .hero-tag {
+            display: inline-block;
+            background: rgba(0,234,255,0.15);
+            color: var(--cyan);
+            border: 1px solid var(--cyan);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .hero h1 span { color: var(--cyan); }
+        .hero-sub {
+            font-size: 1.2rem;
+            color: #c8d8e8;
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+        .section-wrap { max-width: 1200px; margin: 0 auto; }
+        .section-label {
+            display: inline-block;
+            color: var(--cyan);
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            color: #e2e8f0;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+        .section-title span { color: var(--cyan); }
+        .certs-section {
+            background: linear-gradient(135deg, #0f172a 0%, #1a1f3a 100%);
+            padding: 5rem 2rem;
+        }
+        .partners-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+        .partner-item {
+            background: rgba(96, 165, 250, 0.05);
+            border: 2px solid rgba(0, 234, 255, 0.2);
+            border-radius: 16px;
+            padding: 2rem 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .partner-item:hover {
+            border-color: var(--cyan);
+            background: rgba(0, 234, 255, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 234, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        .partner-logo {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        .partner-logo img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        .partner-certs {
+            list-style: none;
+            text-align: center;
+        }
+        .partner-certs li {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin: 0.5rem 0;
+            font-weight: 500;
+        }
+        .facilities-section {
+            background: var(--dark);
+            padding: 5rem 2rem;
+        }
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .facility-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+        .facility-card:hover { transform: translateY(-10px); }
+        .facility-img {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--navy), var(--blue));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+        }
+        .facility-content {
+            padding: 1.5rem;
+            background: rgba(96, 165, 250, 0.05);
+            border: 1px solid rgba(0, 234, 255, 0.2);
+        }
+        .facility-title {
+            font-weight: 800;
+            color: var(--cyan);
+            margin-bottom: 0.5rem;
+        }
+        .facility-desc {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        .testimonials-ticker {
+            background: var(--navy);
+            padding: 4rem 2rem;
+            overflow: hidden;
+        }
+        .ticker-content {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 20s linear infinite;
+            width: fit-content;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .ticker-content:hover { animation-play-state: paused; }
+        .testi-mini {
+            flex-shrink: 0;
+            width: 300px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(0,234,255,0.3);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+        .testi-stars {
+            color: #fbbf24;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+        .testi-mini-text {
+            color: #e2e8f0;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        .testi-mini-author {
+            color: var(--cyan);
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .promo-overlay {
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            padding: 3rem 2rem;
+            margin: 3rem 2rem;
+            border-radius: 16px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 15px 50px rgba(0,234,255,0.3);
+        }
+        .promo-title { font-size: 1.8rem; font-weight: 900; margin-bottom: 1rem; }
+        .promo-desc { font-size: 1.1rem; margin-bottom: 2rem; opacity: 0.95; }
+        .countdown-timer {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        .countdown-item {
+            background: rgba(255,255,255,0.2);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            min-width: 80px;
+        }
+        .countdown-time { font-size: 1.8rem; font-weight: 900; display: block; }
+        .lead-form-section {
+            background: linear-gradient(135deg, #f8fafc 0%, #f0f9ff 100%);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+        .lead-form-section h2 {
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 900;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+        .lead-form-section h2 span { color: var(--cyan); }
+        .lead-form-section .sub {
+            color: #718096;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        .form-box {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 2rem;
+            border: 2px solid rgba(0,234,255,0.2);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            color: var(--navy);
+            margin-bottom: 0.7rem;
+            font-size: 0.95rem;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 0.9rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.2s;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--cyan);
+            box-shadow: 0 0 0 3px rgba(0,234,255,0.1);
+        }
+        .domain-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .domain-btn {
+            background: rgba(96, 165, 250, 0.08);
+            border: 2px solid rgba(0, 234, 255, 0.3);
+            border-radius: 10px;
+            padding: 1rem;
+            color: #1A202C;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        .domain-btn:hover {
+            border-color: var(--cyan);
+            background: rgba(0, 234, 255, 0.15);
+            box-shadow: 0 5px 15px rgba(0, 234, 255, 0.2);
+        }
+        .domain-btn.selected {
+            background: var(--cyan);
+            border-color: var(--cyan);
+            color: var(--navy);
+            font-weight: 700;
+        }
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, var(--cyan), var(--blue));
+            color: var(--navy);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 1rem;
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,234,255,0.4);
+        }
+        footer {
+            background: var(--navy);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 2px solid rgba(0,234,255,0.2);
+        }
+        footer p { font-size: 0.9rem; opacity: 0.8; }
+        @media (max-width: 768px) {
+            .partners-row { grid-template-columns: repeat(2, 1fr); }
+            .countdown-timer { flex-direction: column; gap: 1rem; }
+            .domain-buttons { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-inner">
+        <a href="#" class="logo">CAPLOGY</a>
+        <button class="header-btn" onclick="document.getElementById('obtenir').scrollIntoView({behavior:'smooth'})">S'inscrire</button>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="hero-tag">🎓 Formations Certifiantes IT</div>
+    <h1>Votre certification, <span>en quelques heures.</span></h1>
+    <p class="hero-sub">Accompagnement clé en main : formation, préparation et passage de l'examen inclus.</p>
+</section>
+
+<section style="background: var(--navy); padding: 4rem 2rem;">
+    <div class="section-wrap">
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+            <div style="text-align: center;">
+                <div style="font-size: 2.8rem; color: var(--cyan); font-weight: 900; margin-bottom: 0.5rem;">500+</div>
+                <div style="color: #94a3b8; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Certifiés</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2.8rem; color: var(--cyan); font-weight: 900; margin-bottom: 0.5rem;">15+</div>
+                <div style="color: #94a3b8; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Certifications</div>
+            </div>
+            <div style="text-align: center;">
+                <div style="font-size: 2.8rem; color: var(--cyan); font-weight: 900; margin-bottom: 0.5rem;">98%</div>
+                <div style="color: #94a3b8; font-size: 0.95rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Taux de Réussite</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="certs-section">
+    <div class="section-wrap">
+        <span class="section-label">Nos Partenaires</span>
+        <h2 class="section-title">Certifications IT & Centre de langues <span>TOEIC</span></h2>
+        <div class="partners-row">
+            <div class="partner-item">
+                <div class="partner-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/CompTIA_A%2B_logo.svg/220px-CompTIA_A%2B_logo.svg.png" alt="CompTIA">
+                </div>
+                <ul class="partner-certs">
+                    <li>CompTIA A+</li>
+                    <li>Security+</li>
+                    <li>Network+</li>
+                </ul>
+            </div>
+            <div class="partner-item">
+                <div class="partner-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Microsoft_logo.svg/220px-Microsoft_logo.svg.png" alt="Microsoft">
+                </div>
+                <ul class="partner-certs">
+                    <li>Azure AZ-900</li>
+                    <li>MS-900</li>
+                </ul>
+            </div>
+            <div class="partner-item">
+                <div class="partner-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/Cisco_logo.svg/220px-Cisco_logo.svg.png" alt="Cisco">
+                </div>
+                <ul class="partner-certs">
+                    <li>CCNA</li>
+                </ul>
+            </div>
+            <div class="partner-item">
+                <div class="partner-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/PMI_logo.svg/220px-PMI_logo.svg.png" alt="PMI">
+                </div>
+                <ul class="partner-certs">
+                    <li>PMP</li>
+                    <li>CAPM</li>
+                </ul>
+            </div>
+            <div class="partner-item">
+                <div class="partner-logo">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/ETS_Global_Logo.svg/220px-ETS_Global_Logo.svg.png" alt="ETS Global">
+                </div>
+                <ul class="partner-certs">
+                    <li>TOEIC</li>
+                    <li>TOEFL</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="facilities-section">
+    <div class="section-wrap">
+        <span class="section-label">Infrastructure</span>
+        <h2 class="section-title">Un centre de formation <span>dédié</span></h2>
+        <div class="facilities-grid">
+            <div class="facility-card">
+                <div class="facility-img">🏫</div>
+                <div class="facility-content">
+                    <div class="facility-title">Espace d'accueil</div>
+                    <div class="facility-desc">Un cadre moderne et convivial</div>
+                </div>
+            </div>
+            <div class="facility-card">
+                <div class="facility-img">🖥️</div>
+                <div class="facility-content">
+                    <div class="facility-title">Salle d'examen</div>
+                    <div class="facility-desc">Postes individuels équipés pour le passage des certifications</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="testimonials-ticker">
+    <div class="section-wrap">
+        <span class="section-label" style="color: var(--cyan); margin-bottom: 2rem; display: block;">★★★★★ Témoignages certifiés</span>
+    </div>
+    <div style="width: 100%; overflow: hidden;">
+        <div class="ticker-content">
+            <div class="testi-mini">
+                <div class="testi-stars">★★★★★</div>
+                <div class="testi-mini-text">"CompTIA Security+ obtenu en 5 jours. Le bon d'examen inclus, c'est un vrai plus."</div>
+                <div class="testi-mini-author">— Karim M.</div>
+            </div>
+            <div class="testi-mini">
+                <div class="testi-stars">★★★★★</div>
+                <div class="testi-mini-text">"Embauché 3 semaines après ma certification CCNA, avec 20% d'augmentation."</div>
+                <div class="testi-mini-author">— Sophie L.</div>
+            </div>
+            <div class="testi-mini">
+                <div class="testi-stars">★★★★★</div>
+                <div class="testi-mini-text">"Azure AZ-900 réussi du premier coup. Formation claire et bien structurée."</div>
+                <div class="testi-mini-author">— Mehdi B.</div>
+            </div>
+            <div class="testi-mini">
+                <div class="testi-stars">★★★★★</div>
+                <div class="testi-mini-text">"Reconversion réussie grâce à Caplogy. De comptable à admin réseau en 3 mois."</div>
+                <div class="testi-mini-author">— Nadia R.</div>
+            </div>
+            <div class="testi-mini">
+                <div class="testi-stars">★★★★★</div>
+                <div class="testi-mini-text">"CompTIA Security+ obtenu en 5 jours. Le bon d'examen inclus, c'est un vrai plus."</div>
+                <div class="testi-mini-author">— Karim M.</div>
+            </div>
+            <div class="testi-mini">
+                <div class="testi-stars">★★★★★</div>
+                <div class="testi-mini-text">"Embauché 3 semaines après ma certification CCNA, avec 20% d'augmentation."</div>
+                <div class="testi-mini-author">— Sophie L.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="padding: 2rem;">
+    <div class="promo-overlay">
+        <div class="promo-title">🎁 Offre Limitée!</div>
+        <div class="promo-desc">Places disponibles pour la prochaine session — BON D'EXAMEN OFFERT</div>
+        <div class="countdown-timer">
+            <div class="countdown-item">
+                <span class="countdown-time">5</span>
+                <span style="font-size: 0.75rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px;">Jours</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-time">12</span>
+                <span style="font-size: 0.75rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px;">Heures</span>
+            </div>
+            <div class="countdown-item">
+                <span class="countdown-time">34</span>
+                <span style="font-size: 0.75rem; opacity: 0.9; text-transform: uppercase; letter-spacing: 1px;">Minutes</span>
+            </div>
+        </div>
+        <button class="submit-btn" onclick="document.getElementById('obtenir').scrollIntoView({behavior:'smooth'})" style="width: 100%;">S'inscrire Maintenant</button>
+    </div>
+</section>
+
+<section class="lead-form-section" id="obtenir">
+    <h2>Inscrivez-vous à la <span>prochaine session</span></h2>
+    <p class="sub">Complétez votre profil et découvrez votre parcours de certification personnalisé</p>
+    <div class="form-box">
+        <form id="registrationForm">
+            <div class="form-group">
+                <label>Prénom</label>
+                <input type="text" name="prenom" placeholder="Votre prénom" required>
+            </div>
+            <div class="form-group">
+                <label>Nom</label>
+                <input type="text" name="nom" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="votre.email@example.com" required>
+            </div>
+            <div class="form-group">
+                <label>Téléphone</label>
+                <input type="tel" name="telephone" placeholder="+33 6 XX XX XX XX">
+            </div>
+            <div class="form-group">
+                <label>Domaine d'intérêt</label>
+                <div class="domain-buttons">
+                    <button type="button" class="domain-btn" onclick="selectDomain(this, 'Cybersécurité')">🔒 Cybersécurité</button>
+                    <button type="button" class="domain-btn" onclick="selectDomain(this, 'Cloud Computing')">☁️ Cloud</button>
+                    <button type="button" class="domain-btn" onclick="selectDomain(this, 'Intelligence Artificielle')">🤖 IA</button>
+                    <button type="button" class="domain-btn" onclick="selectDomain(this, 'Networking')">🌐 Networking</button>
+                    <button type="button" class="domain-btn" onclick="selectDomain(this, 'DevOps')">⚙️ DevOps</button>
+                    <button type="button" class="domain-btn" onclick="selectDomain(this, 'IT Management')">📊 IT Mgmt</button>
+                    <button type="button" class="domain-btn" onclick="selectDomain(this, 'IT Fundamentals')">💻 IT Basics</button>
+                </div>
+                <input type="hidden" name="domain" id="domainInput" required>
+            </div>
+            <button type="submit" class="submit-btn">Continuer →</button>
+        </form>
+        <p style="color: #718096; font-size: 0.85rem; margin-top: 1.5rem;">🔒 Vos données sont confidentielles. Pas de spam, désinscription en 1 clic.</p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Caplogy. Tous droits réservés. | <a href="#" style="color: var(--cyan); text-decoration: none;">Conditions</a> | <a href="#" style="color: var(--cyan); text-decoration: none;">Confidentialité</a></p>
+</footer>
+
+<script>
+    function selectDomain(button, domainValue) {
+        document.querySelectorAll('.domain-btn').forEach(btn => {
+            btn.classList.remove('selected');
+        });
+        button.classList.add('selected');
+        document.getElementById('domainInput').value = domainValue;
+    }
+
+    document.getElementById('registrationForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const domainInput = document.getElementById('domainInput');
+        if (!domainInput.value) {
+            alert('Veuillez sélectionner un domaine');
+            return;
+        }
+        alert('Merci! Nous allons vous contacter prochainement.');
+        this.reset();
+        document.querySelectorAll('.domain-btn').forEach(btn => {
+            btn.classList.remove('selected');
+        });
+    });
+</script>
+
+</body>
+</html>

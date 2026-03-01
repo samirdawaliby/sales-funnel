@@ -1,0 +1,13 @@
+.wrangler/
+node_modules/
+*.pdf
+*.png
+*.jpg
+*.json
+*.py
+*.md
+*.txt
+*.html
+!deploy/funnel.html
+!deploy/index.html
+!deploy/rapport_leads_enhanced.html

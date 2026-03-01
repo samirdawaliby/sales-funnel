@@ -1,0 +1,3 @@
+# Cloudflare Pages routing rules
+/leads-report  /rapport_leads_enhanced.html  200
+/rapports/leads  /rapport_leads_enhanced.html  200
