@@ -2976,7 +2976,13 @@
     }
 
     function selectCertLevel(level) {
-        userAnswers.certLevel = level;
+        // Map display names to database names
+        var levelMap = {
+            'Débutant': 'Débutant',
+            'Intermédiaire': 'Associé',
+            'Professionnel': 'Professionnel'
+        };
+        userAnswers.certLevel = levelMap[level] || level;
         checkCertButtonState();
 
         // Update button states
