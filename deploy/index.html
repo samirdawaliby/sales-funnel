@@ -2415,7 +2415,8 @@
 
     // Display recommendations when step 8 is shown
     function displayRecommendations() {
-        var userLevel = determineUserLevel();
+        // Use the certification level the user selected in step 7, not calculated level
+        var userLevel = userAnswers.certLevel || 'Débutant';
         var recommendations = getRecommendedFormations(currentDomain, userLevel);
 
         // Set personalized greeting with client name
@@ -2441,7 +2442,7 @@
             return;
         }
 
-        // Group by provider
+        // Group by provider and pick top 3 formations from different providers
         var byProvider = {};
         recommendations.forEach(function(formation) {
             if (!byProvider[formation.provider]) {
@@ -2450,25 +2451,37 @@
             byProvider[formation.provider].push(formation);
         });
 
-        // Display formations by provider
-        Object.keys(byProvider).forEach(function(provider) {
-            var providerFormations = byProvider[provider];
+        // Select exactly 3 formations from 3 different providers
+        var selectedFormations = [];
+        var providers = Object.keys(byProvider);
+
+        // Take first formation from first 3 providers
+        for (var i = 0; i < Math.min(3, providers.length); i++) {
+            if (byProvider[providers[i]].length > 0) {
+                selectedFormations.push({
+                    provider: providers[i],
+                    formation: byProvider[providers[i]][0]
+                });
+            }
+        }
+
+        // Display the 3 selected formations
+        selectedFormations.forEach(function(item) {
+            var formation = item.formation;
             var providerHtml = '<div style="margin-bottom: 1.5rem;">';
-            providerHtml += '<p style="color: #e2e8f0; font-size: 0.9rem; font-weight: 600; margin: 0 0 0.75rem 0; text-transform: uppercase; letter-spacing: 0.5px;">' + provider + '</p>';
+            providerHtml += '<p style="color: #e2e8f0; font-size: 0.9rem; font-weight: 600; margin: 0 0 0.75rem 0; text-transform: uppercase; letter-spacing: 0.5px;">' + item.provider + '</p>';
 
-            providerFormations.forEach(function(formation) {
-                providerHtml += '<button type="button" class="formation-option-btn" onclick="selectFormation(' + formation.id + ', \'' + escapeHtml(formation.name) + '\', \'' + formation.provider + '\')" style="width: 100%; text-align: left; padding: 1rem; background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.2); border-radius: 8px; color: #e2e8f0; margin-bottom: 0.75rem; cursor: pointer; transition: all 0.3s ease; display: block;">';
-                providerHtml += '<div style="display: flex; justify-content: space-between; align-items: start;">';
-                providerHtml += '<div style="flex: 1;">';
-                providerHtml += '<p style="margin: 0 0 0.5rem 0; color: #e2e8f0; font-weight: 600;">' + escapeHtml(formation.name) + '</p>';
-                providerHtml += '<p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">📚 ' + escapeHtml(formation.niveau) + '</p>';
-                providerHtml += '</div>';
-                providerHtml += '<span id="radio-' + formation.id + '" style="width: 20px; height: 20px; border: 2px solid rgba(96,165,250,0.5); border-radius: 50%; flex-shrink: 0; margin-left: 1rem;"></span>';
-                providerHtml += '</div>';
-                providerHtml += '</button>';
-            });
-
+            providerHtml += '<button type="button" class="formation-option-btn" onclick="selectFormation(' + formation.id + ', \'' + escapeHtml(formation.name) + '\', \'' + formation.provider + '\')" style="width: 100%; text-align: left; padding: 1rem; background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.2); border-radius: 8px; color: #e2e8f0; margin-bottom: 0.75rem; cursor: pointer; transition: all 0.3s ease; display: block;">';
+            providerHtml += '<div style="display: flex; justify-content: space-between; align-items: start;">';
+            providerHtml += '<div style="flex: 1;">';
+            providerHtml += '<p style="margin: 0 0 0.5rem 0; color: #e2e8f0; font-weight: 600;">' + escapeHtml(formation.name) + '</p>';
+            providerHtml += '<p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">📚 ' + escapeHtml(formation.niveau) + '</p>';
             providerHtml += '</div>';
+            providerHtml += '<span id="radio-' + formation.id + '" style="width: 20px; height: 20px; border: 2px solid rgba(96,165,250,0.5); border-radius: 50%; flex-shrink: 0; margin-left: 1rem;"></span>';
+            providerHtml += '</div>';
+            providerHtml += '</button>';
+            providerHtml += '</div>';
+
             container.innerHTML += providerHtml;
         });
     }
