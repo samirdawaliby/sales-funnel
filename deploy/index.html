@@ -2678,9 +2678,14 @@
 
     function checkCertButtonState() {
         var btn = document.getElementById('btn-q-next-cert');
-        if (userAnswers.certLevel && userAnswers.certProvider) {
+        if (userAnswers.certLevel) {
             btn.style.opacity = '1';
             btn.style.cursor = 'pointer';
+            btn.disabled = false;
+        } else {
+            btn.style.opacity = '0.5';
+            btn.style.cursor = 'not-allowed';
+            btn.disabled = true;
         }
     }
 
