@@ -2523,6 +2523,9 @@
             return;
         }
 
+        // Set certProvider from the selected formation
+        userAnswers.certProvider = currentlySelectedFormation.provider;
+
         startFirstCertification(currentlySelectedFormation.name);
     }
 
