@@ -1639,10 +1639,12 @@
                 <!-- Step 5: IT Experience -->
                 <div class="questionnaire-step" id="q-step-itexp" style="display: none;">
                     <h3 style="text-align: center; color: #e2e8f0; margin-bottom: 1.5rem;">Étape 5: Expérience IT</h3>
-                    <p style="text-align: center; color: #94a3b8; margin-bottom: 1.5rem;">Avez-vous travaillé dans le domaine IT/Coding?</p>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
-                        <button type="button" class="questionnaire-option-btn" onclick="selectITExp('Oui')">✅ Oui</button>
-                        <button type="button" class="questionnaire-option-btn" onclick="selectITExp('Non')">❌ Non</button>
+                    <p style="text-align: center; color: #94a3b8; margin-bottom: 1.5rem;">Combien d'années d'expérience avez-vous dans l'IT/Coding?</p>
+                    <div style="display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin-bottom: 1.5rem;">
+                        <button type="button" class="questionnaire-option-btn" onclick="selectITExp('no_experience')">❌ Aucune expérience</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectITExp('yes_less2')">📅 Moins de 2 ans</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectITExp('yes_2to5')">📊 2 à 5 ans</button>
+                        <button type="button" class="questionnaire-option-btn" onclick="selectITExp('yes_5plus')">⭐ Plus de 5 ans</button>
                     </div>
                     <div style="display: flex; gap: 1rem;">
                         <button type="button" class="modal-submit-btn" onclick="previousQuestionnaire()" style="background-color: #64748b; flex: 1;">← Retour</button>
@@ -1688,12 +1690,34 @@
                 <!-- Step 8: Certification Path Display -->
                 <div class="questionnaire-step" id="q-step-path" style="display: none;">
                     <h3 style="text-align: center; color: #e2e8f0; margin-bottom: 0.5rem;">Votre Chemin de Certification</h3>
-                    <p id="greeting-message" style="text-align: center; color: #94a3b8; margin-bottom: 1.5rem;"></p>
-                    <div id="certification-path-container" style="margin-bottom: 1.5rem; padding: 1rem; background: rgba(96,165,250,0.06); border-radius: 8px; border: 1px solid rgba(96,165,250,0.1);">
-                        <div style="text-align: center; color: #64748b;">Chargement du chemin de certification...</div>
+                    <p style="text-align: center; color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.95rem;">Basé sur vos réponses, voici les certifications recommandées pour vous</p>
+
+                    <!-- User Level Summary -->
+                    <div style="margin-bottom: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1)); border-radius: 12px; border: 1px solid rgba(96,165,250,0.2);">
+                        <div style="text-align: center;">
+                            <p style="margin: 0 0 0.5rem 0; color: #94a3b8; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px;">Votre niveau estimé</p>
+                            <h2 id="userLevelDisplay" style="margin: 0; color: #60a5fa; font-size: 1.8rem; font-weight: 700;">-</h2>
+                            <p id="userLevelExplanation" style="margin: 0.5rem 0 0 0; color: #cbd5e1; font-size: 0.85rem;"></p>
+                        </div>
                     </div>
-                    <div style="display: flex; gap: 1rem;">
+
+                    <!-- Recommended Formations -->
+                    <div style="margin-bottom: 1.5rem;">
+                        <p style="color: #94a3b8; font-size: 0.9rem; margin: 0 0 1rem 0; text-transform: uppercase; letter-spacing: 0.5px;">Certifications recommandées</p>
+                        <div id="recommendations-container" style="display: grid; gap: 1rem;">
+                            <div style="text-align: center; color: #64748b; padding: 2rem;">Génération des recommandations...</div>
+                        </div>
+                    </div>
+
+                    <!-- Selected Formation Display -->
+                    <div id="selected-formation-display" style="display: none; margin: 1.5rem 0; padding: 1rem; background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3); border-radius: 8px;">
+                        <p style="margin: 0 0 0.5rem 0; color: #10b981; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.5px;">✓ Formation sélectionnée</p>
+                        <p id="selected-formation-text" style="margin: 0; color: #e2e8f0; font-weight: 600;"></p>
+                    </div>
+
+                    <div style="display: flex; gap: 1rem; margin-top: 2rem;">
                         <button type="button" class="modal-submit-btn" onclick="previousQuestionnaire()" style="background-color: #64748b; flex: 1;">← Retour</button>
+                        <button type="button" class="modal-submit-btn" id="btn-start-cert" onclick="proceedWithSelectedFormation()" style="background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); flex: 1; opacity: 0.5; cursor: not-allowed;" disabled>Commencer →</button>
                     </div>
                 </div>
             </div>
@@ -2202,29 +2226,255 @@
         });
     }
 
-    // Formations by domain from Caplogy database
-    var formationsByDomain = {
-        'cybersecurity': [
-            { name: 'CompTIA Security+', category: 'Core Security', duration: '5 jours' },
-            { name: 'CompTIA PenTest+', category: 'Penetration Testing', duration: '5 jours' },
-            { name: 'CompTIA CySA+', category: 'Security Analytics', duration: '5 jours' },
-            { name: 'CompTIA Linux+', category: 'Infrastructure/Security', duration: '5 jours' }
-        ],
-        'cloud': [
-            { name: 'CompTIA Cloud+', category: 'Cloud Infrastructure', duration: '5 jours' },
-            { name: 'CompTIA Data+', category: 'Data Management', duration: '4 jours' },
-            { name: 'Azure Fundamentals AZ-900', category: 'Microsoft Cloud', duration: '2 jours' },
-            { name: 'Microsoft 365 MS-900', category: 'Microsoft Ecosystem', duration: '2 jours' }
-        ],
-        'ai': [
-            { name: 'CompTIA Data+', category: 'Data Analytics Foundation', duration: '4 jours' }
-        ],
-        'networking': [
-            { name: 'CompTIA Network+', category: 'Network Administration', duration: '5 jours' },
-            { name: 'CompTIA Linux+', category: 'Linux Infrastructure', duration: '5 jours' },
-            { name: 'Cisco CCNA', category: 'Cisco Routing & Switching', duration: '5 jours' }
-        ]
+    // Formations from Caplogy database - organized by domain and level
+    var formationsByDomainAndLevel = {
+        'cloud-computing': {
+            'Débutant': [
+                { id: 1, name: 'Formation AWS Certified Cloud Practitioner', provider: 'AWS', price: 299, niveau: 'Débutant' },
+                { id: 2, name: 'Formation Microsoft Azure Fundamentals', provider: 'Microsoft', price: 199, niveau: 'Débutant' }
+            ],
+            'Associé': [
+                { id: 3, name: 'Formation AWS Certified Solutions Architect - Associate', provider: 'AWS', price: 799, niveau: 'Associé' },
+                { id: 4, name: 'Formation AWS Certified Developer - Associate', provider: 'AWS', price: 799, niveau: 'Associé' }
+            ],
+            'Professionnel': [
+                { id: 5, name: 'Formation AWS Certified Solutions Architect - Professional', provider: 'AWS', price: 1299, niveau: 'Professionnel' },
+                { id: 6, name: 'Formation AWS Certified DevOps Engineer - Professional', provider: 'AWS', price: 1299, niveau: 'Professionnel' }
+            ]
+        },
+        'networking-infrastructure': {
+            'Débutant': [
+                { id: 7, name: 'Formation Cisco CCENT', provider: 'Cisco', price: 299, niveau: 'Débutant' },
+                { id: 8, name: 'Formation CompTIA Network+', provider: 'CompTIA', price: 391, niveau: 'Débutant' }
+            ],
+            'Associé': [
+                { id: 9, name: 'Formation Cisco CCNA', provider: 'Cisco', price: 699, niveau: 'Associé' },
+                { id: 10, name: 'Formation CompTIA Security+', provider: 'CompTIA', price: 483, niveau: 'Associé' }
+            ],
+            'Professionnel': [
+                { id: 11, name: 'Formation Cisco CCIE', provider: 'Cisco', price: 1999, niveau: 'Professionnel' }
+            ]
+        },
+        'cybersecurity-hacking': {
+            'Débutant': [
+                { id: 12, name: 'Formation CompTIA Security+', provider: 'CompTIA', price: 483, niveau: 'Débutant' },
+                { id: 13, name: 'Formation EC-Council CND', provider: 'EC-Council', price: 1799, niveau: 'Débutant' }
+            ],
+            'Associé': [
+                { id: 14, name: 'Formation CompTIA CySA+', provider: 'CompTIA', price: 422, niveau: 'Associé' },
+                { id: 15, name: 'Formation CompTIA PenTest+', provider: 'CompTIA', price: 441, niveau: 'Associé' }
+            ],
+            'Professionnel': [
+                { id: 16, name: 'Formation CEH - Certified Ethical Hacker', provider: 'EC-Council', price: 1899, niveau: 'Professionnel' },
+                { id: 17, name: 'Formation CCISO', provider: 'EC-Council', price: 2499, niveau: 'Professionnel' }
+            ]
+        },
+        'data-analytics-ai': {
+            'Débutant': [
+                { id: 18, name: 'Formation CompTIA Data+', provider: 'CompTIA', price: 275, niveau: 'Débutant' },
+                { id: 19, name: 'Formation AWS Certified Cloud Practitioner', provider: 'AWS', price: 299, niveau: 'Débutant' }
+            ],
+            'Associé': [
+                { id: 20, name: 'Formation AWS Certified Data Analytics - Specialty', provider: 'AWS', price: 999, niveau: 'Associé' }
+            ],
+            'Professionnel': [
+                { id: 21, name: 'Formation AWS Certified Machine Learning - Specialty', provider: 'AWS', price: 999, niveau: 'Professionnel' }
+            ]
+        },
+        'devops-development': {
+            'Débutant': [
+                { id: 22, name: 'Formation CompTIA Cloud+', provider: 'CompTIA', price: 460, niveau: 'Débutant' },
+                { id: 23, name: 'Formation AWS Certified Cloud Practitioner', provider: 'AWS', price: 299, niveau: 'Débutant' }
+            ],
+            'Associé': [
+                { id: 24, name: 'Formation AWS Certified DevOps Engineer - Associate', provider: 'AWS', price: 799, niveau: 'Associé' },
+                { id: 25, name: 'Formation AWS Certified Developer - Associate', provider: 'AWS', price: 799, niveau: 'Associé' }
+            ],
+            'Professionnel': [
+                { id: 26, name: 'Formation AWS Certified DevOps Engineer - Professional', provider: 'AWS', price: 1299, niveau: 'Professionnel' }
+            ]
+        },
+        'it-governance': {
+            'Débutant': [
+                { id: 27, name: 'Formation CompTIA Project+', provider: 'CompTIA', price: 363, niveau: 'Débutant' }
+            ],
+            'Associé': [
+                { id: 28, name: 'Formation PMP - Project Management Professional', provider: 'PMI', price: 799, niveau: 'Associé' }
+            ],
+            'Professionnel': [
+                { id: 29, name: 'Formation ITIL Foundation', provider: 'AXELOS', price: 599, niveau: 'Professionnel' }
+            ]
+        },
+        'it-support': {
+            'Débutant': [
+                { id: 30, name: 'Formation CompTIA A+', provider: 'CompTIA', price: 520, niveau: 'Débutant' },
+                { id: 31, name: 'Formation CompTIA Network+', provider: 'CompTIA', price: 391, niveau: 'Débutant' }
+            ],
+            'Associé': [
+                { id: 32, name: 'Formation CompTIA Security+', provider: 'CompTIA', price: 483, niveau: 'Associé' }
+            ]
+        }
     };
+
+    // Determine user's certification level based on their answers
+    function determineUserLevel() {
+        var level = 'Débutant';  // Default level
+        var scorePoints = 0;
+
+        // Score based on IT work experience
+        if (userAnswers.workedInIT === 'yes_5plus') {
+            scorePoints += 3;
+        } else if (userAnswers.workedInIT === 'yes_2to5') {
+            scorePoints += 2;
+        } else if (userAnswers.workedInIT === 'yes_less2') {
+            scorePoints += 1;
+        }
+
+        // Score based on education/diploma
+        if (userAnswers.diploma === 'master' || userAnswers.diploma === 'doctorate') {
+            scorePoints += 2;
+        } else if (userAnswers.diploma === 'bachelor') {
+            scorePoints += 1;
+        }
+
+        // Score based on job title (IT-related positions indicate higher level)
+        if (userAnswers.jobTitle) {
+            var titleLower = userAnswers.jobTitle.toLowerCase();
+            if (titleLower.includes('senior') || titleLower.includes('architect') || titleLower.includes('lead')) {
+                scorePoints += 2;
+            } else if (titleLower.includes('engineer') || titleLower.includes('specialist') || titleLower.includes('analyst')) {
+                scorePoints += 1;
+            }
+        }
+
+        // Score based on motivation and school type
+        if (userAnswers.school === 'engineering' || userAnswers.school === 'business') {
+            scorePoints += 1;
+        }
+
+        // Determine level based on accumulated points
+        if (scorePoints >= 5) {
+            level = 'Professionnel';
+        } else if (scorePoints >= 3) {
+            level = 'Associé';
+        } else {
+            level = 'Débutant';
+        }
+
+        return level;
+    }
+
+    // Fetch certifications for domain and level
+    function getRecommendedFormations(domain, niveau) {
+        var formations = [];
+        if (formationsByDomainAndLevel[domain] && formationsByDomainAndLevel[domain][niveau]) {
+            formations = formationsByDomainAndLevel[domain][niveau];
+        }
+        // If no formations for that level, get from lower level
+        if (formations.length === 0 && niveau === 'Professionnel' && formationsByDomainAndLevel[domain]['Associé']) {
+            formations = formationsByDomainAndLevel[domain]['Associé'];
+        }
+        if (formations.length === 0 && formationsByDomainAndLevel[domain]['Débutant']) {
+            formations = formationsByDomainAndLevel[domain]['Débutant'];
+        }
+        return formations;
+    }
+
+    // Display recommendations when step 8 is shown
+    function displayRecommendations() {
+        var userLevel = determineUserLevel();
+        var recommendations = getRecommendedFormations(currentDomain, userLevel);
+
+        // Update level display
+        document.getElementById('userLevelDisplay').textContent = userLevel;
+
+        var levelExplanation = {
+            'Débutant': 'Vous êtes nouveau dans le domaine IT. Les certifications d\'entrée sont recommandées.',
+            'Associé': 'Vous avez une expérience modérée. Les certifications intermédiaires sont recommandées.',
+            'Professionnel': 'Vous avez une expérience significative. Les certifications avancées sont recommandées.'
+        };
+        document.getElementById('userLevelExplanation').textContent = levelExplanation[userLevel] || '';
+
+        // Display recommendations
+        var container = document.getElementById('recommendations-container');
+        container.innerHTML = '';
+
+        if (recommendations.length === 0) {
+            container.innerHTML = '<div style="text-align: center; color: #64748b; padding: 2rem;">Aucune certification disponible pour ce domaine.</div>';
+            return;
+        }
+
+        // Group by provider
+        var byProvider = {};
+        recommendations.forEach(function(formation) {
+            if (!byProvider[formation.provider]) {
+                byProvider[formation.provider] = [];
+            }
+            byProvider[formation.provider].push(formation);
+        });
+
+        // Display formations by provider
+        Object.keys(byProvider).forEach(function(provider) {
+            var providerFormations = byProvider[provider];
+            var providerHtml = '<div style="margin-bottom: 1.5rem;">';
+            providerHtml += '<p style="color: #e2e8f0; font-size: 0.9rem; font-weight: 600; margin: 0 0 0.75rem 0; text-transform: uppercase; letter-spacing: 0.5px;">' + provider + '</p>';
+
+            providerFormations.forEach(function(formation) {
+                providerHtml += '<button type="button" class="formation-option-btn" onclick="selectFormation(' + formation.id + ', \'' + escapeHtml(formation.name) + '\', \'' + formation.provider + '\')" style="width: 100%; text-align: left; padding: 1rem; background: rgba(96,165,250,0.08); border: 1px solid rgba(96,165,250,0.2); border-radius: 8px; color: #e2e8f0; margin-bottom: 0.75rem; cursor: pointer; transition: all 0.3s ease; display: block;">';
+                providerHtml += '<div style="display: flex; justify-content: space-between; align-items: start;">';
+                providerHtml += '<div style="flex: 1;">';
+                providerHtml += '<p style="margin: 0 0 0.5rem 0; color: #e2e8f0; font-weight: 600;">' + escapeHtml(formation.name) + '</p>';
+                providerHtml += '<p style="margin: 0; color: #94a3b8; font-size: 0.85rem;">📚 ' + escapeHtml(formation.niveau) + ' • 💰 ' + formation.price + '€</p>';
+                providerHtml += '</div>';
+                providerHtml += '<span id="radio-' + formation.id + '" style="width: 20px; height: 20px; border: 2px solid rgba(96,165,250,0.5); border-radius: 50%; flex-shrink: 0; margin-left: 1rem;"></span>';
+                providerHtml += '</div>';
+                providerHtml += '</button>';
+            });
+
+            providerHtml += '</div>';
+            container.innerHTML += providerHtml;
+        });
+    }
+
+    // Store currently selected formation
+    var currentlySelectedFormation = null;
+
+    // Select a formation
+    function selectFormation(formationId, formationName, provider) {
+        currentlySelectedFormation = {
+            id: formationId,
+            name: formationName,
+            provider: provider
+        };
+
+        // Update button states
+        var allRadios = document.querySelectorAll('[id^="radio-"]');
+        allRadios.forEach(function(radio) {
+            radio.style.background = 'transparent';
+        });
+
+        document.getElementById('radio-' + formationId).style.background = '#60a5fa';
+
+        // Show selected display
+        document.getElementById('selected-formation-display').style.display = 'block';
+        document.getElementById('selected-formation-text').textContent = formationName + ' (' + provider + ')';
+
+        // Enable submit button
+        var btn = document.getElementById('btn-start-cert');
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+        btn.disabled = false;
+    }
+
+    // Proceed with selected formation
+    function proceedWithSelectedFormation() {
+        if (!currentlySelectedFormation) {
+            alert('Veuillez sélectionner une certification');
+            return;
+        }
+
+        startFirstCertification(currentlySelectedFormation.name);
+    }
 
     // Fetch certifications for domain
     function fetchCertificationsForDomain(domain) {
@@ -2566,6 +2816,8 @@
             document.getElementById('q-step-cert').style.display = 'block';
         } else if (stepNum === 8) {
             document.getElementById('q-step-path').style.display = 'block';
+            // Display recommendations when this step is shown
+            displayRecommendations();
         }
         questionnaireStep = stepNum;
     }
@@ -2573,6 +2825,13 @@
     function nextQuestionnaire() {
         if (questionnaireStep < 8) {
             showQuestionnaireStep(questionnaireStep + 1);
+        } else if (questionnaireStep === 8) {
+            // Step 8 transitions to certification start
+            if (!currentlySelectedFormation) {
+                alert('Veuillez sélectionner une certification');
+                return;
+            }
+            proceedWithSelectedFormation();
         }
     }
 
@@ -2597,7 +2856,16 @@
     }
 
     function selectDiploma(dip) {
-        userAnswers.diploma = dip;
+        // Map display names to code values
+        var diplomaMap = {
+            'Baccalauréat': 'highschool',
+            'Licence': 'bachelor',
+            'Master': 'master',
+            'Doctorat': 'doctorate',
+            'Diplôme d\'Ingénieur': 'engineering',
+            'Autre': 'other'
+        };
+        userAnswers.diploma = diplomaMap[dip] || dip;
 
         // Show/hide custom input
         var otherContainer = document.getElementById('diploma-other-container');
@@ -2619,8 +2887,8 @@
         event.target.classList.add('active');
     }
 
-    function selectITExp(answer) {
-        userAnswers.workedInIT = answer === 'Oui';
+    function selectITExp(experience) {
+        userAnswers.workedInIT = experience;
 
         // Enable next button
         document.getElementById('btn-q-next-itexp').style.opacity = '1';
