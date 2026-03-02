@@ -2388,8 +2388,25 @@
     }
 
     function openInscriptionModal() {
-        // Open the same modal as the guide
-        openGuideModal();
+        // Extract data from the main form
+        var prenom = document.getElementById('prénom').value.trim();
+        var nom = document.getElementById('nom').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var telephone = document.getElementById('telephone').value.trim();
+
+        // Open modal with lead capture form first
+        document.getElementById('inscriptionModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+        // Show step 0 (lead capture), hide others
+        document.getElementById('modalStep0').style.display = 'block';
+        document.getElementById('modalStep1').style.display = 'none';
+        document.getElementById('modalStep3').style.display = 'none';
+
+        // Pre-fill the modal form with the extracted data (instead of clearing)
+        document.getElementById('guidePrenom').value = prenom;
+        document.getElementById('guideNom').value = nom;
+        document.getElementById('guideEmail').value = email;
+        document.getElementById('guideTelephone').value = telephone;
     }
 
     function showStep1() {
