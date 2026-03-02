@@ -2388,28 +2388,8 @@
     }
 
     function openInscriptionModal() {
-        // Extract form data from the main form
-        var prenom = document.getElementById('leadForm').querySelector('input[placeholder*="Votre prénom"]').value.trim();
-        var nom = document.getElementById('leadForm').querySelector('input[placeholder*="Votre nom"]').value.trim();
-        var email = document.getElementById('leadForm').querySelector('input[placeholder*="votre@email"]').value.trim();
-        var telephone = document.getElementById('leadForm').querySelector('input[placeholder*="33"]').value.trim();
-        
-        // Validate email
-        if (!prenom || !nom || !email) {
-            alert('Veuillez remplir tous les champs obligatoires');
-            return;
-        }
-        
-        // Call registerLead to save to database
-        registerLead(prenom, nom, email, telephone).then(function(result) {
-            if (result.success) {
-                // Show the modal only after successful registration
-                document.getElementById('inscriptionModal').classList.add('active');
-                document.body.style.overflow = 'hidden';
-                // Show Step 1 (thank you + domain selector)
-                showStep1();
-            }
-        });
+        // Open the same modal as the guide
+        openGuideModal();
     }
 
     function showStep1() {
