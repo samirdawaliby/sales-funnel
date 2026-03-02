@@ -1586,10 +1586,10 @@
                 <div class="questionnaire-step" id="q-step-profession" style="display: block;">
                     <h3 style="text-align: center; color: #e2e8f0; margin-bottom: 1.5rem;">Étape 1: Profession</h3>
                     <p style="text-align: center; color: #94a3b8; margin-bottom: 1.5rem;">Quelle est votre profession?</p>
-                    <input type="text" id="profession-input" placeholder="Ex: Développeur, Manager, Étudiant, Ingénieur, etc." style="width: 100%; padding: 0.75rem; border: 1px solid rgba(96,165,250,0.2); border-radius: 4px; font-size: 0.95rem; background: rgba(255,255,255,0.07); color: #e2e8f0; margin-bottom: 1.5rem;" onchange="validateProfessionInput()">
+                    <input type="text" id="profession-input" placeholder="Ex: Développeur, Manager, Étudiant, Ingénieur, etc." style="width: 100%; padding: 0.75rem; border: 1px solid rgba(96,165,250,0.2); border-radius: 4px; font-size: 0.95rem; background: rgba(255,255,255,0.07); color: #e2e8f0; margin-bottom: 1.5rem;" oninput="validateProfessionInput()">
                     <div style="display: flex; gap: 1rem;">
                         <button type="button" class="modal-submit-btn" onclick="goBackToDomain()" style="background-color: #64748b; flex: 1;">← Retour</button>
-                        <button type="button" class="modal-submit-btn" id="btn-q-next-profession" onclick="nextQuestionnaire()" style="flex: 1; opacity: 0.5; cursor: not-allowed;">Suivant →</button>
+                        <button type="button" class="modal-submit-btn" id="btn-q-next-profession" onclick="nextQuestionnaire()" style="flex: 1; opacity: 0.5; cursor: not-allowed;" disabled>Suivant →</button>
                     </div>
                 </div>
 
@@ -2902,9 +2902,11 @@
             userAnswers.profession = profInput;
             btn.style.opacity = '1';
             btn.style.cursor = 'pointer';
+            btn.disabled = false;
         } else {
             btn.style.opacity = '0.5';
             btn.style.cursor = 'not-allowed';
+            btn.disabled = true;
         }
     }
 
