@@ -2260,12 +2260,16 @@
         var domain = button.dataset.domain;
         currentDomain = domain;
 
-        // Highlight selected domain
+        // Hide all other domain buttons and only show selected one
         var domainBtns = document.querySelectorAll('.domain-btn');
         for (var j = 0; j < domainBtns.length; j++) {
-            domainBtns[j].classList.remove('active');
+            if (domainBtns[j] !== button) {
+                domainBtns[j].style.display = 'none';
+            } else {
+                domainBtns[j].classList.add('active');
+                domainBtns[j].style.display = 'block';
+            }
         }
-        button.classList.add('active');
 
         // Show certification section (now questionnaire)
         var certSection = document.getElementById('certificationSection');
@@ -2296,9 +2300,10 @@
         if (certSection) {
             certSection.style.display = 'none';
         }
-        // Remove active state from domain buttons
+        // Show all domain buttons again and remove active state
         var domainBtns = document.querySelectorAll('.domain-btn');
         for (var i = 0; i < domainBtns.length; i++) {
+            domainBtns[i].style.display = 'block';
             domainBtns[i].classList.remove('active');
         }
     }
