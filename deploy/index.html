@@ -3230,7 +3230,8 @@
             selectedDomain: currentDomain,
             domainMotivation: userAnswers.motivation,
             certLevel: userAnswers.certLevel,
-            certProvider: userAnswers.certProvider
+            certProvider: userAnswers.certProvider,
+            certification: certName || 'Certification - ' + userAnswers.certProvider
         };
 
         // First, update the lead with questionnaire data
