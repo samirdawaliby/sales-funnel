@@ -1690,8 +1690,7 @@
                 <!-- Step 8: Certification Path Display -->
                 <div class="questionnaire-step" id="q-step-path" style="display: none;">
                     <h3 style="text-align: center; color: #e2e8f0; margin-bottom: 1.5rem;">Votre Chemin de Certification</h3>
-                    <p id="personalized-greeting" style="text-align: center; color: #e2e8f0; margin-bottom: 0.5rem; font-size: 1.3rem; font-weight: 700;"></p>
-                    <p style="text-align: center; color: #94a3b8; margin-bottom: 1.5rem; font-size: 0.95rem;">Based on your answers and your profile, we are suggesting you choose one of these formations to start your career path</p>
+                    <p id="personalized-greeting" style="text-align: center; color: #e2e8f0; margin-bottom: 1.5rem; font-size: 1.3rem; font-weight: 700;"></p>
 
                     <!-- User Level Summary -->
                     <div style="margin-bottom: 2rem; padding: 1.5rem; background: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1)); border-radius: 12px; border: 1px solid rgba(96,165,250,0.2);">
@@ -2388,7 +2387,7 @@
 
         // Set personalized greeting with client name
         var clientName = currentLead.prenom + ' ' + currentLead.nom;
-        document.getElementById('personalized-greeting').textContent = 'Based on your responses, here are the certifications recommended for you, ' + clientName;
+        document.getElementById('personalized-greeting').textContent = 'Basé sur vos réponses ' + clientName + ', voici les certifications recommandées pour vous';
 
         // Update level display
         document.getElementById('userLevelDisplay').textContent = userLevel;
