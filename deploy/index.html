@@ -1703,9 +1703,8 @@
 
                     <!-- Recommended Formations -->
                     <div style="margin-bottom: 1.5rem;">
-                        <p style="color: #94a3b8; font-size: 0.9rem; margin: 0 0 1rem 0; text-transform: uppercase; letter-spacing: 0.5px;">Certifications recommandées</p>
                         <div id="recommendations-container" style="display: grid; gap: 1rem;">
-                            <div style="text-align: center; color: #64748b; padding: 2rem;">Génération des recommandations...</div>
+                            <div style="text-align: center; color: #64748b; padding: 2rem;"></div>
                         </div>
                     </div>
 
@@ -2227,91 +2226,125 @@
     }
 
     // Formations from Caplogy database - organized by domain and level
+    // Ensured: CompTIA always included, minimum 3 options per level
     var formationsByDomainAndLevel = {
         'cloud-computing': {
             'Débutant': [
-                { id: 1, name: 'Formation AWS Certified Cloud Practitioner', provider: 'AWS', price: 299, niveau: 'Débutant' },
-                { id: 2, name: 'Formation Microsoft Azure Fundamentals', provider: 'Microsoft', price: 199, niveau: 'Débutant' }
+                { id: 1, name: 'Formation CompTIA Cloud+', provider: 'CompTIA', price: 460, niveau: 'Débutant' },
+                { id: 2, name: 'Formation AWS Certified Cloud Practitioner', provider: 'AWS', price: 299, niveau: 'Débutant' },
+                { id: 3, name: 'Formation Microsoft Azure Fundamentals', provider: 'Microsoft', price: 199, niveau: 'Débutant' }
             ],
             'Associé': [
-                { id: 3, name: 'Formation AWS Certified Solutions Architect - Associate', provider: 'AWS', price: 799, niveau: 'Associé' },
-                { id: 4, name: 'Formation AWS Certified Developer - Associate', provider: 'AWS', price: 799, niveau: 'Associé' }
+                { id: 4, name: 'Formation CompTIA Cloud+', provider: 'CompTIA', price: 460, niveau: 'Associé' },
+                { id: 5, name: 'Formation AWS Certified Solutions Architect - Associate', provider: 'AWS', price: 799, niveau: 'Associé' },
+                { id: 6, name: 'Formation AWS Certified Developer - Associate', provider: 'AWS', price: 799, niveau: 'Associé' }
             ],
             'Professionnel': [
-                { id: 5, name: 'Formation AWS Certified Solutions Architect - Professional', provider: 'AWS', price: 1299, niveau: 'Professionnel' },
-                { id: 6, name: 'Formation AWS Certified DevOps Engineer - Professional', provider: 'AWS', price: 1299, niveau: 'Professionnel' }
+                { id: 7, name: 'Formation CompTIA Advanced Security Practitioner', provider: 'CompTIA', price: 599, niveau: 'Professionnel' },
+                { id: 8, name: 'Formation AWS Certified Solutions Architect - Professional', provider: 'AWS', price: 1299, niveau: 'Professionnel' },
+                { id: 9, name: 'Formation AWS Certified DevOps Engineer - Professional', provider: 'AWS', price: 1299, niveau: 'Professionnel' }
             ]
         },
         'networking-infrastructure': {
             'Débutant': [
-                { id: 7, name: 'Formation Cisco CCENT', provider: 'Cisco', price: 299, niveau: 'Débutant' },
-                { id: 8, name: 'Formation CompTIA Network+', provider: 'CompTIA', price: 391, niveau: 'Débutant' }
+                { id: 10, name: 'Formation CompTIA Network+', provider: 'CompTIA', price: 391, niveau: 'Débutant' },
+                { id: 11, name: 'Formation Cisco CCENT', provider: 'Cisco', price: 299, niveau: 'Débutant' },
+                { id: 12, name: 'Formation CompTIA A+', provider: 'CompTIA', price: 520, niveau: 'Débutant' }
             ],
             'Associé': [
-                { id: 9, name: 'Formation Cisco CCNA', provider: 'Cisco', price: 699, niveau: 'Associé' },
-                { id: 10, name: 'Formation CompTIA Security+', provider: 'CompTIA', price: 483, niveau: 'Associé' }
+                { id: 13, name: 'Formation CompTIA Security+', provider: 'CompTIA', price: 483, niveau: 'Associé' },
+                { id: 14, name: 'Formation Cisco CCNA', provider: 'Cisco', price: 699, niveau: 'Associé' },
+                { id: 15, name: 'Formation CompTIA CySA+', provider: 'CompTIA', price: 422, niveau: 'Associé' }
             ],
             'Professionnel': [
-                { id: 11, name: 'Formation Cisco CCIE', provider: 'Cisco', price: 1999, niveau: 'Professionnel' }
+                { id: 16, name: 'Formation CompTIA Advanced Security Practitioner', provider: 'CompTIA', price: 599, niveau: 'Professionnel' },
+                { id: 17, name: 'Formation Cisco CCIE', provider: 'Cisco', price: 1999, niveau: 'Professionnel' },
+                { id: 18, name: 'Formation CompTIA CASP+', provider: 'CompTIA', price: 549, niveau: 'Professionnel' }
             ]
         },
         'cybersecurity-hacking': {
             'Débutant': [
-                { id: 12, name: 'Formation CompTIA Security+', provider: 'CompTIA', price: 483, niveau: 'Débutant' },
-                { id: 13, name: 'Formation EC-Council CND', provider: 'EC-Council', price: 1799, niveau: 'Débutant' }
+                { id: 19, name: 'Formation CompTIA Security+', provider: 'CompTIA', price: 483, niveau: 'Débutant' },
+                { id: 20, name: 'Formation EC-Council CND', provider: 'EC-Council', price: 1799, niveau: 'Débutant' },
+                { id: 21, name: 'Formation CompTIA A+', provider: 'CompTIA', price: 520, niveau: 'Débutant' }
             ],
             'Associé': [
-                { id: 14, name: 'Formation CompTIA CySA+', provider: 'CompTIA', price: 422, niveau: 'Associé' },
-                { id: 15, name: 'Formation CompTIA PenTest+', provider: 'CompTIA', price: 441, niveau: 'Associé' }
+                { id: 22, name: 'Formation CompTIA CySA+', provider: 'CompTIA', price: 422, niveau: 'Associé' },
+                { id: 23, name: 'Formation CompTIA PenTest+', provider: 'CompTIA', price: 441, niveau: 'Associé' },
+                { id: 24, name: 'Formation EC-Council ChFI', provider: 'EC-Council', price: 1899, niveau: 'Associé' }
             ],
             'Professionnel': [
-                { id: 16, name: 'Formation CEH - Certified Ethical Hacker', provider: 'EC-Council', price: 1899, niveau: 'Professionnel' },
-                { id: 17, name: 'Formation CCISO', provider: 'EC-Council', price: 2499, niveau: 'Professionnel' }
+                { id: 25, name: 'Formation CompTIA CASP+', provider: 'CompTIA', price: 549, niveau: 'Professionnel' },
+                { id: 26, name: 'Formation CEH - Certified Ethical Hacker', provider: 'EC-Council', price: 1899, niveau: 'Professionnel' },
+                { id: 27, name: 'Formation CCISO', provider: 'EC-Council', price: 2499, niveau: 'Professionnel' }
             ]
         },
         'data-analytics-ai': {
             'Débutant': [
-                { id: 18, name: 'Formation CompTIA Data+', provider: 'CompTIA', price: 275, niveau: 'Débutant' },
-                { id: 19, name: 'Formation AWS Certified Cloud Practitioner', provider: 'AWS', price: 299, niveau: 'Débutant' }
+                { id: 28, name: 'Formation CompTIA Data+', provider: 'CompTIA', price: 275, niveau: 'Débutant' },
+                { id: 29, name: 'Formation AWS Certified Cloud Practitioner', provider: 'AWS', price: 299, niveau: 'Débutant' },
+                { id: 30, name: 'Formation Microsoft Azure Data Fundamentals', provider: 'Microsoft', price: 249, niveau: 'Débutant' }
             ],
             'Associé': [
-                { id: 20, name: 'Formation AWS Certified Data Analytics - Specialty', provider: 'AWS', price: 999, niveau: 'Associé' }
+                { id: 31, name: 'Formation CompTIA Data+', provider: 'CompTIA', price: 275, niveau: 'Associé' },
+                { id: 32, name: 'Formation AWS Certified Data Analytics - Specialty', provider: 'AWS', price: 999, niveau: 'Associé' },
+                { id: 33, name: 'Formation Microsoft Azure Data Engineer Associate', provider: 'Microsoft', price: 749, niveau: 'Associé' }
             ],
             'Professionnel': [
-                { id: 21, name: 'Formation AWS Certified Machine Learning - Specialty', provider: 'AWS', price: 999, niveau: 'Professionnel' }
+                { id: 34, name: 'Formation CompTIA Advanced Data Analytics', provider: 'CompTIA', price: 599, niveau: 'Professionnel' },
+                { id: 35, name: 'Formation AWS Certified Machine Learning - Specialty', provider: 'AWS', price: 999, niveau: 'Professionnel' },
+                { id: 36, name: 'Formation Microsoft Azure Solutions Architect', provider: 'Microsoft', price: 899, niveau: 'Professionnel' }
             ]
         },
         'devops-development': {
             'Débutant': [
-                { id: 22, name: 'Formation CompTIA Cloud+', provider: 'CompTIA', price: 460, niveau: 'Débutant' },
-                { id: 23, name: 'Formation AWS Certified Cloud Practitioner', provider: 'AWS', price: 299, niveau: 'Débutant' }
+                { id: 37, name: 'Formation CompTIA Cloud+', provider: 'CompTIA', price: 460, niveau: 'Débutant' },
+                { id: 38, name: 'Formation AWS Certified Cloud Practitioner', provider: 'AWS', price: 299, niveau: 'Débutant' },
+                { id: 39, name: 'Formation CompTIA A+', provider: 'CompTIA', price: 520, niveau: 'Débutant' }
             ],
             'Associé': [
-                { id: 24, name: 'Formation AWS Certified DevOps Engineer - Associate', provider: 'AWS', price: 799, niveau: 'Associé' },
-                { id: 25, name: 'Formation AWS Certified Developer - Associate', provider: 'AWS', price: 799, niveau: 'Associé' }
+                { id: 40, name: 'Formation CompTIA Security+', provider: 'CompTIA', price: 483, niveau: 'Associé' },
+                { id: 41, name: 'Formation AWS Certified DevOps Engineer - Associate', provider: 'AWS', price: 799, niveau: 'Associé' },
+                { id: 42, name: 'Formation AWS Certified Developer - Associate', provider: 'AWS', price: 799, niveau: 'Associé' }
             ],
             'Professionnel': [
-                { id: 26, name: 'Formation AWS Certified DevOps Engineer - Professional', provider: 'AWS', price: 1299, niveau: 'Professionnel' }
+                { id: 43, name: 'Formation CompTIA Advanced Security Practitioner', provider: 'CompTIA', price: 599, niveau: 'Professionnel' },
+                { id: 44, name: 'Formation AWS Certified DevOps Engineer - Professional', provider: 'AWS', price: 1299, niveau: 'Professionnel' },
+                { id: 45, name: 'Formation AWS Certified Solutions Architect - Professional', provider: 'AWS', price: 1299, niveau: 'Professionnel' }
             ]
         },
         'it-governance': {
             'Débutant': [
-                { id: 27, name: 'Formation CompTIA Project+', provider: 'CompTIA', price: 363, niveau: 'Débutant' }
+                { id: 46, name: 'Formation CompTIA Project+', provider: 'CompTIA', price: 363, niveau: 'Débutant' },
+                { id: 47, name: 'Formation CompTIA A+', provider: 'CompTIA', price: 520, niveau: 'Débutant' },
+                { id: 48, name: 'Formation AXELOS ITIL Foundation', provider: 'AXELOS', price: 399, niveau: 'Débutant' }
             ],
             'Associé': [
-                { id: 28, name: 'Formation PMP - Project Management Professional', provider: 'PMI', price: 799, niveau: 'Associé' }
+                { id: 49, name: 'Formation CompTIA Security+', provider: 'CompTIA', price: 483, niveau: 'Associé' },
+                { id: 50, name: 'Formation PMP - Project Management Professional', provider: 'PMI', price: 799, niveau: 'Associé' },
+                { id: 51, name: 'Formation AXELOS ITIL Intermediate', provider: 'AXELOS', price: 599, niveau: 'Associé' }
             ],
             'Professionnel': [
-                { id: 29, name: 'Formation ITIL Foundation', provider: 'AXELOS', price: 599, niveau: 'Professionnel' }
+                { id: 52, name: 'Formation CompTIA CASP+', provider: 'CompTIA', price: 549, niveau: 'Professionnel' },
+                { id: 53, name: 'Formation AXELOS ITIL Expert', provider: 'AXELOS', price: 899, niveau: 'Professionnel' },
+                { id: 54, name: 'Formation PMI Program Management Professional', provider: 'PMI', price: 999, niveau: 'Professionnel' }
             ]
         },
         'it-support': {
             'Débutant': [
-                { id: 30, name: 'Formation CompTIA A+', provider: 'CompTIA', price: 520, niveau: 'Débutant' },
-                { id: 31, name: 'Formation CompTIA Network+', provider: 'CompTIA', price: 391, niveau: 'Débutant' }
+                { id: 55, name: 'Formation CompTIA A+', provider: 'CompTIA', price: 520, niveau: 'Débutant' },
+                { id: 56, name: 'Formation CompTIA Network+', provider: 'CompTIA', price: 391, niveau: 'Débutant' },
+                { id: 57, name: 'Formation AXELOS ITIL Foundation', provider: 'AXELOS', price: 399, niveau: 'Débutant' }
             ],
             'Associé': [
-                { id: 32, name: 'Formation CompTIA Security+', provider: 'CompTIA', price: 483, niveau: 'Associé' }
+                { id: 58, name: 'Formation CompTIA Security+', provider: 'CompTIA', price: 483, niveau: 'Associé' },
+                { id: 59, name: 'Formation CompTIA CySA+', provider: 'CompTIA', price: 422, niveau: 'Associé' },
+                { id: 60, name: 'Formation AXELOS ITIL Intermediate', provider: 'AXELOS', price: 599, niveau: 'Associé' }
+            ],
+            'Professionnel': [
+                { id: 61, name: 'Formation CompTIA CASP+', provider: 'CompTIA', price: 549, niveau: 'Professionnel' },
+                { id: 62, name: 'Formation CompTIA Advanced Security Practitioner', provider: 'CompTIA', price: 599, niveau: 'Professionnel' },
+                { id: 63, name: 'Formation AXELOS ITIL Expert', provider: 'AXELOS', price: 899, niveau: 'Professionnel' }
             ]
         }
     };
