@@ -4,7 +4,7 @@
  */
 
 import { sendDiscordNotification } from '../services/discord.js';
-import { sendConfirmationEmail } from '../services/email.js';
+import { sendConfirmationEmail, sendDiscordLinkEmail } from '../services/email.js';
 
 /**
  * GET /api/funnel/sessions
@@ -209,6 +209,141 @@ export async function handleRegister(request, env, ctx) {
 
   } catch (err) {
     console.error('[Register] Error:', err.message, err.stack);
+    return jsonResponse({
+      success: false,
+      error: 'internal_error',
+      message: 'Erreur serveur. Veuillez reessayer ou nous contacter.',
+    }, 500);
+  }
+}
+
+/**
+ * POST /api/funnel/join-class
+ * Public — Capture un lead et envoie le lien Discord par email
+ *
+ * Body: { prenom, nom, email, telephone?, certification, discord_link, source? }
+ *
+ * Flow:
+ * 1. Valider les champs
+ * 2. Upsert lead (par email unique)
+ * 3. Envoyer email avec lien Discord (via Resend)
+ * 4. Envoyer notification Discord (webhook)
+ * 5. Retourner succes
+ */
+export async function handleJoinClass(request, env, ctx) {
+  let body;
+  try {
+    body = await request.json();
+  } catch {
+    return jsonResponse({ success: false, error: 'invalid_json', message: 'Corps de requete invalide' }, 400);
+  }
+
+  const { prenom, nom, email, telephone, certification, discord_link, source } = body;
+
+  // 1. Validation
+  if (!prenom || !nom || !email || !certification || !discord_link) {
+    return jsonResponse({
+      success: false,
+      error: 'missing_fields',
+      message: 'Les champs prenom, nom, email, certification et discord_link sont requis',
+    }, 400);
+  }
+
+  // Validation email
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return jsonResponse({
+      success: false,
+      error: 'invalid_email',
+      message: 'Adresse email invalide',
+    }, 400);
+  }
+
+  try {
+    // 2. Upsert lead
+    let lead;
+    const existingLead = await env.DB.prepare(
+      'SELECT * FROM leads WHERE email = ?'
+    ).bind(email.toLowerCase().trim()).first();
+
+    if (existingLead) {
+      lead = existingLead;
+      // Mettre a jour les infos
+      await env.DB.prepare(`
+        UPDATE leads SET prenom = ?, nom = ?, telephone = COALESCE(?, telephone), source = ?, updated_at = datetime('now')
+        WHERE id = ?
+      `).bind(prenom.trim(), nom.trim(), telephone || null, source || 'discord-class', lead.id).run();
+      lead.prenom = prenom.trim();
+      lead.nom = nom.trim();
+      if (telephone) lead.telephone = telephone;
+    } else {
+      const insertResult = await env.DB.prepare(`
+        INSERT INTO leads (prenom, nom, email, telephone, source)
+        VALUES (?, ?, ?, ?, ?)
+      `).bind(
+        prenom.trim(),
+        nom.trim(),
+        email.toLowerCase().trim(),
+        telephone || null,
+        source || 'discord-class'
+      ).run();
+
+      lead = {
+        id: insertResult.meta.last_row_id,
+        prenom: prenom.trim(),
+        nom: nom.trim(),
+        email: email.toLowerCase().trim(),
+        telephone: telephone || null,
+        source: source || 'discord-class',
+      };
+    }
+
+    // 3. Envoyer email avec lien Discord (non-bloquant)
+    const emailData = {
+      lead: {
+        prenom: lead.prenom,
+        nom: lead.nom,
+        email: lead.email || email.toLowerCase().trim(),
+      },
+      certification,
+      discord_link,
+    };
+
+    // 4. Notification Discord webhook (non-bloquant)
+    const discordData = {
+      lead: {
+        prenom: lead.prenom,
+        nom: lead.nom,
+        email: lead.email || email.toLowerCase().trim(),
+        source: source || 'discord-class',
+        telephone: lead.telephone || telephone,
+      },
+      session: {
+        formation_name: certification,
+        date_debut: '',
+        date_fin: '',
+        prix_session: 0,
+        places_restantes: '-',
+        places_max: '-',
+      },
+    };
+
+    if (ctx && ctx.waitUntil) {
+      ctx.waitUntil(sendDiscordLinkEmail(env, emailData));
+      ctx.waitUntil(sendDiscordNotification(env, discordData));
+    } else {
+      sendDiscordLinkEmail(env, emailData).catch(console.error);
+      sendDiscordNotification(env, discordData).catch(console.error);
+    }
+
+    // 5. Succes
+    return jsonResponse({
+      success: true,
+      message: 'Email envoye avec le lien Discord !',
+      lead_id: lead.id,
+    });
+
+  } catch (err) {
+    console.error('[JoinClass] Error:', err.message, err.stack);
     return jsonResponse({
       success: false,
       error: 'internal_error',

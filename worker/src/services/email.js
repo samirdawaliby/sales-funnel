@@ -1,101 +1,43 @@
 /**
- * Service Email — Microsoft Graph API
- * Envoie des emails de confirmation depuis formation@caplogy.com
- * Utilise OAuth2 Client Credentials flow
+ * Service Email — Resend API
+ * Envoie des emails depuis formation@caplogy.com
+ * Utilise l'API Resend (RESEND_API_KEY configurée sur Cloudflare)
  */
 
-// Cache token en memoire (valide ~1h, on refresh a 55min)
-let cachedToken = null;
-let tokenExpiry = 0;
+const RESEND_API_URL = 'https://api.resend.com/emails';
+const FROM_EMAIL = 'Caplogy Formations <formation@caplogy.com>';
 
 /**
- * Obtenir un access token Microsoft Graph (avec cache)
+ * Envoyer l'email avec le lien Discord de la classe
  */
-async function getGraphToken(env) {
-  if (cachedToken && Date.now() < tokenExpiry) {
-    return cachedToken;
-  }
-
-  const tokenUrl = `https://login.microsoftonline.com/${env.AZURE_TENANT_ID}/oauth2/v2.0/token`;
-
-  const response = await fetch(tokenUrl, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: new URLSearchParams({
-      client_id: env.AZURE_CLIENT_ID,
-      client_secret: env.AZURE_CLIENT_SECRET,
-      scope: 'https://graph.microsoft.com/.default',
-      grant_type: 'client_credentials',
-    }),
-  });
-
-  if (!response.ok) {
-    const errText = await response.text();
-    throw new Error(`[Email] Token error ${response.status}: ${errText}`);
-  }
-
-  const data = await response.json();
-  cachedToken = data.access_token;
-  // Refresh 60 secondes avant expiration
-  tokenExpiry = Date.now() + (data.expires_in - 60) * 1000;
-  return cachedToken;
-}
-
-/**
- * Envoyer l'email de confirmation d'inscription
- */
-export async function sendConfirmationEmail(env, { lead, session }) {
-  if (!env.AZURE_TENANT_ID || !env.AZURE_CLIENT_ID || !env.AZURE_CLIENT_SECRET) {
-    console.error('[Email] Azure credentials non configurees');
+export async function sendDiscordLinkEmail(env, { lead, certification, discord_link }) {
+  if (!env.RESEND_API_KEY) {
+    console.error('[Email] RESEND_API_KEY non configuree');
     return;
   }
 
   try {
-    const accessToken = await getGraphToken(env);
-    const isFree = session.prix_session === 0;
-    const emailHtml = buildConfirmationEmailHtml({ lead, session, isFree });
+    const emailHtml = buildDiscordLinkEmailHtml({ lead, certification, discord_link });
 
-    const subject = isFree
-      ? `\u2705 Confirmation : ${session.formation_name} GRATUIT \u2014 ${formatDateFR(session.date_debut)}`
-      : `\u2705 Confirmation : Votre inscription ${session.formation_name}`;
-
-    const graphUrl = 'https://graph.microsoft.com/v1.0/users/formation@caplogy.com/sendMail';
-
-    const response = await fetch(graphUrl, {
+    const response = await fetch(RESEND_API_URL, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${accessToken}`,
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        message: {
-          subject,
-          body: {
-            contentType: 'HTML',
-            content: emailHtml,
-          },
-          toRecipients: [
-            {
-              emailAddress: {
-                address: lead.email,
-                name: `${lead.prenom} ${lead.nom}`,
-              },
-            },
-          ],
-          from: {
-            emailAddress: {
-              address: 'formation@caplogy.com',
-              name: 'Caplogy Formations',
-            },
-          },
-        },
-        saveToSentItems: true,
+        from: FROM_EMAIL,
+        to: [lead.email],
+        subject: `🎓 Rejoignez la classe ${certification} — Caplogy`,
+        html: emailHtml,
       }),
     });
 
     if (!response.ok) {
       const errText = await response.text();
-      console.error(`[Email] Send error ${response.status}: ${errText}`);
+      console.error(`[Email] Resend error ${response.status}: ${errText}`);
+    } else {
+      console.log(`[Email] Discord link sent to ${lead.email} for ${certification}`);
     }
   } catch (err) {
     console.error('[Email] Send failed:', err.message);
@@ -103,7 +45,118 @@ export async function sendConfirmationEmail(env, { lead, session }) {
 }
 
 /**
- * Construire le HTML de l'email de confirmation
+ * Envoyer l'email de confirmation d'inscription (sessions payantes/gratuites)
+ */
+export async function sendConfirmationEmail(env, { lead, session }) {
+  if (!env.RESEND_API_KEY) {
+    console.error('[Email] RESEND_API_KEY non configuree');
+    return;
+  }
+
+  try {
+    const isFree = session.prix_session === 0;
+    const emailHtml = buildConfirmationEmailHtml({ lead, session, isFree });
+
+    const subject = isFree
+      ? `✅ Confirmation : ${session.formation_name} GRATUIT — ${formatDateFR(session.date_debut)}`
+      : `✅ Confirmation : Votre inscription ${session.formation_name}`;
+
+    const response = await fetch(RESEND_API_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: FROM_EMAIL,
+        to: [lead.email],
+        subject,
+        html: emailHtml,
+      }),
+    });
+
+    if (!response.ok) {
+      const errText = await response.text();
+      console.error(`[Email] Resend error ${response.status}: ${errText}`);
+    }
+  } catch (err) {
+    console.error('[Email] Send failed:', err.message);
+  }
+}
+
+/**
+ * HTML — Email avec lien Discord de la classe
+ */
+function buildDiscordLinkEmailHtml({ lead, certification, discord_link }) {
+  return `<!DOCTYPE html>
+<html lang="fr">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0"></head>
+<body style="margin:0;padding:0;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:#f0f4f8;">
+  <table width="100%" cellpadding="0" cellspacing="0" style="background:#f0f4f8;padding:40px 20px;">
+    <tr><td align="center">
+      <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:16px;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.08);">
+
+        <!-- HEADER -->
+        <tr><td style="background:#0D3866;padding:32px 40px;text-align:center;">
+          <h1 style="margin:0;color:#00eaff;font-size:28px;font-weight:800;letter-spacing:1px;">CAPLOGY</h1>
+          <p style="margin:8px 0 0;color:#a0bcd8;font-size:14px;">Bienvenue dans votre classe</p>
+        </td></tr>
+
+        <!-- BODY -->
+        <tr><td style="padding:40px;">
+          <h2 style="color:#0D3866;font-size:22px;margin:0 0 16px;">Bonjour ${lead.prenom},</h2>
+
+          <p style="color:#4a5568;font-size:15px;line-height:1.8;margin:0 0 24px;">
+            Vous \u00eates inscrit(e) \u00e0 la classe <strong style="color:#0D3866;">${certification}</strong> chez Caplogy.
+            Rejoignez d\u00e8s maintenant votre canal Discord pour \u00e9changer avec les autres apprenants et le formateur.
+          </p>
+
+          <!-- DISCORD CTA -->
+          <div style="text-align:center;margin:32px 0;">
+            <a href="${discord_link}" style="display:inline-block;background:#5865F2;color:#ffffff;padding:16px 40px;border-radius:10px;text-decoration:none;font-weight:700;font-size:16px;letter-spacing:0.5px;">
+              \ud83d\ude80 Rejoindre la classe sur Discord
+            </a>
+          </div>
+
+          <p style="color:#4a5568;font-size:15px;line-height:1.8;margin:0 0 24px;">
+            Si le bouton ne fonctionne pas, copiez ce lien dans votre navigateur :<br>
+            <a href="${discord_link}" style="color:#5865F2;word-break:break-all;">${discord_link}</a>
+          </p>
+
+          <!-- INFO BOX -->
+          <div style="background:linear-gradient(135deg,#0D3866,#1a4a7a);border-radius:12px;padding:24px;margin:0 0 24px;">
+            <h3 style="color:#00eaff;font-size:16px;margin:0 0 12px;">Prochaines \u00e9tapes :</h3>
+            <table cellpadding="0" cellspacing="0">
+              <tr><td style="padding:4px 0;color:#e2e8f0;font-size:14px;">\u2713 Rejoignez le canal Discord de votre classe</td></tr>
+              <tr><td style="padding:4px 0;color:#e2e8f0;font-size:14px;">\u2713 Un conseiller Caplogy vous contactera sous 24h</td></tr>
+              <tr><td style="padding:4px 0;color:#e2e8f0;font-size:14px;">\u2713 Pr\u00e9parez vos questions pour le formateur</td></tr>
+            </table>
+          </div>
+
+          <p style="color:#718096;font-size:13px;line-height:1.6;margin:0;">
+            Si vous avez des questions, r\u00e9pondez directement \u00e0 cet email ou contactez-nous au <strong>+33 (0)1 89 16 90 08</strong>.
+          </p>
+        </td></tr>
+
+        <!-- FOOTER -->
+        <tr><td style="background:#06213d;padding:24px 40px;text-align:center;">
+          <p style="margin:0 0 4px;color:#00eaff;font-size:16px;font-weight:800;">CAPLOGY</p>
+          <p style="margin:0;color:#4a6a8a;font-size:12px;line-height:1.6;">
+            36 Avenue de l\u2019Europe, 78140 V\u00e9lizy-Villacoublay<br>
+            +33 (0)1 89 16 90 08 | contact@caplogy.com<br>
+            Organisme de formation certifi\u00e9 Qualiopi
+          </p>
+        </td></tr>
+
+      </table>
+    </td></tr>
+  </table>
+</body>
+</html>`;
+}
+
+/**
+ * HTML — Email de confirmation d'inscription (sessions)
  */
 function buildConfirmationEmailHtml({ lead, session, isFree }) {
   const dateDebut = formatDateFR(session.date_debut);

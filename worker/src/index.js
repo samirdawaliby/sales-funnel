@@ -7,6 +7,7 @@
  * Routes:
  *   GET  /api/funnel/sessions              — Sessions actives (public)
  *   POST /api/funnel/register              — Inscription etudiant (public)
+ *   POST /api/funnel/join-class            — Capture lead + envoi Discord par email (public)
  *   GET  /api/funnel/session/:id/students  — Liste etudiants par session (admin)
  *   GET  /api/funnel/stats                 — Statistiques globales (admin)
  *   GET  /health                           — Health check
@@ -15,6 +16,7 @@
 import {
   handleGetSessions,
   handleRegister,
+  handleJoinClass,
   handleGetStudents,
   handleGetStats,
 } from './routes/funnel.js';
@@ -64,6 +66,11 @@ export default {
       return handleRegister(request, env, ctx);
     }
 
+    // POST /api/funnel/join-class
+    if (pathname === '/api/funnel/join-class' && method === 'POST') {
+      return handleJoinClass(request, env, ctx);
+    }
+
     // GET /api/funnel/session/:id/students
     const studentMatch = pathname.match(/^\/api\/funnel\/session\/(\d+)\/students$/);
     if (studentMatch && method === 'GET') {
@@ -83,6 +90,7 @@ export default {
       available_routes: [
         'GET  /api/funnel/sessions',
         'POST /api/funnel/register',
+        'POST /api/funnel/join-class',
         'GET  /api/funnel/session/:id/students',
         'GET  /api/funnel/stats',
         'GET  /health',

@@ -2627,7 +2627,7 @@
         // Register lead + send Discord link by email via API
         var discordUrl = discordChannels[channelId] || 'https://discord.gg/caplogy';
 
-        fetch(API_BASE + '/api/funnel/register', {
+        fetch(API_BASE + '/api/funnel/join-class', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
