@@ -248,18 +248,25 @@
             align-items: center;
             justify-content: center;
             box-shadow: 0 4px 20px rgba(37,211,102,0.4);
-            z-index: 9999;
+            z-index: 10000;
             transition: transform 0.3s, box-shadow 0.3s;
             text-decoration: none;
+            animation: whatsappPulse 2s ease-in-out infinite;
         }
         .whatsapp-float:hover {
             transform: scale(1.1);
             box-shadow: 0 6px 30px rgba(37,211,102,0.6);
+            animation: none;
         }
         .whatsapp-float svg {
             fill: white;
             width: 32px;
             height: 32px;
+        }
+        @keyframes whatsappPulse {
+            0% { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0.5); }
+            50% { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 14px rgba(37,211,102,0); }
+            100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4), 0 0 0 0 rgba(37,211,102,0); }
         }
         .guide-cta-note {
             color: #64748b;
