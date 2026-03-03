@@ -167,6 +167,14 @@
             font-size: 1rem;
             font-weight: 600;
         }
+        .video-blue-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(13, 56, 101, 0.25);
+            pointer-events: none;
+            z-index: 1;
+            border-radius: 12px;
+        }
         .video-controls {
             position: absolute;
             bottom: 12px;
@@ -1930,6 +1938,7 @@
         <video id="videoBlock" width="100%" autoplay muted loop playsinline disablepictureinpicture oncontextmenu="return false;" style="display: block;">
             <source src="./videopromo.mp4" type="video/mp4">
         </video>
+        <div class="video-blue-overlay"></div>
         <div class="video-controls">
             <button class="video-ctrl-btn" id="playPauseBtn" onclick="togglePlayPause()" aria-label="Pause">
                 <svg id="pauseIcon" width="20" height="20" viewBox="0 0 24 24" fill="white"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
