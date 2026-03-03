@@ -1,0 +1,12 @@
+name = "caplogy-funnel"
+main = "src/index.js"
+compatibility_date = "2024-12-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "caplogy-db"
+database_id = "9e61b51f-289c-409b-acc7-8f55baba9a4b"
+
+[vars]
+CORS_ORIGIN = "*"
+ENVIRONMENT = "production"

@@ -13,7 +13,7 @@ jobs:
     name: Deploy Pages
     steps:
       - uses: actions/checkout@v4
-      - run: npx wrangler pages deploy . --project-name caplogy-funnel-page --commit-dirty=true
+      - run: npx wrangler pages deploy deploy --project-name caplogy-funnel-page --commit-dirty=true
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

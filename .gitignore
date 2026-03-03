@@ -1,13 +1,8 @@
 .wrangler/
 node_modules/
+.DS_Store
 *.pdf
 *.png
 *.jpg
-*.json
-*.py
-*.md
-*.txt
-*.html
-!deploy/funnel.html
-!deploy/index.html
-!deploy/rapport_leads_enhanced.html
+*.jpeg
+*.mp4
