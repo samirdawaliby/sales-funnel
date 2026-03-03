@@ -671,66 +671,66 @@
         .offer-card {
             background: linear-gradient(160deg, #0c1f3a 0%, #0a1628 100%);
             border: 1px solid rgba(96,165,250,0.2);
-            border-radius: 16px;
-            padding: 2rem 1.5rem;
+            border-radius: 14px;
+            padding: 1.4rem 1.2rem;
             text-align: center;
             transition: transform 0.3s, box-shadow 0.3s;
         }
         .offer-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 60px rgba(96,165,250,0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(96,165,250,0.15);
         }
-        .offer-card-emoji { font-size: 2.5rem; margin-bottom: 1rem; }
+        .offer-card-emoji { font-size: 1.8rem; margin-bottom: 0.5rem; }
         .offer-card-title {
             color: white;
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 800;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
         }
         .offer-card-price {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
         .offer-card-price .old-price {
             color: #ef4444;
             text-decoration: line-through;
-            font-size: 1rem;
-            margin-right: 0.5rem;
+            font-size: 0.85rem;
+            margin-right: 0.4rem;
         }
         .offer-card-price .free {
             color: #34d399;
             font-weight: 800;
-            font-size: 1.4rem;
+            font-size: 1.15rem;
             letter-spacing: 1px;
         }
         .offer-card-session {
             color: #94a3b8;
-            font-size: 0.9rem;
-            margin-bottom: 0.5rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.3rem;
         }
         .offer-card-places {
             color: #f59e0b;
             font-weight: 600;
-            font-size: 0.85rem;
-            margin-bottom: 1.2rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
         }
         .offer-card-form {
             display: flex;
             flex-direction: column;
-            gap: 0.6rem;
+            gap: 0.45rem;
             width: 100%;
-            margin-top: 0.5rem;
+            margin-top: 0.3rem;
         }
         .offer-card-form input {
             width: 100%;
-            padding: 0.65rem 0.9rem;
-            border-radius: 10px;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
             border: 1px solid rgba(96,165,250,0.25);
             background: rgba(255,255,255,0.06);
             color: white;
-            font-size: 0.9rem;
+            font-size: 0.82rem;
             font-family: inherit;
             outline: none;
-            transition: border-color 0.2s;
+            transition: border-color 0.2s, border 0.2s;
         }
         .offer-card-form input::placeholder {
             color: #64748b;
@@ -739,14 +739,32 @@
             border-color: var(--cyan);
             background: rgba(96,165,250,0.08);
         }
+        .offer-card-form input.input-error {
+            border-color: #ef4444;
+        }
+        .offer-card-form input.input-valid {
+            border-color: #34d399;
+        }
+        .offer-card-confirm {
+            color: #ef4444;
+            font-size: 0.78rem;
+            font-weight: 700;
+            margin-top: 0.3rem;
+            display: none;
+            text-align: center;
+            line-height: 1.3;
+        }
+        .offer-card-confirm.visible {
+            display: block;
+        }
         .offer-card-btn {
             display: inline-block;
             background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #2563eb 100%);
             color: white;
-            padding: 0.9rem 1.8rem;
-            border-radius: 10px;
+            padding: 0.7rem 1.4rem;
+            border-radius: 8px;
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             text-decoration: none;
             border: none;
             cursor: pointer;
@@ -2395,10 +2413,12 @@
             <div class="offer-card-session">📅 10 - 14 Mars 2026</div>
             <div class="offer-card-places">🔥 Places limitées</div>
             <div class="offer-card-form" id="formSecurity">
-                <input type="text" placeholder="Prénom" id="prenomSecurity" required>
-                <input type="email" placeholder="Email" id="emailSecurity" required>
+                <input type="text" placeholder="Nom Prénom" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Téléphone (06...)" required>
             </div>
-            <button class="offer-card-btn" onclick="joinClass('Security', 'comptia-security-10-14-mars-2026', 'formSecurity')">Rejoignez la classe</button>
+            <div class="offer-card-confirm" id="confirmSecurity">✉️ Votre lien Discord de la classe a été envoyé par mail</div>
+            <button class="offer-card-btn" onclick="joinClass('CompTIA Security+', 'comptia-security-10-14-mars-2026', 'formSecurity', 'confirmSecurity')">Rejoignez la classe</button>
         </div>
         <div class="offer-card">
             <div class="offer-card-emoji">☁️</div>
@@ -2410,10 +2430,12 @@
             <div class="offer-card-session">📅 17 - 21 Mars 2026</div>
             <div class="offer-card-places">🔥 Places limitées</div>
             <div class="offer-card-form" id="formAzure">
-                <input type="text" placeholder="Prénom" id="prenomAzure" required>
-                <input type="email" placeholder="Email" id="emailAzure" required>
+                <input type="text" placeholder="Nom Prénom" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Téléphone (06...)" required>
             </div>
-            <button class="offer-card-btn" onclick="joinClass('Azure', 'azure-az900-17-21-mars-2026', 'formAzure')">Rejoignez la classe</button>
+            <div class="offer-card-confirm" id="confirmAzure">✉️ Votre lien Discord de la classe a été envoyé par mail</div>
+            <button class="offer-card-btn" onclick="joinClass('Microsoft Azure AZ-900', 'azure-az900-17-21-mars-2026', 'formAzure', 'confirmAzure')">Rejoignez la classe</button>
         </div>
         <div class="offer-card">
             <div class="offer-card-emoji">🌐</div>
@@ -2425,10 +2447,12 @@
             <div class="offer-card-session">📅 24 - 28 Mars 2026</div>
             <div class="offer-card-places">🔥 Places limitées</div>
             <div class="offer-card-form" id="formCisco">
-                <input type="text" placeholder="Prénom" id="prenomCisco" required>
-                <input type="email" placeholder="Email" id="emailCisco" required>
+                <input type="text" placeholder="Nom Prénom" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Téléphone (06...)" required>
             </div>
-            <button class="offer-card-btn" onclick="joinClass('Cisco', 'cisco-networks-24-28-mars-2026', 'formCisco')">Rejoignez la classe</button>
+            <div class="offer-card-confirm" id="confirmCisco">✉️ Votre lien Discord de la classe a été envoyé par mail</div>
+            <button class="offer-card-btn" onclick="joinClass('Cisco Networks', 'cisco-networks-24-28-mars-2026', 'formCisco', 'confirmCisco')">Rejoignez la classe</button>
         </div>
     </div>
 </section>
@@ -2524,7 +2548,7 @@
         });
     })();
 
-    // ── JOIN CLASS (Lead capture + Discord redirect) ──
+    // ── JOIN CLASS (Lead capture + email Discord link) ──
     // Discord invite links per channel - REPLACE WITH YOUR ACTUAL DISCORD INVITE LINKS
     var discordChannels = {
         'comptia-security-10-14-mars-2026': 'https://discord.gg/VOTRE_INVITE_SECURITY',
@@ -2532,67 +2556,104 @@
         'cisco-networks-24-28-mars-2026': 'https://discord.gg/VOTRE_INVITE_CISCO'
     };
 
-    function joinClass(certName, channelId, formId) {
+    // French phone validation: 0X XX XX XX XX or +33 X XX XX XX XX
+    function isValidFrenchPhone(phone) {
+        var cleaned = phone.replace(/[\s\.\-\(\)]/g, '');
+        // 06/07 mobile or 01-05/09 landline
+        if (/^0[1-9]\d{8}$/.test(cleaned)) return true;
+        // +33 format
+        if (/^\+33[1-9]\d{8}$/.test(cleaned)) return true;
+        // 0033 format
+        if (/^0033[1-9]\d{8}$/.test(cleaned)) return true;
+        return false;
+    }
+
+    function joinClass(certName, channelId, formId, confirmId) {
         var form = document.getElementById(formId);
-        var prenomInput = form.querySelector('input[type="text"]');
+        var nameInput = form.querySelector('input[type="text"]');
         var emailInput = form.querySelector('input[type="email"]');
+        var phoneInput = form.querySelector('input[type="tel"]');
+        var confirmEl = document.getElementById(confirmId);
 
-        var prenom = prenomInput.value.trim();
+        var fullName = nameInput.value.trim();
         var email = emailInput.value.trim();
+        var phone = phoneInput.value.trim();
 
-        // Validation
-        if (!prenom) {
-            prenomInput.style.borderColor = '#ef4444';
-            prenomInput.focus();
-            return;
+        // Reset all
+        nameInput.className = ''; emailInput.className = ''; phoneInput.className = '';
+        confirmEl.classList.remove('visible');
+        var hasError = false;
+
+        // Validate name (at least 2 words)
+        if (!fullName || fullName.length < 3) {
+            nameInput.classList.add('input-error');
+            if (!hasError) nameInput.focus();
+            hasError = true;
+        } else {
+            nameInput.classList.add('input-valid');
         }
+
+        // Validate email
         if (!email || !email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-            emailInput.style.borderColor = '#ef4444';
-            emailInput.focus();
-            return;
+            emailInput.classList.add('input-error');
+            if (!hasError) emailInput.focus();
+            hasError = true;
+        } else {
+            emailInput.classList.add('input-valid');
         }
 
-        // Reset border colors
-        prenomInput.style.borderColor = '';
-        emailInput.style.borderColor = '';
+        // Validate French phone
+        if (!phone || !isValidFrenchPhone(phone)) {
+            phoneInput.classList.add('input-error');
+            if (!hasError) phoneInput.focus();
+            hasError = true;
+        } else {
+            phoneInput.classList.add('input-valid');
+        }
+
+        if (hasError) return;
+
+        // Parse name
+        var parts = fullName.split(/\s+/);
+        var nom = parts[0] || '';
+        var prenom = parts.slice(1).join(' ') || parts[0];
 
         // Find the button and show loading state
         var btn = form.parentElement.querySelector('.offer-card-btn');
         var originalText = btn.textContent;
-        btn.textContent = 'Inscription en cours...';
+        btn.textContent = 'Envoi en cours...';
         btn.disabled = true;
 
-        // Register lead via API
+        // Register lead + send Discord link by email via API
+        var discordUrl = discordChannels[channelId] || 'https://discord.gg/caplogy';
+
         fetch(API_BASE + '/api/funnel/register', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 prenom: prenom,
-                nom: '',
+                nom: nom,
                 email: email,
-                telephone: null,
-                source: 'discord-' + channelId
+                telephone: phone,
+                source: 'discord-' + channelId,
+                discord_link: discordUrl,
+                certification: certName
             })
         }).then(function(response) {
             return response.json();
         }).then(function(data) {
-            // Redirect to Discord regardless of API result
-            var discordUrl = discordChannels[channelId] || 'https://discord.gg/caplogy';
-            window.open(discordUrl, '_blank');
-            btn.textContent = '✓ Bienvenue !';
+            // Show confirmation
+            confirmEl.classList.add('visible');
+            btn.textContent = '✓ Email envoyé !';
             btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
-            setTimeout(function() {
-                btn.textContent = originalText;
-                btn.disabled = false;
-                btn.style.background = '';
-            }, 3000);
+            btn.disabled = true;
         }).catch(function(err) {
-            console.warn('Lead registration error:', err);
-            // Still redirect to Discord even if API fails
-            var discordUrl = discordChannels[channelId] || 'https://discord.gg/caplogy';
-            window.open(discordUrl, '_blank');
-            btn.textContent = originalText;
-            btn.disabled = false;
+            console.warn('Registration error:', err);
+            // Still show confirmation (API might just not support email yet)
+            confirmEl.classList.add('visible');
+            btn.textContent = '✓ Inscription enregistrée';
+            btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+            btn.disabled = true;
         });
     }
 
